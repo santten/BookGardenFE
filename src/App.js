@@ -8,7 +8,7 @@ import Contacts from './pages/contacts'
 import Search from './pages/search'
 import Cart from './pages/cart'
 import Login from './pages/login'
-
+import About from './components/About';
 import Footer from './components/Footer'
 
 import './App.css';
@@ -27,8 +27,14 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="/login" element={<Login />} />
         </Routes>
+        <main>
+        {/* About */}
+        <About />
+      </main>
         <Footer /> 
       </BrowserRouter>
+
+
     </div>
   );
 }
