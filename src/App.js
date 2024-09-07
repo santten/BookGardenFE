@@ -27,10 +27,6 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="/login" element={<Login />} />
         </Routes>
-        <main>
-        {/* About */}
-        <About />
-      </main>
         <Footer /> 
       </BrowserRouter>
 
