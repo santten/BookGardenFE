@@ -8,17 +8,23 @@ module.exports = {
     extend: {
       colors: {
         black: "#000000",
-        smoke: "#4E4F51",
         white: "#FFFFFF",
-        crayola: "#FB554C",
-        mango: "#F4BB44",
-        opal: "#8DBAB5",
-        seafoam: "#CCE0DE",
-        sage: "#EEF1EC",
-        timber: "#BBA28B",
-        oyster: "#FFD6AD",
-        cloudy: "#F5F4F3",
-        grey: "#CCD4D6"
+        warning: "#FB554C",
+        accent: "#F4BB44",
+        grey: {
+          dark: "#4E4F51",
+          DEFAULT: "#CCD4D6",
+          light: "#F5F4F3",
+        },
+        primary: {
+          dark: "#8DBAB5",
+          DEFAULT: "#CCE0DE",
+          light: "#EEF1EC",
+        },
+        secondary: {
+          DEFAULT: "#B49A82",
+          light: "#FFD6AD",
+        },
       },
       fontFamily: {
         title: "Koulen",
