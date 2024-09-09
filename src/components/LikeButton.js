@@ -1,10 +1,10 @@
 import React from 'react'
-import Heart from '../svg_icons/heart.svg'
+import { Icon } from '@iconify/react';
 
 function LikeButton() {
   return (
     <div className="m-[0.5rem]">
-      <img className="h-[24px]" src={Heart}></img>
+      <Icon icon="teenyicons:heart-outline" height="24px" className="text-black hover:text-warning"/>
     </div>
   )
 }

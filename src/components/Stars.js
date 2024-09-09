@@ -1,19 +1,16 @@
 import React from 'react'
-import Star from '../svg_icons/star_full.svg'
-import StarWhite from '../svg_icons/star_white.svg'
-import StarLight from '../svg_icons/star_light.svg'
+
+import { Icon } from '@iconify/react';
 
 function Stars({ rating, height, background }) {
-
-    const NoStar = background === "white" ? StarLight : StarWhite
+    const noStarColor = background === "white" ? "inline text-black" : "inline text-white"
+    const numArray = [0.5, 1.5, 2.5, 3.5, 4.5]
 
     return (
         <div>
-            <img alt="star" className="inline" width={height} src={rating.rating >= 1 ? Star : NoStar} />
-            <img alt="star" className="inline" width={height} src={rating.rating >= 2 ? Star : NoStar} />
-            <img alt="star" className="inline" width={height} src={rating.rating >= 3 ? Star : NoStar} />
-            <img alt="star" className="inline" width={height} src={rating.rating >= 4 ? Star : NoStar} />
-            <img alt="star" className="inline" width={height} src={rating.rating >= 5 ? Star : NoStar} />
+            {numArray.map((item) => {
+                return <Icon icon="material-symbols:star" width={height} className={rating.rating >= item ? "inline text-accent" : noStarColor}></Icon>
+            })}
         </div>
     )
 }

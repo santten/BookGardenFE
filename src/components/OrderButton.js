@@ -1,11 +1,11 @@
 import React from 'react'
-import ShoppingCart from '../svg_icons/cart.svg'
+import { Icon } from '@iconify/react';
 
 function OrderButton() {
   return (
-    <div className="text-center px-[1rem] py-[0.5rem] bg-black min-w-[160px] rounded-[99px]">
+    <div className="text-center px-[1rem] py-[0.5rem] bg-black min-w-[160px] rounded-[99px] hover:bg-secondary">
       <p className="text-base text-white font-semibold inline">Order Now&ensp;</p> 
-      <img className="invert w-[1rem] inline" src={ShoppingCart}></img>
+      <Icon icon="material-symbols:shopping-cart" width="1.25rem" className="text-white inline"/>
     </div>
   )
 }
