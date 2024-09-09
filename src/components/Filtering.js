@@ -2,8 +2,8 @@ import React from 'react'
 
 function Filtering() {
   return (
-    <div>
-      this is filtering it can supposedly change the prop for productlist
+    <div className="bg-grey-light rounded-[32px] min-h-[10rem] p-[1rem]">
+      filtering will be added here
     </div>
   )
 }

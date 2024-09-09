@@ -1,11 +1,15 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 import NavBar from './components/NavBar';
+
 import Home from './pages/index';
 import Store from './pages/store';
 import Contacts from './pages/contacts';
 import Search from './pages/search';
 import Cart from './pages/cart';
 import Login from './pages/login';
+import ProductPage from "./pages/productpage";
+
 import Footer from './components/Footer';
 
 import './App.css';
@@ -23,6 +27,7 @@ function App() {
           <Route path="/search" element={<Search />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/products/:productID" element={<ProductPage />} />
         </Routes>
         <Footer /> 
       </BrowserRouter>

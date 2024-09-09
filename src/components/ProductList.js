@@ -91,7 +91,7 @@ function ProductList({ category }) {
 
     return (
         <div className="grid grid-cols-[20%_auto] gap-[4rem] mb-[100px] max-w-[90vw] ml-auto mr-auto">
-            <div className="bg-accent">
+            <div>
                 <Filtering />
             </div>
             <div>
