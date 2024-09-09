@@ -1,15 +1,20 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import NavBar from './components/NavBar';
-import Home from './pages/index';
-import Store from './pages/store';
-import Contacts from './pages/contacts';
-import Search from './pages/search';
-import Cart from './pages/cart';
-import Login from './pages/login';
+import NavBar from './components/NavBar'
+import Home from './pages/index'
+import Store from './pages/store'
+import Contacts from './pages/contacts'
+import Search from './pages/search'
+import Cart from './pages/cart'
+import Login from './pages/login'
+import About from './components/About';
 import Footer from './components/Footer';
-
+import Arrivals from './components/Arrivals';
 import './App.css';
-
+import Hero from "./components/Hero";
+import BestSellers from "./components/BestSellers";
+import CustomerReviews from "./components/CustomerReviews";
+import BookCategories from  "./components/Genres";
+import NewsletterSignup from  "./components/Subscriptions";
 
 function App() {
   return (
