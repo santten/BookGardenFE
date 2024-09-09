@@ -9,8 +9,8 @@ const Genres = () => {
     <div className="w-full bg-secondary-light py-8">
     <div className="max-w-7xl mx-auto py-8">
         <h1 className="text-center text-3xl font-bold mb-8">
-            <span className="text-black leading-[64px] font-title">FIND YOUR BOOK BY</span>
-            <span className="text-secondary leading-[64px] font-title"> GENRE</span>
+            <span className="text-black text-[64px] font-title">FIND YOUR BOOK BY</span>
+            <span className="text-secondary text-[64px] font-title"> GENRE</span>
         </h1>
       
         <div className="grid grid-cols-2 gap-8">
@@ -24,12 +24,12 @@ const Genres = () => {
           />
           <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-50 transition-opacity duration-300 rounded-lg"></div>
           <div className="absolute inset-0 flex justify-center items-center">
-            <button className="absolute top-10 left-4 bg-black text-white px-4 py-2 rounded-full text-sm font-bold whitespace-nowrap flex items-center space-x-2 transition-opacity duration-300">
+            <button className="absolute top-20 left-8 bg-black text-white px-6 py-2 rounded-full text-sm font-bold whitespace-nowrap flex items-center space-x-2 transition-opacity duration-300">
 
               Find more  <ArrowIcon /> 
             </button>
           </div>
-          <p className="absolute top-4 left-4 text-black text-lg font-bold font-title">STUDENT BOOKS</p>
+          <p className="absolute top-10 left-8 text-black text-[40px] text-lg font-bold font-title">STUDENT BOOKS</p>
         </div>
 
         <div className="flex flex-col gap-8">
@@ -42,11 +42,11 @@ const Genres = () => {
           />
           <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-50 transition-opacity duration-300 rounded-lg"></div>
           <div className="absolute inset-0 flex justify-center items-center">
-          <button className="absolute top-10 left-4 bg-black text-white px-4 py-2 rounded-full text-sm font-bold whitespace-nowrap flex items-center space-x-2 transition-opacity duration-300">
+          <button className="absolute top-13 left-8 bg-black text-white px-6 py-2 rounded-full text-sm font-bold whitespace-nowrap flex items-center space-x-2 transition-opacity duration-300">
           Find more  <ArrowIcon /> 
             </button>
           </div>
-          <p className="absolute top-4 left-4 text-black text-lg font-bold font-title">CHILDREN BOOKS</p>
+          <p className="absolute top-10 left-8 text-black text-[40px] text-lg font-bold font-title">CHILDREN BOOKS</p>
         </div>
 
         {/* Classic Books - Bottom right */}
@@ -58,11 +58,11 @@ const Genres = () => {
           />
           <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-50 transition-opacity duration-300 rounded-lg"></div>
           <div className="absolute inset-0 flex justify-center items-center">
-          <button className="absolute top-10 left-4 bg-black text-white px-4 py-2 rounded-full text-sm font-bold whitespace-nowrap flex items-center space-x-2 transition-opacity duration-300">
+          <button className="absolute top-13 left-8 bg-black text-white px-6 py-2 rounded-full text-sm font-bold whitespace-nowrap flex items-center space-x-2 transition-opacity duration-300">
           Find more  <ArrowIcon /> 
             </button>
           </div>
-          <p className="absolute top-4 left-4 text-black text-lg font-bold font-title">CLASSIC BOOKS</p>
+          <p className="absolute top-10 left-8 text-black text-[40px] text-lg font-bold font-title">CLASSIC BOOKS</p>
         </div>
         </div>
       </div>
