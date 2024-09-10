@@ -3,7 +3,7 @@ import React from 'react'
 import { Icon } from '@iconify/react';
 
 function Stars({ rating, height, background }) {
-    const noStarColor = background === "white" ? "inline text-black" : "inline text-white"
+    const noStarColor = background === "white" ? "inline text-grey-light" : "inline text-white"
     const numArray = [0.5, 1.5, 2.5, 3.5, 4.5]
 
     return (

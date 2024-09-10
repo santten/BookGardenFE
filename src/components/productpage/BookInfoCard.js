@@ -3,8 +3,7 @@ import Stars from '../Stars'
 import LikeButton from '../LikeButton'
 
 function BookInfoCard(props) {
-    const { title, author, genre, rating, year, publisher, ISBN, binding, pages, language } = props.bookinfo
-    const price = "9.95 €"
+    const { title, author, genre, rating, year, publisher, ISBN, binding, pages, language, price } = props.bookinfo
 
     return (
         <div className="grid grid-cols-[305px_1fr] min-w-[80vw] bg-white">
@@ -17,13 +16,15 @@ function BookInfoCard(props) {
                 <LikeButton />
             </div>
             <div className="w-[40vw] mx-[20px]">
-                <div className="grid grid-cols-[90%_10%]">
-                    <p className="min-w-max text-[24px]">
+                <div className="grid grid-cols-[1fr_1fr]">
+                    <p className="text-[24px]">
                         <span className="font-semibold text-[36px]">{title}</span><br />
                         {author}</p>
-                    <p className="text-[52px] font-semibold">{price}</p>
+                    <p className="text-[52px] text-right font-semibold">{price} €</p>
                 </div>
-                <div>details</div>
+                <div>
+                    {genre} <br /> {year} <br /> {publisher} <br /> {ISBN} {binding} <br /> {pages} pages <br /> {language}
+                </div>
             </div>
         </div>
     )

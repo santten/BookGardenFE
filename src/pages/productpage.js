@@ -11,7 +11,7 @@ function ProductPage() {
     const { productID } = useParams();
 
     // same here: config to match database stuff properly
-    const bookinfo = bookArray.filter((item) => item.id == [productID])[0]
+    const bookinfo = bookArray.filter((item) => item.id === parseInt([productID]))[0]
 
     console.log(productID, bookinfo.title)
 
