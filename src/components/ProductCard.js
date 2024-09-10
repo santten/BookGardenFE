@@ -20,7 +20,7 @@ function ProductCard(props) {
           <span className="flex-end text-grey-dark">({rating.toFixed(2)})</span></div>
       </div>
       <div className="grid grid-cols-[1fr_1fr] gap-[0.5rem] mb-[1rem]">
-        <OrderButton /><LikeButton />
+        <OrderButton /><LikeButton type="icon_only"/>
       </div>
     </CardLink>
   )
