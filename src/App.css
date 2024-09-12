@@ -1,0 +1,5 @@
+body {
+  background-color: theme('colors.white');
+  color: theme('colors.black');
+  font-family: "Open Sans";
+}
