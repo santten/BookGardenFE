@@ -6,7 +6,7 @@ function Store() {
   return (
     <div className="w-full min-h-[90vh]">
       <PathLink />
-      <ProductList category="Our Best Sellers"/>
+      <ProductList />
     </div>
   )
 }

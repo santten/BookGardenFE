@@ -8,8 +8,8 @@ function Stars({ rating, height, background }) {
 
     return (
         <div>
-            {numArray.map((item) => {
-                return <Icon icon="material-symbols:star" width={height} className={rating.rating >= item ? "inline text-accent" : noStarColor}></Icon>
+            {numArray.map((item, index) => {
+                return <Icon key={"star" + index} icon="material-symbols:star" width={height} className={rating.rating >= item ? "inline text-accent" : noStarColor}></Icon>
             })}
         </div>
     )
