@@ -7,6 +7,7 @@ import Search from './pages/search';
 import Cart from './pages/cart';
 import Login from './pages/login';
 import Footer from './components/Footer';
+import CheckOutPage from './pages/checkOut'; 
 
 import './App.css';
 
@@ -23,6 +24,7 @@ function App() {
           <Route path="/search" element={<Search />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/payment" element={<CheckOutPage/>} />
         </Routes>
         <Footer /> 
       </BrowserRouter>
