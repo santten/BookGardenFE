@@ -10,7 +10,7 @@ import { Icon } from '@iconify/react';
 function NavBar() {
 
     return (
-        <div className="sticky top-0 bg-white">
+        <div className="sticky top-0 bg-white z-[999]">
             <nav className="m-auto py-[12px] px-0 min-w-max max-w-[90vw] flex flex-row">
                 <NavLink to="/" className="basis-auto self-center p-0 m-0 place-content-start"><img src={Logo} alt="Book Garden Logo" className="m-0 p-0"></img></NavLink>
 

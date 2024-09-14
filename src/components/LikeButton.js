@@ -13,8 +13,8 @@ function LikeButton(props) {
       )
     default:
       return (
-        <div className="px-[1rem] bg-secondary-light w-[225px] py-[8px] rounded-[99px] text-center mx-auto text-black font-semibold text-[20px] hover:bg-primary-dark hover:text-white">
-          <Icon icon="teenyicons:heart-outline" height="20px" className="inline" /> Add to Wishlist
+        <div className="px-[1rem] bg-secondary-light py-[8px] rounded-[99px] text-center mx-auto text-black font-semibold text-[1rem] hover:bg-primary-dark hover:text-white">
+          <Icon icon="teenyicons:heart-outline" height="1rem" className="inline" /> Add to Wishlist
         </div>
       )
   }
