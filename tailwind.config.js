@@ -29,7 +29,15 @@ module.exports = {
       fontFamily: {
         title: "Koulen",
         sans: "Open Sans"
-      }
+      },
+    
+      borderWidth: {
+        '2': '2px',
+      },
+
+      borderRadius: {
+        'half': '9999px',
+      },
     },
   },
   plugins: [],
