@@ -1,5 +1,6 @@
 import React, { useState } from 'react'; // Import useState
 import { useNavigate } from 'react-router-dom';
+
 import bookArray from '../temporary_mock_data';
 import CartHeading from '../components/shoppingcart/CartHeading';
 import ShoppingCartItem from '../components/shoppingcart/ShoppingCartItem';
