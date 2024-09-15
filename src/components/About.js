@@ -1,8 +1,21 @@
 import React from 'react';
+import about from '../images/about.png';
 
 function About() {
   return (
-    <div className="bg-grey-light py-12 px-4 sm:px-6 lg:px-8">
+    <div className="bg-grey-light py-12 px-4 sm:px-6 lg:px-8"
+    style={{ 
+      marginTop: '25px' ,
+      height: '403px',
+      backgroundImage: `url(${about})`, 
+      backgroundPosition: 'left', 
+      backgroundRepeat: 'no-repeat',
+      backgroundSize: 'contain', 
+    }}>
+
+      <div style={{ marginTop: '25px' }}></div> 
+      {/* Not sure if it should be here */}
+
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0 md:space-x-12">
         
         <div className="pl-[48px] text-center md:w-1/2">
