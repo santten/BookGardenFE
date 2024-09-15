@@ -8,16 +8,16 @@ function MyAccount() {
       {/*  */}
         <hr className="border-t-2 border-black w-50 mx-auto my-2" />
         <li>
-          <a href="/account-details" className="font-bold text-black hover:underline">Account Details</a>
+          <a href="/account" className="font-bold text-black hover:underline">Account Details</a>
         </li>
         <li>
-          <a href="/orders" className="text-black hover:underline">Orders</a>
+          <a href="/account/orders" className="text-black hover:underline">Orders</a>
         </li>
         <li>
-          <a href="/wishlist" className="text-black hover:underline">Wishlist</a>
+          <a href="/account/wishlist" className="text-black hover:underline">Wishlist</a>
         </li>
         <li>
-          <a href="/reviews" className="text-black hover:underline">Reviews</a>
+          <a href="/account/reviews" className="text-black hover:underline">Reviews</a>
         </li>
         <li className="pt-8">
           <a href="/logout" className="text-black hover:underline">Logout</a>

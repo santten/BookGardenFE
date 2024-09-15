@@ -14,10 +14,11 @@ import OrderHistoryPage from './pages/orders';
 import UserReviews from './pages/reviews';
 import WishList from './pages/wishlist';
 
+import ProductPage from "./pages/productpage";
+
 import Footer from './components/Footer';
 
 import './App.css';
-
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
           <Route path="/account/orders" element={<OrderHistoryPage />} />
           <Route path="account/wishList" element={<WishList />} />
           
+          <Route path="/products/:productID" element={<ProductPage />} />
         </Routes>
         <Footer />
       </BrowserRouter>
