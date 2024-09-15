@@ -7,7 +7,6 @@ import Search from './pages/search';
 import Cart from './pages/cart';
 import Login from './pages/login';
 import Footer from './components/Footer';
-import CheckOutPage from './pages/checkOut'; 
 
 import './App.css';
 
@@ -16,17 +15,29 @@ function App() {
   return (
     <div className="mr-auto ml-auto">
       <BrowserRouter>
-        <NavBar/>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/store" element={<Store />} />
-          <Route path="/contacts" element={<Contacts />} />
-          <Route path="/search" element={<Search />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/payment" element={<CheckOutPage/>} />
-        </Routes>
-        <Footer /> 
+        <NavBar />
+        <ScrollToTop>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/store" element={<Store />} />
+            <Route path="/contacts" element={<Contacts />} />
+            <Route path="/search" element={<Search />} />
+
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/payment" element={<CheckOutPage/>} />
+
+
+            <Route path="/login" element={<Login />} />
+
+            <Route path="/account" element={<AccountDetailsPage />} />
+            <Route path="/account/reviews" element={<UserReviews />} />
+            <Route path="/account/orders" element={<OrderHistoryPage />} />
+            <Route path="/account/wishList" element={<WishList />} />
+
+            <Route path="/products/:productID" element={<ProductPage />} />
+          </Routes>
+        </ScrollToTop>
+        <Footer />
       </BrowserRouter>
     </div>
   );
