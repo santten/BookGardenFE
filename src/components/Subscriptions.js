@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import send from '../svg_icons/send.svg'
+import subscriptions from '../images/subscriptions-section.png';
 
 const Subscriptions = () => {
   const [email, setEmail] = useState('');
@@ -11,10 +12,20 @@ const Subscriptions = () => {
   };
 
   return (
-    <div className="bg-primary py-12">
+    <div className="bg-primary py-20"
+    style={{ 
+      backgroundImage: `url(${subscriptions})`, 
+      //backgroundSize: 'cover', 
+      backgroundPosition: 'left', 
+      backgroundRepeat: 'no-repeat',
+      backgroundSize: 'contain', 
+
+
+    }}>
       <div className="max-w-3xl mx-auto text-center">
-        <h2 className="text-3xl font-bold mb-6 font-title">WOULD YOU LIKE TO JOIN <span className="text-primary-dark">NEWSLETTERS</span>?</h2>
-        
+        <h2 className="text-3xl text-[64px] font-bold mb-6 font-title" style={{ whiteSpace: 'nowrap' }}>WOULD YOU LIKE TO JOIN <span className="text-primary-dark">NEWSLETTERS</span>?</h2>
+
+
         <form onSubmit={handleSubmit} className="flex justify-center items-center space-x-4">
           <input
             type="email"

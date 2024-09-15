@@ -23,7 +23,7 @@ module.exports = {
         },
         secondary: {
           DEFAULT: "#B49A82",
-          light: "#FFD6AD",
+          light: "#E1D6CC",
         },
       },
       fontFamily: {

@@ -54,7 +54,7 @@ const CustomerReviews = () => {
     <section className="bg-grey-light py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center mb-8">
-          <h2 className="text-3xl font-bold text-black font-title">
+          <h2 className="text-3xl font-bold text-black font-title text-[48px]">
             OUR <span className="text-primary-dark">HAPPY CUSTOMERS</span>
           </h2>
           <button className="flex items-center text-black hover:text-black">
@@ -68,8 +68,8 @@ const CustomerReviews = () => {
             {customers.map((customer) => (
               <div
                 key={customer.id}
-                className="bg-white p-4 rounded-lg shadow-md flex-none w-80 min-w-[20rem] flex-shrink-0"
-                style={{ maxHeight: '240px' }} // Set a max height if needed
+                className="bg-white p-4 rounded-2xl shadow-md flex-none min-w-[25rem] flex-shrink-0"
+                style={{ maxHeight: '300px' , width: '30rem' }}// style={{ maxHeight: '240px' }} // Set a max height if needed
               >
                 <div className="flex items-center mb-4">
                   <img
@@ -86,7 +86,7 @@ const CustomerReviews = () => {
                     </div>
                   </div>
                 </div>
-                <p className="text-gray-700 truncate" style={{ maxHeight: '4.5rem' }}>
+                <p className="text-gray-700" style={{ maxHeight: '6rem' }}> 
                   {customer.review}
                 </p>
               </div>

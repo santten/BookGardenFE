@@ -1,15 +1,18 @@
-
 import React from "react";
 import hero from '../images/hero.png';
 
 const Hero = () => {
   return (
     <section
-      className="bg-white"
+      className="bg-white relative mx-auto" 
       style={{ 
+        maxWidth: '1600px', 
         backgroundImage: `url(${hero})`, 
         backgroundSize: 'cover', 
-        backgroundPosition: 'center' 
+        backgroundPosition: 'center',
+        borderRadius: '50px' ,
+        height: 'auto',
+        padding: '20px',
       }}
       >
     {/* // ></section> */}
@@ -41,6 +44,8 @@ const Hero = () => {
           </button>
         </div>
       </div>
+      {/* 在背景图片容器下方添加 margin-bottom */}
+      {/* <div style={{ marginBottom: '25px' }}></div> */}
     </section>
   );
 };
