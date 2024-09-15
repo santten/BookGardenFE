@@ -1,3 +1,8 @@
+// bookArrayShort has 100 entries, bookArrayLong 1000
+// feel free to modify line 2309 to use whichever works best for you and your computer
+// the fields are the same
+// this note is here to say that if its giving you a unused variable error, that is on purpose here 
+
 let bookArrayShort = [{
   "id": 1,
   "title": "Pushing Hands (Tui shou)",
@@ -2301,6 +2306,6 @@ let bookArrayLong = [{"id":1,"title":"Whole Ten Yards, The","author":"My Wingeat
   {"id":999,"title":"Letter for the King, The (Brief voor de koning, De)","author":"Aubree McGarvey","genre":"Mystery","rating":null,"year":1995,"publisher":null,"ISBN":"758337496-0","binding":"paperback","pages":480,"language":"Spanish","price":78.87},
   {"id":1000,"title":"Antoine and Colette (Antoine et Colette)","author":"Elbert Oxton","genre":"Romance","rating":null,"year":2005,"publisher":"Macmillan Publishers","ISBN":"487533652-7","binding":"board book","pages":401,"language":"Marathi","price":86.29}]
 
-const bookArray = bookArrayLong;
+const bookArray = bookArrayShort;
 
 export default bookArray;

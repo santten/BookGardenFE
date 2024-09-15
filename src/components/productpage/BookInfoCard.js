@@ -1,17 +1,17 @@
 import React from 'react'
 import Stars from '../Stars'
 import LikeButton from '../LikeButton'
-import OrderButton from '../OrderButton'
+import OrderButton from '../AddToCartButton'
 
 function BookInfoCard(props) {
     const { title, author, genre, rating, year, publisher, ISBN, binding, pages, language, price } = props.bookinfo
 
     return (
         <div className="grid grid-cols-[30%_70%] w-[70vw] bg-white m-auto">
-            <div className="flex w-[100%] h-[100%] flex-col items-center">
-                <div className="m-auto h-[100%] w-[80] bg-accent">cover image. figure out when you can</div>
+            <div className="flex w-[100%] flex-col items-center">
+                <div className="mx-auto h-[300px] w-[240px] w-[80] bg-accent">cover image</div>
                 <div className="flex items-center py-[0.5rem]">
-                {(rating === null) ? <p className="text-grey-dark">(No ratings)</p> : <div className="flex w-[100%] flex-row"><Stars rating={{ rating }} className="flex-start" height="32px" background="white" /><span className="text-grey-dark text-[24px] text-[#A9A9A9] ml-[0.5rem] ml-auto">({rating.toFixed(2)})</span></div>}
+                {(rating === null) ? <p className="text-grey-dark">(No ratings)</p> : <div className="flex w-[100%] flex-row"><Stars rating={rating} className="flex-start" height="32px" background="white" /><span className="text-grey-dark text-[24px] text-[#A9A9A9] ml-[0.5rem] ml-auto">({rating.toFixed(2)})</span></div>}
                     </div>
                 <LikeButton />
             </div>

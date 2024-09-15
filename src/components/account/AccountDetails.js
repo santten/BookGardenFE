@@ -1,7 +1,7 @@
 
 // AccountDetails.js
 import React from 'react';
-import { ReactComponent as SaveIcon } from '../../svg_icons/save.svg'; // 使用ReactComponent导入SVG
+import { Icon } from '@iconify/react'
 
 function AccountDetails() {
   return (
@@ -44,15 +44,15 @@ function AccountDetails() {
         </div>
       </div>
 
-      <button className="bg-black text-white py-2 px-4 rounded-full flex items-center space-x-2">
-        <span>Save</span>
-        <span className="ml-2"><SaveIcon /></span>
+      <button className="text-white py-2 px-4 rounded-full flex items-center space-x-2 bg-grey-dark hover:bg-black">
+        <span className="font-semibold">Save</span>
+        <span className="ml-2"><Icon icon="material-symbols:save-outline" width="24px"/></span>
       </button>
 
       <div className="mt-8">
         <h3 className="text-xl font-bold mb-2">Delete account</h3>
         <p className="text-sm text-gray-600 mb-4">Once you delete your account, there is no going back. Please be certain.</p>
-        <button className="bg-red-500 text-white py-2 px-4 rounded-full">Delete your account</button>
+        <button className="bg-warning text-white py-2 px-4 rounded-full font-semibold hover:bg-[#d6433b]">Delete your account</button>
       </div>
     </div>
   );

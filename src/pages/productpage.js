@@ -16,7 +16,7 @@ function ProductPage() {
     const bookinfo = bookArray.filter((item) => item.id === parseInt([productID]))[0]
 
     return (
-        <div className="m-auto max-w-[70vw] min-h-[90vh]">
+        <div className="m-auto max-w-[70vw] min-h-[90vh] pb-[4rem]">
             <PathLink />
             <BookInfoCard key={"bookinfo_for_" + bookinfo.id} bookinfo={bookinfo}/>
             <ReviewArea key={"reviews_for_" + bookinfo.id} bookinfo={bookinfo}/>

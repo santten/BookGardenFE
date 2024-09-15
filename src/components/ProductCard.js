@@ -1,4 +1,4 @@
-import OrderButton from "./OrderButton"
+import OrderButton from "./AddToCartButton"
 import LikeButton from "./LikeButton"
 import Stars from "./Stars"
 import { Link as CardLink } from 'react-router-dom';
@@ -8,7 +8,7 @@ function ProductCard(props) {
   const productpath = "/products/" + id
 
   return (
-    <CardLink className="w-[240px] h-[404px] rounded-[28px] bg-grey-light p-[1rem]" to={productpath} title={title}>
+    <CardLink className="w-[240px] h-[404px] rounded-[28px] bg-grey-light p-[1rem] border-[inset] border-2 border-transparent hover:border-secondary-light" to={productpath} title={title}>
       <div className="mx-auto mb-[1rem] w-[10.5rem] h-[13.25rem] bg-secondary-light">book cover here</div>
       <div className="text-center pb-[0.5rem]">
         <span className="font-semibold">{

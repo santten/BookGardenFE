@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import send from '../../svg_icons/send.svg'
+import { Icon } from '@iconify/react';
 import subscriptions from '../../images/subscriptions-section.png';
 
 const Subscriptions = () => {
@@ -13,15 +13,15 @@ const Subscriptions = () => {
 
   return (
     <div className="bg-primary py-20"
-    style={{ 
-      backgroundImage: `url(${subscriptions})`, 
-      //backgroundSize: 'cover', 
-      backgroundPosition: 'left', 
-      backgroundRepeat: 'no-repeat',
-      backgroundSize: 'contain', 
+      style={{
+        backgroundImage: `url(${subscriptions})`,
+        //backgroundSize: 'cover', 
+        backgroundPosition: 'left',
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'contain',
 
 
-    }}>
+      }}>
       <div className="max-w-3xl mx-auto text-center">
         <h2 className="text-3xl text-[64px] font-bold mb-6 font-title" style={{ whiteSpace: 'nowrap' }}>WOULD YOU LIKE TO JOIN <span className="text-primary-dark">NEWSLETTERS</span>?</h2>
 
@@ -35,14 +35,14 @@ const Subscriptions = () => {
             onChange={(e) => setEmail(e.target.value)}
             required
           />
-          
+
           <button
             type="submit"
             className="bg-black text-white px-6 py-2 rounded-full flex items-center space-x-2 hover:bg-gray-800 focus:ring-2 focus:ring-green-500"
->
-             <span>Subscribe</span>
-             <img src={send} alt="Send Icon" className="w-5 h-5" />
-             </button>
+          >
+            <span className="font-semibold">Subscribe</span>
+            <Icon icon="fluent:send-24-filled"></Icon>
+            </button>
         </form>
       </div>
     </div>
