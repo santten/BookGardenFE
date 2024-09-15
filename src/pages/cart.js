@@ -1,5 +1,6 @@
 import React, { useState } from 'react'; // Import useState
 import { useNavigate } from 'react-router-dom';
+
 import bookArray from '../temporary_mock_data';
 import CartHeading from '../components/CartHeading';
 import ShoppingCartItem from '../components/ShoppingCartItem';
@@ -35,7 +36,7 @@ function Cart() {
 
   const totalItems = cartItems.reduce((total, item) => total + item.quantity, 0);
   const totalPrice = cartItems.reduce((total, item) => total + item.quantity * item.price, 0);
-
+  
   const navigate = useNavigate(); 
   
   const handleProceedToCheckout = () => {
