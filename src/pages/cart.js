@@ -1,4 +1,6 @@
 import React, { useState } from 'react'; // Import useState
+import { useNavigate } from 'react-router-dom';
+
 import bookArray from '../temporary_mock_data';
 import CartHeading from '../components/CartHeading';
 import ShoppingCartItem from '../components/ShoppingCartItem';
@@ -21,20 +23,25 @@ function Cart() {
 
   const handleRemove = (item) => {
     // Remove the item or decrease quantity if more than 1
-    setCartItems(prevItems => {
-      const updatedItems = prevItems
+    setCartItems(prevItems =>
+      prevItems
         .map(cartItem =>
-          cartItem.id === item.id
+          cartItem.id === item.id && cartItem.quantity > 0
             ? { ...cartItem, quantity: cartItem.quantity - 1 }
             : cartItem
         )
-        .filter(cartItem => cartItem.quantity > 0); // Remove items with quantity 0
-      return updatedItems;
-    });
+        .filter(cartItem => cartItem.id !== item.id || cartItem.quantity > 0) // Filter out item if quantity is 0
+    );
   };
 
   const totalItems = cartItems.reduce((total, item) => total + item.quantity, 0);
   const totalPrice = cartItems.reduce((total, item) => total + item.quantity * item.price, 0);
+  
+  const navigate = useNavigate(); 
+  
+  const handleProceedToCheckout = () => {
+    navigate('/payment', { state: { cartItems } }); // Pass cartItems in the state
+  };
 
   return (
     <div className="cart">
@@ -50,6 +57,7 @@ function Cart() {
         ))}
       </div>
       <CartSummary totalItems={totalItems} totalPrice={totalPrice} />
+      <button onClick={handleProceedToCheckout}>Proceed to Checkout</button>
     </div>
   );
 }
