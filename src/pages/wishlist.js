@@ -1,6 +1,6 @@
 import React from 'react'
-import WishList from '../components/WishList'
-import MyAccount from '../components/MyAccount'
+import WishList from '../components/account/WishList'
+import MyAccount from '../components/account/MyAccount'
 
 function WishListPage() {
     return (

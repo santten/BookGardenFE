@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import send from '../svg_icons/send.svg'
-import subscriptions from '../images/subscriptions-section.png';
+import send from '../../svg_icons/send.svg'
+import subscriptions from '../../images/subscriptions-section.png';
 
 const Subscriptions = () => {
   const [email, setEmail] = useState('');

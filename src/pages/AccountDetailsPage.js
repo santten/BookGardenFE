@@ -1,6 +1,6 @@
 import React from 'react'
-import AccountDetails from '../components/AccountDetails'
-import MyAccount from '../components/MyAccount'
+import AccountDetails from '../components/account/AccountDetails'
+import MyAccount from '../components/account/MyAccount'
 
 function AccountDetailsPage() {
     return (

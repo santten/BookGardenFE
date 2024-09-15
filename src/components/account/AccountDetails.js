@@ -1,7 +1,7 @@
 
 // AccountDetails.js
 import React from 'react';
-import { ReactComponent as SaveIcon } from '../svg_icons/save.svg'; // 使用ReactComponent导入SVG
+import { ReactComponent as SaveIcon } from '../../svg_icons/save.svg'; // 使用ReactComponent导入SVG
 
 function AccountDetails() {
   return (

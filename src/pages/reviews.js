@@ -1,6 +1,6 @@
 import React from 'react'
-import UserReviews from '../components/UserReviews'
-import MyAccount from '../components/MyAccount'
+import UserReviews from '../components/account/UserReviews'
+import MyAccount from '../components/account/MyAccount'
 
 function UserReviewsPage() {
     return (

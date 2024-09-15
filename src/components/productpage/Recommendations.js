@@ -1,6 +1,7 @@
 import React from 'react'
 import bookArray from '../../temporary_mock_data'
 import ProductCard from '../ProductCard'
+import ProductRow from '../ProductRow'
 
 function Recommendations(props) {
     const { id, author, genre, publisher } = props.bookinfo
@@ -27,15 +28,7 @@ function Recommendations(props) {
     } else {
         const slicedArr = recommendationArray.slice(0, 9)
         return (
-            <div className="w-[70vw] m-auto pb-[2rem]">
-                <h2 className="font-title text-[xx-large] my-[1rem]">{titlecontent}</h2>
-                <div className="flex flex-row gap-[40px] max-w-[70vw] pb-[1rem] h-[100%] overflow-x-auto overflow-y-hidden">
-                    {slicedArr.map((item) => {
-                        let bookobject = bookArray.find((element) => element.id == item)
-                        return <ProductCard key={"card-" + item} item={bookobject} />
-                    })}
-                </div>
-            </div>
+            <ProductRow items={slicedArr} title={titlecontent} className="ml-auto w-[70vw] pb-[1rem]"/>
         )
     }
 }

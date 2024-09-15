@@ -10,7 +10,7 @@ function ProductCard(props) {
   return (
     <CardLink className="w-[240px] h-[404px] rounded-[28px] bg-grey-light p-[1rem]" to={productpath} title={title}>
       <div className="mx-auto mb-[1rem] w-[10.5rem] h-[13.25rem] bg-secondary-light">book cover here</div>
-      <div className="text-base pb-[0.5rem]">
+      <div className="text-center pb-[0.5rem]">
         <span className="font-semibold">{
           title.length > 20 ? title.slice(0, 20) + "..." : title
         }</span>

@@ -1,6 +1,6 @@
 import React from 'react'
-import OrderHistory from '../components/OrderHistory'
-import MyAccount from '../components/MyAccount'
+import OrderHistory from '../components/account/OrderHistory'
+import MyAccount from '../components/account/MyAccount'
 
 function OrderHistoryPage() {
     return (

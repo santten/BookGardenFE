@@ -1,9 +1,9 @@
 import React from 'react';
-import genres from '../images/genres.png';
-import genres1 from '../images/genres-1.png';
-import genres2 from '../images/genres-2.png';
-import genres3 from '../images/genres-3.png';
-import { ReactComponent as ArrowIcon } from '../svg_icons/arrow.svg'; // Import as React component
+import genres from '../../images/genres.png';
+import genres1 from '../../images/genres-1.png';
+import genres2 from '../../images/genres-2.png';
+import genres3 from '../../images/genres-3.png';
+import { ReactComponent as ArrowIcon } from '../../svg_icons/arrow.svg'; // Import as React component
 
 const Genres = () => {
   return (

@@ -1,10 +1,11 @@
 import React from "react";
-import { ReactComponent as LeftArrowIcon } from '../svg_icons/left-arrow.svg'; // Import as React component
-import { ReactComponent as RightArrowIcon } from '../svg_icons/right-arrow.svg'; // Import as React component
-import { ReactComponent as StarIcon } from '../svg_icons/star.svg'; // Import as React component
-import customer1 from '../images/customer1.png';
-import customer2 from '../images/customer2.png';
-import customer3 from '../images/customer3.png';
+import { ReactComponent as LeftArrowIcon } from '../../svg_icons/left-arrow.svg'; // Import as React component
+import { ReactComponent as RightArrowIcon } from '../../svg_icons/right-arrow.svg'; // Import as React component
+import { ReactComponent as StarIcon } from '../../svg_icons/star.svg'; // Import as React component
+import customer1 from '../../images/customer1.png';
+import customer2 from '../../images/customer2.png';
+import customer3 from '../../images/customer3.png';
+import Stars from "../Stars";
 
 const CustomerReviews = () => {
   const customers = [
@@ -13,42 +14,23 @@ const CustomerReviews = () => {
       customerName: "Matti Lewinston",
       rating: 5,
       review: "Lorem ipsum dolor sit amet consectetur. Mauris elit commodo dui nunc consectetur. Leo ut volutpat non fermentum viverra sem. In lacus posuere placerat eu platea. Leo lacus ac suscipit volutpat.",
-      img: customer1, 
+      img: customer1,
     },
     {
       id: 2,
       customerName: "Esther Howard",
       rating: 4.5,
       review: "Lorem ipsum dolor sit amet consectetur. Mauris elit commodo dui nunc consectetur. Leo ut volutpat non fermentum viverra sem. In lacus posuere placerat eu platea. Leo lacus ac suscipit volutpat.",
-      img: customer2, 
+      img: customer2,
     },
     {
       id: 3,
       customerName: "Jacob Jones",
       rating: 5,
       review: "Lorem ipsum dolor sit amet consectetur. Mauris elit commodo dui nunc consectetur. Leo ut volutpat non fermentum viverra sem. In lacus posuere placerat eu platea. Leo lacus ac suscipit volutpat.",
-      img: customer3, 
+      img: customer3,
     },
   ];
-
-  // Function to render stars based on rating
-  const renderStars = (rating) => {
-    const fullStars = Math.floor(rating);
-    const halfStar = rating % 1 !== 0;
-    const emptyStars = 5 - fullStars - (halfStar ? 1 : 0);
-
-    return (
-      <div className="flex items-center">
-        {Array(fullStars).fill().map((_, i) => (
-          <StarIcon key={`full-${i}`} className="text-yellow-500 w-5 h-5" />
-        ))}
-        {halfStar && <StarIcon className="text-yellow-500 w-5 h-5" style={{ clipPath: 'inset(0 50% 0 0)' }} />}
-        {Array(emptyStars).fill().map((_, i) => (
-          <StarIcon key={`empty-${i}`} className="text-gray-300 w-5 h-5" />
-        ))}
-      </div>
-    );
-  };
 
   return (
     <section className="bg-grey-light py-12">
@@ -69,7 +51,7 @@ const CustomerReviews = () => {
               <div
                 key={customer.id}
                 className="bg-white p-4 rounded-2xl shadow-md flex-none min-w-[25rem] flex-shrink-0"
-                style={{ maxHeight: '300px' , width: '30rem' }}// style={{ maxHeight: '240px' }} // Set a max height if needed
+                style={{ maxHeight: '300px', width: '30rem' }}// style={{ maxHeight: '240px' }} // Set a max height if needed
               >
                 <div className="flex items-center mb-4">
                   <img
@@ -81,19 +63,20 @@ const CustomerReviews = () => {
                     <h3 className="text-lg font-bold text-gray-900">
                       {customer.customerName}
                     </h3>
-                    <div className="mt-1">
-                      {renderStars(customer.rating)}
+                    <div>
+                      {console.log(customer.rating)}
+                      <Stars rating={customer} height="24px" background="white" />
                     </div>
                   </div>
                 </div>
-                <p className="text-gray-700" style={{ maxHeight: '6rem' }}> 
+                <p className="text-gray-700" style={{ maxHeight: '6rem' }}>
                   {customer.review}
                 </p>
               </div>
             ))}
           </div>
           {/* <div className="absolute inset-0 right-0 bg-grey-light" style={{ width: '10rem', pointerEvents: 'none' }}></div>*/}
-        </div> 
+        </div>
       </div>
     </section>
   );

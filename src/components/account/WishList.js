@@ -1,7 +1,7 @@
 // components/WishList.js
 import React, { useState } from 'react';
-import { ReactComponent as CartIcon } from '../svg_icons/cart-white.svg'; // Import as React component
-import deletebtn from '../svg_icons/delete-btn.svg';
+import { ReactComponent as CartIcon } from '../../svg_icons/cart-white.svg'; // Import as React component
+import deletebtn from '../../svg_icons/delete-btn.svg';
 
 const WishList = () => {
     const [wishList, setWishList] = useState([

@@ -1,11 +1,11 @@
-import ProductCard from './ProductCard'
+import ProductCard from '../ProductCard'
 import { useState } from 'react'
 import ReactSlider from 'react-slider'
 import React from 'react';
 import { Icon } from '@iconify/react';
 
 // imports static list from files, config database interaction asap when possible 
-import bookArray from '../temporary_mock_data'
+import bookArray from '../../temporary_mock_data'
 
 function ProductList() {
     // remove mb 100px when pagination is ok
