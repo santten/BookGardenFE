@@ -1,7 +1,4 @@
-// App.js
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import ScrollToTop from "./components/ScrollToTop";
-
 import NavBar from './components/NavBar';
 
 import Home from './pages/index'
@@ -19,10 +16,10 @@ import WishList from './pages/wishlist';
 import CheckOutPage from './pages/checkOut'; 
 
 import ProductPage from "./pages/productpage";
-
 import Footer from './components/Footer';
 
 import './App.css';
+
 
 function App() {
   return (
@@ -45,7 +42,7 @@ function App() {
             <Route path="/account" element={<AccountDetailsPage />} />
             <Route path="/account/reviews" element={<UserReviews />} />
             <Route path="/account/orders" element={<OrderHistoryPage />} />
-            <Route path="account/wishList" element={<WishList />} />
+            <Route path="/account/wishList" element={<WishList />} />
 
             <Route path="/products/:productID" element={<ProductPage />} />
           </Routes>
