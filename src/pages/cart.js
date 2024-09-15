@@ -36,7 +36,7 @@ function Cart() {
 
   const totalItems = cartItems.reduce((total, item) => total + item.quantity, 0);
   const totalPrice = cartItems.reduce((total, item) => total + item.quantity * item.price, 0);
-  
+
   const navigate = useNavigate(); 
   
   const handleProceedToCheckout = () => {

@@ -1,11 +1,21 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NavBar from './components/NavBar';
-import Home from './pages/index';
-import Store from './pages/store';
-import Contacts from './pages/contacts';
-import Search from './pages/search';
-import Cart from './pages/cart';
-import Login from './pages/login';
+
+import Home from './pages/index'
+import Store from './pages/store'
+import Contacts from './pages/contacts'
+import Search from './pages/search'
+import Cart from './pages/cart'
+import Login from './pages/login'
+
+import AccountDetailsPage from './pages/AccountDetailsPage';
+import OrderHistoryPage from './pages/orders';
+import UserReviews from './pages/reviews';
+import WishList from './pages/wishlist';
+
+import CheckOutPage from './pages/checkOut'; 
+
+import ProductPage from "./pages/productpage";
 import Footer from './components/Footer';
 
 import './App.css';
