@@ -23,13 +23,21 @@ module.exports = {
         },
         secondary: {
           DEFAULT: "#B49A82",
-          light: "#FFD6AD",
+          light: "#E1D6CC",
         },
       },
       fontFamily: {
         title: "Koulen",
         sans: "Open Sans"
-      }
+      },
+    
+      borderWidth: {
+        '2': '2px',
+      },
+
+      borderRadius: {
+        'half': '9999px',
+      },
     },
   },
   plugins: [],
