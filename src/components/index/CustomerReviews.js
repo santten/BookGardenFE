@@ -1,7 +1,6 @@
 import React from "react";
-import { ReactComponent as LeftArrowIcon } from '../../svg_icons/left-arrow.svg'; // Import as React component
-import { ReactComponent as RightArrowIcon } from '../../svg_icons/right-arrow.svg'; // Import as React component
-import { ReactComponent as StarIcon } from '../../svg_icons/star.svg'; // Import as React component
+import { Icon } from "@iconify/react"
+
 import customer1 from '../../images/customer1.png';
 import customer2 from '../../images/customer2.png';
 import customer3 from '../../images/customer3.png';
@@ -40,8 +39,8 @@ const CustomerReviews = () => {
             OUR <span className="text-primary-dark">HAPPY CUSTOMERS</span>
           </h2>
           <button className="flex items-center text-black hover:text-black">
-            <span className="ml-2"> <LeftArrowIcon /> </span>
-            <span className="ml-2"> <RightArrowIcon /> </span>
+            <span className="ml-2"> <Icon icon="tdesign:arrow-left" className="text-black" width="32px"/> </span>
+            <span className="ml-2"> <Icon icon="tdesign:arrow-right" className="text-black" width="32px"/> </span>
           </button>
         </div>
 

@@ -4,8 +4,8 @@ function MyAccount() {
   return (
     <div className="w-60 h-80 p-4 bg-grey-light rounded-3xl mx-auto my-8">
       <h2 className="font-bold font-title text-[32px] text-xl mb-4">MY ACCOUNT</h2>
-      <ul  className="space-y-4">
-      {/*  */}
+      <ul className="space-y-4">
+        {/*  */}
         <hr className="border-t-2 border-black w-50 mx-auto my-2" />
         <li>
           <a href="/account" className="font-bold text-black hover:underline">Account Details</a>
@@ -22,7 +22,7 @@ function MyAccount() {
         <li className="pt-8">
           <a href="/logout" className="text-black hover:underline">Logout</a>
         </li>
-        </ul>
+      </ul>
     </div>
   );
 }

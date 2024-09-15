@@ -1,6 +1,6 @@
 // components/UserReviews.js
 import React, { useState } from 'react';
-import deletebtn from '../../svg_icons/delete-btn.svg';
+import { Icon } from '@iconify/react'
 import Stars from '../Stars';
 
 const UserReviews = () => {
@@ -44,7 +44,7 @@ const UserReviews = () => {
     };
 
     return (
-        <div className="container mx-auto p-6 bg-white">
+        <div className="container mx-auto p-6">
             <h2 className="text-2xl font-bold mb-6 text-left">Review history</h2>
 
             <table className="min-w-full overflow-hidden">
@@ -72,9 +72,8 @@ const UserReviews = () => {
                             <td className="py-3 px-4">
                                 <button 
                                     onClick={() => deleteReview(review.id)} 
-                                    className="text-red-500 hover:text-red-700 transition duration-300"
                                 >
-                                <img src={deletebtn} alt="deletebtn Icon" className="w-5 h-5" />
+                                <Icon icon="mdi:trashcan-outline" width="1.25rem" className="text-black hover:text-warning"></Icon>
                                  </button>
                             </td>
                         </tr>

@@ -3,7 +3,7 @@ import genres from '../../images/genres.png';
 import genres1 from '../../images/genres-1.png';
 import genres2 from '../../images/genres-2.png';
 import genres3 from '../../images/genres-3.png';
-import { ReactComponent as ArrowIcon } from '../../svg_icons/arrow.svg'; // Import as React component
+import { Icon } from '@iconify/react';
 
 const Genres = () => {
   return (
@@ -34,11 +34,8 @@ const Genres = () => {
           />
           <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-50 transition-opacity duration-300 rounded-lg"></div>
           <div className="absolute inset-0 flex justify-center items-center">
-            {/* <button className="absolute top-20 left-8 bg-black text-white px-6 py-2 rounded-full text-sm text-[40px] whitespace-nowrap flex items-center space-x-2 transition-opacity duration-300">
-              Find more   <ArrowIcon /> 
-            </button> */}
             <button className="absolute top-20 left-8 bg-black text-white px-6 py-2 rounded-full text-lg whitespace-nowrap flex items-center space-x-4 transition-opacity duration-300">
-            <span className="text-l">Find more</span> <ArrowIcon />
+            <span className="text-l">Find more</span><Icon width="1.75rem" icon="tdesign:arrow-right"></Icon>
             </button>
 
           </div>
@@ -56,7 +53,7 @@ const Genres = () => {
           <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-50 transition-opacity duration-300 rounded-lg"></div>
           <div className="absolute inset-0 flex justify-center items-center">
           <button className="absolute top-20 left-8 bg-black text-white px-6 py-2 rounded-full text-lg whitespace-nowrap flex items-center space-x-4 transition-opacity duration-300">
-            <span className="text-l">Find more</span> <ArrowIcon />
+            <span className="text-l">Find more</span> <Icon width="1.75rem" icon="tdesign:arrow-right"></Icon>
             </button>
 
           </div>
@@ -73,7 +70,7 @@ const Genres = () => {
           <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-50 transition-opacity duration-300 rounded-lg"></div>
           <div className="absolute inset-0 flex justify-center items-center">
           <button className="absolute top-20 left-8 bg-black text-white px-6 py-2 rounded-full text-lg whitespace-nowrap flex items-center space-x-4 transition-opacity duration-300">
-            <span>Find more</span> <ArrowIcon />
+            <span>Find more</span> <Icon width="1.75rem" icon="tdesign:arrow-right"></Icon>
             </button>
 
           </div>

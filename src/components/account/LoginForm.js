@@ -8,7 +8,7 @@ function Login() {
   };
 
   return (
-    <div className="w-full min-h-[90vh] flex items-center justify-center">
+    <div className="w-full flex items-center justify-center">
       <div className="p-6 border border-gray-300 rounded-lg shadow-lg max-w-[400px] w-full">
         {isLogin ? (
           <div>
