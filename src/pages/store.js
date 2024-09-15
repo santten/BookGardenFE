@@ -1,12 +1,14 @@
 import React from 'react'
+import ProductList from '../components/productpage/ProductList'
+import PathLink from '../components/PathLink'
 
-function store() {
+function Store() {
   return (
     <div className="w-full min-h-[90vh]">
-      {/* remove this comment + replace the <p> with your code */} 
-      <p className="p-[20px]">hello from store.js</p>
+      <PathLink />
+      <ProductList />
     </div>
   )
 }
 
-export default store
+export default Store
