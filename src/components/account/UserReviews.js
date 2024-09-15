@@ -65,7 +65,7 @@ const UserReviews = () => {
                                 <p className="text-sm text-gray-600">by {review.author}</p>
                             </td>
                             <td className="py-3 px-4">{review.date}</td>
-                            <td className="py-3 px-4"><Stars rating={review} height="12px" background="white"/></td>
+                            <td className="py-3 px-4"><Stars rating={review.rating} height="12px" background="white"/></td>
                             <td className="py-3 px-4">
                                 {review.review} <span className="text-gray-600 cursor-pointer">Read more</span>
                             </td>

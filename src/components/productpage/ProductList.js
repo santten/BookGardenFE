@@ -4,11 +4,10 @@ import ReactSlider from 'react-slider'
 import React from 'react';
 import { Icon } from '@iconify/react';
 
-// imports static list from files, config database interaction asap when possible 
+// imports static list from files, config database interaction asap
 import bookArray from '../../temporary_mock_data'
 
 function ProductList() {
-    // remove mb 100px when pagination is ok
     const [sorting, setSorting] = useState('')
     const [priceFilter, setPriceFilter] = useState([1, 999])
     const [bindingFilter, setBindingFilter] = useState('')
@@ -19,8 +18,6 @@ function ProductList() {
     const changeSorting = (evt) => {
         setSorting(evt.target.value)
     }
-
-    // ask how genres will be passed in database 
 
     let genrelist = []
     bookArray.forEach(element => {

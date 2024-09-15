@@ -1,15 +1,29 @@
+// some general imports
+import ScrollToTop from "./components/ScrollToTop";
+import './App.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+// navbar contents and basic page components
 import NavBar from './components/NavBar';
 import Home from './pages/index';
-import Store from './pages/store';
-import Contacts from './pages/contacts';
-import Search from './pages/search';
-import Cart from './pages/cart';
-import Login from './pages/login';
+import Contacts from './pages/ContactPage';
 import Footer from './components/Footer';
 
-import './App.css';
+// product and searching related components
+import Search from './pages/search';
+import Store from './pages/store';
+import ProductPage from './pages/productpage';
 
+// cart and checkout related components
+import Cart from './pages/cart';
+import CheckOutPage from './pages/checkOut'
+
+// login and account related components
+import Login from './pages/login';
+import AccountDetailsPage from './pages/AccountDetailsPage'
+import UserReviews from './pages/reviews'
+import OrderHistoryPage from './pages/orders'
+import WishList from './pages/wishlist'
 
 function App() {
   return (

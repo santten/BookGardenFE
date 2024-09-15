@@ -2,16 +2,14 @@ import React from 'react';
 
 function ContactPage() {
     return (
-        <div className="h-screen bg-white flex flex-col p-6">
-            <h1 className="text-5xl font-bold ml-12 mb-7 mt-8">
-                <span className="text-[#8DBAB5]">OUR</span>
-                <span className="text-gray-800"> CONTACT</span>
+        <div className="h-screen bg-white flex flex-col m-auto w-[80vw]">
+            <h1 className="text-5xl font-title ml-12 mb-7 mt-8">
+                <span className="text-black">OUR</span>
+                <span className="text-primary-dark"> CONTACTS</span>
             </h1>
 
             {/* Contact Section */}
             <div className=" h-screen max-w-9xl w-full  bg-white items-center justify-center rounded-lg p-12 h-100">
-
-
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     {/* Map Embed */}
                     <div className=" w-704 h-469 bg-gray-300 rounded-lg overflow-hidden shadow-md ">

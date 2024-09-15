@@ -64,7 +64,7 @@ const CustomerReviews = () => {
                     </h3>
                     <div>
                       {console.log(customer.rating)}
-                      <Stars rating={customer} height="24px" background="white" />
+                      <Stars rating={customer.rating} height="24px" background="white" />
                     </div>
                   </div>
                 </div>

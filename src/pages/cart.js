@@ -1,13 +1,20 @@
 import React, { useState } from 'react'; // Import useState
 import { useNavigate } from 'react-router-dom';
 import bookArray from '../temporary_mock_data';
-import CartHeading from '../components/CartHeading';
-import ShoppingCartItem from '../components/ShoppingCartItem';
-import CartSummary from '../components/CartSummary';
-import './cartPage.css'; 
+import CartHeading from '../components/shoppingcart/CartHeading';
+import ShoppingCartItem from '../components/shoppingcart/ShoppingCartItem';
+import CartSummary from '../components/shoppingcart/CartSummary';
+import './cartPage.css';
 
 function Cart() {
-  const [cartItems, setCartItems] = useState(bookArray.map(item => ({ ...item, quantity: 1 }))); // Initialize cart with quantity
+  const [cartItems, setCartItems] = useState([{...bookArray[3], quantity: 2}, {...bookArray[23], quantity: 1}])
+  
+  // the initial code had the cart open automatically with 1 of every item in stock. uncomment to see how:  
+  // const [cartItems, setCartItems] = useState(bookArray.map(item => ({ ...item, quantity: 1 }))); // Initialize cart with quantity
+  
+  // the handling of the items will be thought about later, but it should likely be initially empty
+  // uncomment this line if you want to start with an empty cart:
+  // const [cartItems, setCartItems] = useState([])
 
   const handleAdd = (item) => {
     // Update the cart item quantity
@@ -36,8 +43,8 @@ function Cart() {
   const totalItems = cartItems.reduce((total, item) => total + item.quantity, 0);
   const totalPrice = cartItems.reduce((total, item) => total + item.quantity * item.price, 0);
 
-  const navigate = useNavigate(); 
-  
+  const navigate = useNavigate();
+
   const handleProceedToCheckout = () => {
     navigate('/payment', { state: { cartItems } }); // Pass cartItems in the state
   };
@@ -46,17 +53,16 @@ function Cart() {
     <div className="cart">
       <CartHeading itemCount={totalItems} />
       <div className="cart-items">
-        {cartItems.map(item => (
+        {cartItems.map(element => (
           <ShoppingCartItem
-            key={item.id}
-            item={item}
+            key={element.id}
+            item={element}
             onAdd={handleAdd}
             onRemove={handleRemove}
           />
         ))}
       </div>
       <CartSummary totalItems={totalItems} totalPrice={totalPrice} />
-      <button onClick={handleProceedToCheckout}>Proceed to Checkout</button>
     </div>
   );
 }
