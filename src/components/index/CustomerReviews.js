@@ -35,7 +35,7 @@ const CustomerReviews = () => {
       img: customer3,
     },
     {
-      id: 3,
+      id: 4,
       customerName: "Jacob Jones",
       rating: 5,
       review:
