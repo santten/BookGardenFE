@@ -37,6 +37,35 @@ module.exports = {
 
       borderRadius: {
         'half': '9999px',
+        '4xl': '32px',
+      },
+
+      container: {
+        center: true,
+        padding: { 
+          DEFAULT: '25px',
+        },
+        screens: {
+          lg: '1330px',
+        },
+      },
+      containerSmall: {
+        center: true,
+        padding: { 
+          DEFAULT: '25px',
+        },
+        screens: {
+          lg: '1190px',
+        },
+      },
+      containerBig: {
+        center: true,
+        padding: { 
+          DEFAULT: '25px',
+        },
+        screens: {
+          lg: '1390px',
+        },
       },
     },
   },

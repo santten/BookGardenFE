@@ -4,7 +4,7 @@ import PathLink from '../components/PathLink'
 
 function Store() {
   return (
-    <div className="w-full min-h-[90vh]">
+    <div className="w-full">
       <PathLink />
       <ProductList />
     </div>

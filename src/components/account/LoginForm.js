@@ -8,11 +8,14 @@ function Login() {
   };
 
   return (
-    <div className="w-full flex items-center justify-center">
-      <div className="p-6 border border-gray-300 rounded-lg shadow-lg max-w-[400px] w-full">
+    <div className="w-full flex items-center justify-center my-16">
+      <div className="p-8 border-2 border-grey rounded-4xl max-w-[450px] w-full bg-grey-light">
         {isLogin ? (
           <div>
-            <h2 className="text-xl font-bold mb-4">Login</h2>
+            <h2 className="text-4xl font-bold mb-4 font-title text-center">
+              Login to{" "}
+              <span className="text-primary-dark">Book Garden</span>
+            </h2>
             <form>
               <div className="mb-4">
                 <label className="block text-gray-700">Email:</label>
@@ -32,15 +35,15 @@ function Login() {
                   required
                 />
               </div>
-              <button type="submit" className="w-full p-2 bg-blue-500 text-white rounded">
+              <button type="submit" className="w-full p-2 bg-black text-white rounded-full font-semibold hover:bg-primary-dark">
                 Login
               </button>
             </form>
-            <p className="mt-4">
+            <p className="mt-4 text-center">
               Don't have an account?{' '}
               <button
                 onClick={handleFormSwitch}
-                className="text-blue-500 underline"
+                className="text-black hover:text-accent font-bold"
               >
                 Register here
               </button>
@@ -48,7 +51,10 @@ function Login() {
           </div>
         ) : (
           <div>
-            <h2 className="text-xl font-bold mb-4">Register</h2>
+            <h2 className="text-4xl font-bold mb-4 font-title text-center">
+              Register to{" "}
+              <span className="text-primary-dark">Book Garden</span>
+            </h2>
             <form>
               <div className="mb-4">
                 <label className="block text-gray-700">First Name:</label>
@@ -80,7 +86,7 @@ function Login() {
               <div className="mb-4">
                 <label className="block text-gray-700">Phone Number:</label>
                 <input
-                  type="password"
+                  type="tel"
                   placeholder="Enter your phone number"
                   className="w-full p-2 border rounded"
                   required
@@ -89,7 +95,7 @@ function Login() {
               <div className="mb-4">
                 <label className="block text-gray-700">Username:</label>
                 <input
-                  type="password"
+                  type="text"
                   placeholder="Create your username"
                   className="w-full p-2 border rounded"
                   required
@@ -113,15 +119,15 @@ function Login() {
                   required
                 />
               </div>
-              <button type="submit" className="w-full p-2 bg-green-500 text-white rounded">
+              <button type="submit" className="w-full p-2 bg-black text-white rounded-full font-semibold hover:bg-primary-dark">
                 Register
               </button>
             </form>
-            <p className="mt-4">
+            <p className="mt-4 text-center">
               Already have an account?{' '}
               <button
                 onClick={handleFormSwitch}
-                className="text-blue-500 underline"
+                className="text-black hover:text-accent font-bold"
               >
                 Login here
               </button>

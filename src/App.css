@@ -5,5 +5,5 @@ body {
 }
 
 #middlenavlinks a.active {
-  @apply text-secondary font-bold border-b-2 border-b-secondary border-solid
+  @apply text-secondary font-bold border-b-[3px] border-b-secondary border-solid
 }

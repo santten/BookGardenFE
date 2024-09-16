@@ -27,30 +27,32 @@ import WishList from './pages/wishlist'
 
 function App() {
   return (
-    <div className="mr-auto ml-auto">
+    <div className="flex flex-col min-h-screen mr-auto ml-auto">
       <BrowserRouter>
         <NavBar />
-        <ScrollToTop>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/store" element={<Store />} />
-            <Route path="/contacts" element={<Contacts />} />
-            <Route path="/search" element={<Search />} />
+        <main className="flex-grow w-full">
+          <ScrollToTop>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/store" element={<Store />} />
+              <Route path="/contacts" element={<Contacts />} />
+              <Route path="/search" element={<Search />} />
 
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/payment" element={<CheckOutPage/>} />
+              <Route path="/cart" element={<Cart />} />
+              <Route path="/payment" element={<CheckOutPage/>} />
 
 
-            <Route path="/login" element={<Login />} />
+              <Route path="/login" element={<Login />} />
 
-            <Route path="/account" element={<AccountDetailsPage />} />
-            <Route path="/account/reviews" element={<UserReviews />} />
-            <Route path="/account/orders" element={<OrderHistoryPage />} />
-            <Route path="/account/wishList" element={<WishList />} />
+              <Route path="/account" element={<AccountDetailsPage />} />
+              <Route path="/account/reviews" element={<UserReviews />} />
+              <Route path="/account/orders" element={<OrderHistoryPage />} />
+              <Route path="/account/wishList" element={<WishList />} />
 
-            <Route path="/products/:productID" element={<ProductPage />} />
-          </Routes>
-        </ScrollToTop>
+              <Route path="/products/:productID" element={<ProductPage />} />
+            </Routes>
+          </ScrollToTop>
+        </main>
         <Footer />
       </BrowserRouter>
     </div>
