@@ -34,6 +34,14 @@ const CustomerReviews = () => {
         "Lorem ipsum dolor sit amet consectetur. Mauris elit commodo dui nunc consectetur. Leo ut volutpat non fermentum viverra sem. In lacus posuere placerat eu platea. Leo lacus ac suscipit volutpat.",
       img: customer3,
     },
+    {
+      id: 3,
+      customerName: "Jacob Jones",
+      rating: 5,
+      review:
+        "Lorem ipsum dolor sit amet consectetur. Mauris elit commodo dui nunc consectetur. Leo ut volutpat non fermentum viverra sem. In lacus posuere placerat eu platea. Leo lacus ac suscipit volutpat.",
+      img: customer3,
+    }
   ];
 
   const scrollLeft = () => {
@@ -58,7 +66,8 @@ const CustomerReviews = () => {
 
   return (
     <section className="bg-grey-light py-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="pl-8 pr-0 sm:pl-6 sm:pl-12 sm:pr-0 lg:pl-16 lg:pr-0">  
+        
         <div className="flex justify-between items-center mb-8">
           <h2 className="text-3xl font-bold text-black font-title text-[48px]">
             OUR <span className="text-primary-dark">HAPPY CUSTOMERS</span>
@@ -66,13 +75,13 @@ const CustomerReviews = () => {
           <div className="flex items-center">
             <button
               onClick={scrollLeft}
-              className="flex items-center text-black hover:text-black"
+              className="pr-10 flex items-center text-black hover:text-black"
             >
               <Icon icon="tdesign:arrow-left" className="text-black" width="32px" />
             </button>
             <button
               onClick={scrollRight}
-              className="flex items-center text-black hover:text-black ml-4"
+              className="pr-10 flex items-center text-black hover:text-black"
             >
               <Icon icon="tdesign:arrow-right" className="text-black" width="32px" />
             </button>
@@ -82,15 +91,15 @@ const CustomerReviews = () => {
         <div className="relative">
           <div
             ref={scrollContainerRef} // Reference the scrollable container
-            className="flex space-x-4 pb-4 overflow-x-auto scrollbar-hide"
-            style={{ paddingRight: "1rem" }} // Ensures the last card aligns with the page edge
+            className="flex space-x-4 pb-4 pr-0 gap-[30px] overflow-x-auto scrollbar-hide overflow-y-hidden"
+            style={{ paddingLeft: "1rem", paddingRight: "1rem" }}  // Ensures the last card aligns with the page edge
           >
             {customers.map((customer, index) => (
               <div
                 key={customer.id}
-                className={`bg-white p-4 rounded-2xl shadow-md flex-none min-w-[25rem] ${
-                  index === customers.length - 1 ? "mr-0" : "mr-4"
-                }`} // Remove margin-right for the last card
+                className={`bg-white p-10 rounded-3xl shadow-md flex-none min-w-[25rem] ${
+                  index === customers.length - 1 ? "mr-0" : "mr-1"
+                } h-96`} // Remove margin-right for the last card
                 style={{ maxHeight: "300px", width: "30rem" }}
               >
                 <div className="flex items-center mb-4">

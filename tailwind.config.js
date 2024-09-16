@@ -35,6 +35,11 @@ module.exports = {
         '2': '2px',
       },
 
+      fontSize: {
+        '2.2rem': '2.2rem',
+        'l': '1.125rem',
+      },
+
       borderRadius: {
         'half': '9999px',
       },
