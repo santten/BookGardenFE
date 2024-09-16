@@ -32,3 +32,6 @@ material-symbols:save-outline
 
 #### send
 fluent:send-24-filled
+
+#### write (add review button)
+jam:write-f
