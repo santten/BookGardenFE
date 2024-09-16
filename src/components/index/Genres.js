@@ -43,6 +43,7 @@ const Genres = () => {
         </div>
 
         <div className="flex flex-col gap-8">
+          
         {/* Children Books - Top right */}
         <div className="h-3/4 relative group">
           <img 
