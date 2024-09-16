@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Icon } from "@iconify/react"
 
 import customer1 from '../../images/customer1.png';
@@ -7,6 +7,9 @@ import customer3 from '../../images/customer3.png';
 import Stars from "../Stars";
 
 const CustomerReviews = () => {
+  const scrollContainerRef = useRef(null); 
+
+  //mock customer reviews
   const customers = [
     {
       id: 1,
@@ -31,6 +34,24 @@ const CustomerReviews = () => {
     },
   ];
 
+  const scrollLeft = () => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollBy({
+        left: -100,  
+        behavior: "smooth",  
+      });
+    }
+  };
+
+  const scrollRight = () => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollBy({
+        left: 100,  
+        behavior: "smooth",  
+      });
+    }
+  };
+
   return (
     <section className="bg-grey-light py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -38,19 +59,26 @@ const CustomerReviews = () => {
           <h2 className="text-3xl font-bold text-black font-title text-[48px]">
             OUR <span className="text-primary-dark">HAPPY CUSTOMERS</span>
           </h2>
-          <button className="flex items-center text-black hover:text-black">
-            <span className="ml-2"> <Icon icon="tdesign:arrow-left" className="text-black" width="32px"/> </span>
-            <span className="ml-2"> <Icon icon="tdesign:arrow-right" className="text-black" width="32px"/> </span>
-          </button>
+          <div className="flex items-center">
+            <button onClick={scrollLeft} className="flex items-center text-black hover:text-black">
+              <Icon icon="tdesign:arrow-left" className="text-black" width="32px" />
+            </button>
+            <button onClick={scrollRight} className="flex items-center text-black hover:text-black ml-4">
+              <Icon icon="tdesign:arrow-right" className="text-black" width="32px" />
+            </button>
+          </div>
         </div>
 
         <div className="relative overflow-hidden">
-          <div className="flex overflow-x-auto space-x-4 pb-4">
+          <div
+            ref={scrollContainerRef}   
+            className="flex space-x-4 pb-4 scrollbar-hide overflow-x-auto" //"flex overflow-x-auto space-x-4 pb-4"
+          >
             {customers.map((customer) => (
               <div
                 key={customer.id}
                 className="bg-white p-4 rounded-2xl shadow-md flex-none min-w-[25rem] flex-shrink-0"
-                style={{ maxHeight: '300px', width: '30rem' }}// style={{ maxHeight: '240px' }} // Set a max height if needed
+                style={{ maxHeight: '300px', width: '30rem' }} // Set a max height  
               >
                 <div className="flex items-center mb-4">
                   <img
@@ -63,7 +91,6 @@ const CustomerReviews = () => {
                       {customer.customerName}
                     </h3>
                     <div>
-                      {console.log(customer.rating)}
                       <Stars rating={customer.rating} height="24px" background="white" />
                     </div>
                   </div>
@@ -72,9 +99,9 @@ const CustomerReviews = () => {
                   {customer.review}
                 </p>
               </div>
-            ))}
+            ))
+            }
           </div>
-          {/* <div className="absolute inset-0 right-0 bg-grey-light" style={{ width: '10rem', pointerEvents: 'none' }}></div>*/}
         </div>
       </div>
     </section>
