@@ -21,7 +21,7 @@ function MyAccount(props) {
           <a href="/account/reviews" className={activepage === "accountreviews" ? "font-bold hover:text-secondary" : "font-regular hover:text-primary-dark"}>Reviews</a>
         </li>
         <li className="pt-8">
-          <a href="/logout" className="text-black hover:text-warning">Logout</a>
+          <a href="/" className="text-black hover:text-warning">Logout</a>
         </li>
       </ul>
     </div>

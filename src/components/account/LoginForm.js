@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 function Login() {
   const [isLogin, setIsLogin] = useState(true); // 控制登录和注册表单之间的切换
@@ -12,7 +13,7 @@ function Login() {
       <div className="p-8 border-2 border-grey rounded-4xl max-w-[450px] w-full bg-grey-light">
         {isLogin ? (
           <div>
-            <h2 className="text-4xl font-bold mb-4 font-title text-center">
+            <h2 className="text-4xl mb-4 font-title text-center">
               Login to{" "}
               <span className="text-primary-dark">Book Garden</span>
             </h2>
@@ -35,23 +36,29 @@ function Login() {
                   required
                 />
               </div>
-              <button type="submit" className="w-full p-2 bg-black text-white rounded-full font-semibold hover:bg-primary-dark">
-                Login
-              </button>
+              
+              {/* for the demo, the login button takes you to account page without any handling */}
+              
+              <Link to="/account">
+                <button type="submit" className="w-full p-2 bg-black text-white rounded-full font-semibold hover:bg-primary-dark">
+                  Login
+                </button>
+              </Link>
+            
             </form>
             <p className="mt-4 text-center">
               Don't have an account?{' '}
               <button
                 onClick={handleFormSwitch}
-                className="text-black hover:text-accent font-bold"
+                className="text-primary-dark underline hover:text-accent"
               >
-                Register here
+                Register now
               </button>
             </p>
           </div>
         ) : (
           <div>
-            <h2 className="text-4xl font-bold mb-4 font-title text-center">
+            <h2 className="text-4xl mb-4 font-title text-center">
               Register to{" "}
               <span className="text-primary-dark">Book Garden</span>
             </h2>
@@ -127,8 +134,7 @@ function Login() {
               Already have an account?{' '}
               <button
                 onClick={handleFormSwitch}
-                className="text-black hover:text-accent font-bold"
-              >
+                className="hidden text-primary-dark underline hover:text-accent">
                 Login here
               </button>
             </p>
