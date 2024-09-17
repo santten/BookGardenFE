@@ -9,13 +9,15 @@ import Subscriptions from "../components/index/Subscriptions";
 function index() {
   return (
     <div className="w-full">
-        <Hero />
-        <About />
-        <BestSellers />
-        <Genres />
-        <Arrivals />
+      <Hero />
+      <About />
+      <BestSellers />
+      <Genres />
+      <Arrivals />
+      <div className="bg-grey-light">
         <CustomerReviews />
-        <Subscriptions />
+      </div>
+      <Subscriptions />
     </div>
   )
 }

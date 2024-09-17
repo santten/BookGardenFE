@@ -110,7 +110,7 @@ function ProductList() {
                         </div>
                     </div>
                 </header>
-                <main className="flex flex-row flex-wrap gap-[40px]">
+                <main className="flex flex-row flex-wrap gap-[1rem]">
                     {bookArray.filter(handleFiltering).sort((a, b) => {
                         switch (sorting) {
                             case "ALPHABET": return a.title > b.title

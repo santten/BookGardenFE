@@ -1,8 +1,3 @@
-// bookArrayShort has 100 entries, bookArrayLong 1000
-// feel free to modify line 2309 to use whichever works best for you and your computer
-// the fields are the same
-// this note is here to say that if its giving you a unused variable error, that is on purpose here 
-
 const bookArray = [{ "id": 1, "title": "Bullet for the General, A (Quién Sabe?)", "author": "Giff Richemont", "genre": "Drama", "rating": 4.59, "year": 1954, "publisher": "Flipstorm", "ISBN": "353779773-7", "binding": "Casebound", "pages": 432, "language": "Swedish", "price": 80.31 },
 { "id": 2, "title": "Aftermath", "author": "Maddy Ohms", "genre": "Thriller", "rating": 3.4, "year": 1958, "publisher": "Twitterbeat", "ISBN": "091063797-0", "binding": "Paperback", "pages": 153, "language": "Macedonian", "price": 93.57 },
 { "id": 3, "title": "Amigo", "author": "Olimpia Vivash", "genre": "Drama", "rating": 2.18, "year": 2019, "publisher": "Wordpedia", "ISBN": "132168080-5", "binding": "Spiral Bound", "pages": 18, "language": "Catalan", "price": 88.91 },

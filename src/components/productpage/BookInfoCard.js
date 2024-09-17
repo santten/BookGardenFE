@@ -7,7 +7,7 @@ function BookInfoCard(props) {
     const { title, author, genre, rating, year, publisher, ISBN, binding, pages, language, price } = props.bookinfo
 
     return (
-        <div className="grid grid-cols-[30%_70%] bg-white containerSmall mt-6">
+        <div className="grid grid-cols-[auto_auto] gap-[1rem] bg-white containerSmall mt-6 mb-6">
             <div className="flex w-[100%] flex-col items-center">
                 <div className="mx-auto h-[300px] w-[240px] w-[80] bg-accent">cover image</div>
                 <div className="flex items-center py-[0.5rem]">

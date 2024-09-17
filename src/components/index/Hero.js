@@ -1,5 +1,5 @@
 import React from "react";
-import hero from '../../images/hero.png';
+import hero from '../../images/hero.jpg';
 import { Icon } from "@iconify/react"
 import { Link } from "react-router-dom";
 
@@ -13,6 +13,7 @@ const Hero = () => {
         backgroundPosition: 'center',
         height: 'auto',
         padding: '20px',
+        maxWidth: '95vw',
       }}
     >
 

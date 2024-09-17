@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import DeliveryForm from '../components/DeliveryForm';
-import PaymentForm from '../components/PaymentForm'; // Import the PaymentForm component
+import DeliveryForm from '../components/payment/DeliveryForm';
+import PaymentForm from '../components/payment/PaymentForm'; // Import the PaymentForm component
 import './checkOutPage.css'; // CSS for styling the page
 
 function CheckOutPage() {

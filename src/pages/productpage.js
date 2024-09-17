@@ -25,9 +25,7 @@ function ProductPage() {
             <PathLink />
             <BookInfoCard key={"bookinfo_for_" + bookinfo.id} bookinfo={bookinfo} />
             <ReviewArea className="bg-accent" key={"reviews_for_" + bookinfo.id} reviewlist={reviews} avg_rating={bookinfo.rating} />
-            <div className="max-w-[70vw] m-auto">
-                <Recommendations key={"recs_for_" + bookinfo.id} bookinfo={bookinfo} />
-            </div>
+            <Recommendations key={"recs_for_" + bookinfo.id} bookinfo={bookinfo} />
         </div>
     )
 }

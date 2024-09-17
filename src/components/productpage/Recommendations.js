@@ -1,12 +1,12 @@
-import React from 'react'
+import { useRef } from 'react'
 import bookArray from '../../temporary_mock_data'
-import ProductCard from '../ProductCard'
 import ProductRow from '../ProductRow'
 
 function Recommendations(props) {
     const { id, author, genre, publisher } = props.bookinfo
 
     let recommendationArray = []
+    const scrollContainerRef = useRef(null);
 
     // check authors first
     bookArray.forEach(item => { if ((item.author === author) && (item.id !== id)) { recommendationArray.push(item.id) } })
@@ -28,7 +28,9 @@ function Recommendations(props) {
     } else {
         const slicedArr = recommendationArray.slice(0, 9)
         return (
-            <ProductRow items={slicedArr} title={titlecontent} className="ml-auto w-[70vw] pb-[1rem]"/>
+            <div className="max-w-max containerBig">
+                <ProductRow ref={scrollContainerRef} items={slicedArr} title={titlecontent} />
+            </div>
         )
     }
 }

@@ -27,14 +27,14 @@ function ReviewArea(props) {
   };
 
   return (
-    <div className="bg-grey-light">
-      <div className="max-w-[70vw] mx-auto my-[1rem]">
+    <div className="bg-grey-light pb-[2rem]">
+      <div className="containerBig">
         <div className="flex flex-row w-[100%]">
           <h2 className="mt-[1rem] w-[100%] flex flex-row items-center">
             <span className="text-[2rem] font-title">Reviews</span>
             <span className="pl-[0.5rem] text-[1.25rem] text-grey-dark">
               {reviews.length < 1 ? ("") :
-                <div className="flex items-center gap-[0.5rem]"><Stars rating={rating} height="1.75rem" background="white" />({rating.toFixed(2)})</div>}
+                <div className="flex items-center gap-[0.5rem]"><Stars rating={rating} height="1.75rem" background="light" />({rating.toFixed(2)})</div>}
             </span>
             {reviewmakingtoggle ? <></> :
               <button onClick={() => setReviewmakingtoggle(true)} className="ml-auto flex items-center flex-row gap-[0.5rem] l-auto bg-black hover:bg-primary-dark text-white font-semibold p-[0.5rem] rounded-[99px] px-[1rem] py-[0.5rem]">
