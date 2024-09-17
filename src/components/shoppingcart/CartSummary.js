@@ -12,16 +12,21 @@ function CartSummary({ totalItems, totalPrice }) {
   };
 
   return (
-    <div className="cart-summary">
-      <div className="summary-details">
-        <p>Total Items: <strong>{totalItems}</strong></p>
-        <p>Total to Pay: <strong>${totalPrice.toFixed(2)}</strong></p>
+      <div className="relative flex flex-col items-end">
+      <div className="flex items-center justify-between w-full mb-4">
+      <div className="text-right flex-grow">
+
+        <p className="text-[24px]">Subtotal ({totalItems} items):</p>
+        <p className="text-[40px] font-bold">{totalPrice.toFixed(2)}€</p>
       </div>
       {/* Wrap OrderButton with a div and add the onClick for navigation */}
-      <div onClick={handleProceedToCheckout}>
+      <div onClick={handleProceedToCheckout} className="ml-4">
         <CheckOutButton />
       </div>
     </div>
+    </div>
+
+
   );
 }
 
