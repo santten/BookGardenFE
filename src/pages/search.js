@@ -1,12 +1,14 @@
 import React from 'react'
+import ProductList from '../components/productpage/ProductList'
+import PathLink from '../components/PathLink'
 
-function search() {
-    return (
-        <div className="w-full">
-            {/* remove this comment + replace the <p> with your code */}
-            <p className="p-[20px]">hello from search.js</p>
-        </div>
-    )
+function Search() {
+  return (
+    <div className="w-full">
+      <PathLink />
+      <ProductList />
+    </div>
+  )
 }
 
-export default search
+export default Search;
