@@ -34,14 +34,14 @@ const OrderHistory = () => {
     ]);
 
     // const deleteOrder = (id) => {
-    //     setOrders(orders.filter(order => order.id !== id));  // 过滤掉被删除的订单
+    //     setOrders(orders.filter(order => order.id !== id));
     // };
 
     return (
-        <div className="container mx-auto p-2 bg-white mt-10">
+        <div className="container mx-auto p-2 mt-10">
             <h2 className="text-2xl font-bold mb-6 text-left">Order History</h2>
 
-            <table className="min-w-full overflow-hidden">
+            <table className="min-w-full overflow-hidden" style={{ backgroundColor: 'rgba(255, 255, 255, 0)' }}>
                 <thead className="text-gray-500 text-lg border-b">
                     <tr>
                         <th className="py-2 px-4 text-left" style={{ fontWeight: 'normal' }}>Number ID</th>
