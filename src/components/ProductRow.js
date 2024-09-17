@@ -1,31 +1,79 @@
-import React from 'react'
-import bookArray from '../temporary_mock_data'
-import ProductCard from './ProductCard'
+import React from 'react';
+import bookArray from '../temporary_mock_data';
+import ProductCard from './ProductCard';
 
 // props
 // items: array of numbers (bookIDs)
 // title: string (product row title) - defaults to "More Books" if not provided 
 
-function ProductRow(props) {
+function ProductRow(props, ref) {
     const titleContent = props.title || "";
 
-    // check that items is an array + check that it isnt empty
+    // check that items is an array + check that it isn't empty
     if (props.items.constructor !== Array || props.items.length === 0) {
-        return <></>
+        return <></>;
     } else {
-        return <div>
-            <h2 className="font-title text-[xx-large] my-[1rem]">{titleContent}</h2>
-            <div className="flex flex-row gap-[40px] pb-[1rem] h-[100%] overflow-x-auto overflow-y-hidden">
-                {props.items.map((item) => {
-                    let bookobject = bookArray.find((element) => element.id == item)
-                    return <ProductCard key={"card-" + item} item={bookobject} />
-                })}
+        return (
+            <div>
+                <h2 className="font-title text-[xx-large] my-[1rem]">{titleContent}</h2>
+                {/* Assign the ref to the scrollable div */}
+                <div ref={ref} className="flex flex-row gap-[40px] pb-[1rem] h-[100%] overflow-x-auto overflow-y-hidden">
+                    {props.items.map((item) => {
+                        let bookobject = bookArray.find((element) => element.id == item);
+                        return <ProductCard key={"card-" + item} item={bookobject} />;
+                    })}
+                </div>
             </div>
-        </div>
+        );
     }
 }
 
-export default ProductRow
+// Forward the ref from BestSellers to ProductRow
+export default React.forwardRef(ProductRow);
+
+
+
+
+
+
+
+// import React from 'react'
+// import bookArray from '../temporary_mock_data'
+// import ProductCard from './ProductCard'
+
+// // props
+// // items: array of numbers (bookIDs)
+// // title: string (product row title) - defaults to "More Books" if not provided 
+
+// function ProductRow(props) {
+//     const titleContent = props.title || "";
+
+//     // check that items is an array + check that it isnt empty
+//     if (props.items.constructor !== Array || props.items.length === 0) {
+//         return <></>
+//     } else {
+//         return <div>
+//             <h2 className="font-title text-[xx-large] my-[1rem]">{titleContent}</h2>
+//             <div className="flex flex-row gap-[40px] pb-[1rem] h-[100%] overflow-x-auto overflow-y-hidden">
+//                 {props.items.map((item) => {
+//                     let bookobject = bookArray.find((element) => element.id == item)
+//                     return <ProductCard key={"card-" + item} item={bookobject} />
+//                 })}
+//             </div>
+//         </div>
+//     }
+// }
+
+// export default ProductRow
+
+
+
+
+
+
+
+
+
 
 /*
 
