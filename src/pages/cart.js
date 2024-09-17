@@ -41,6 +41,10 @@ function Cart() {
     );
   };
 
+  const handleDelete = (item) => {
+    setCartItems(prevItems => prevItems.filter(cartItem => cartItem.id !== item.id));
+  };
+
   const totalItems = cartItems.reduce((total, item) => total + item.quantity, 0);
   const totalPrice = cartItems.reduce((total, item) => total + item.quantity * item.price, 0);
 
@@ -60,6 +64,7 @@ function Cart() {
             item={element}
             onAdd={handleAdd}
             onRemove={handleRemove}
+            onDelete={handleDelete}
           />
         ))}
       </div>

@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+const plugin = require('tailwindcss/plugin');
+
 module.exports = {
   content: [
     "./src/*.js",
@@ -27,7 +29,7 @@ module.exports = {
         },
       },
       fontFamily: {
-        title: "Koulen",
+        title: "Koulen, sans-serif",
         sans: "Open Sans"
       },
     
@@ -35,10 +37,55 @@ module.exports = {
         '2': '2px',
       },
 
+      fontSize: {
+        '2.2rem': '2.2rem',
+        'l': '1.125rem',
+      },
+
       borderRadius: {
         'half': '9999px',
+        '4xl': '32px',
+      },
+
+      container: {
+        center: true,
+        padding: { 
+          DEFAULT: '25px',
+        },
+        screens: {
+          lg: '1330px',
+        },
       },
     },
   },
-  plugins: [],
+  plugins: [
+    plugin(function({ addComponents, theme }) {
+      addComponents({
+        '.containerSmall': {
+          '@apply mx-auto px-[25px]': {},
+          '@screen lg': {
+            maxWidth: '1190px',
+          },
+        },
+        '.containerBig': {
+          '@apply mx-auto px-[25px]': {},
+          '@screen lg': {
+            maxWidth: '1390px',
+          },
+        },
+      });
+    }),
+
+    plugin(function ({ addUtilities }) {
+      addUtilities({
+        '.scrollbar-hide': {
+          '-ms-overflow-style': 'none',  /* IE and Edge */
+          'scrollbar-width': 'none',     /* Firefox */
+        },
+        '.scrollbar-hide::-webkit-scrollbar': {
+          display: 'none',  /* Chrome, Safari, and Opera */
+        },
+      })
+    }),
+  ],
 }

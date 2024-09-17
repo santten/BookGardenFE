@@ -8,8 +8,7 @@ import Subscriptions from "../components/index/Subscriptions";
 
 function index() {
   return (
-    <div className="w-full min-h-[90vh]">
-      <main>
+    <div className="w-full">
         <Hero />
         <About />
         <BestSellers />
@@ -17,7 +16,6 @@ function index() {
         <Arrivals />
         <CustomerReviews />
         <Subscriptions />
-      </main>
     </div>
   )
 }
