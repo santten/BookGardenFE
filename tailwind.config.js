@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+const plugin = require('tailwindcss/plugin');
+
 module.exports = {
   content: [
     "./src/*.js",
@@ -49,25 +51,24 @@ module.exports = {
           lg: '1330px',
         },
       },
-      containerSmall: {
-        center: true,
-        padding: { 
-          DEFAULT: '25px',
-        },
-        screens: {
-          lg: '1190px',
-        },
-      },
-      containerBig: {
-        center: true,
-        padding: { 
-          DEFAULT: '25px',
-        },
-        screens: {
-          lg: '1390px',
-        },
-      },
     },
   },
-  plugins: [],
+  plugins: [
+    plugin(function({ addComponents, theme }) {
+      addComponents({
+        '.containerSmall': {
+          '@apply mx-auto px-[25px]': {},
+          '@screen lg': {
+            maxWidth: '1190px',
+          },
+        },
+        '.containerBig': {
+          '@apply mx-auto px-[25px]': {},
+          '@screen lg': {
+            maxWidth: '1390px',
+          },
+        },
+      });
+    }),
+  ],
 }
