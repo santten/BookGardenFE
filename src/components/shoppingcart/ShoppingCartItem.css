@@ -59,6 +59,8 @@
   position: absolute;
   top: 5px;
   right: 10px;
+  font-weight: bold;
+  font-size: 36px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -129,11 +131,11 @@
 }
 
 .star.full {
-  color: #3a3a3a; /* Gold color for full stars */
+  color: #0f0f0f; /* Black color for full stars */
 }
 
 .star.half {
-  color: #3a3a3a; /* Gold color for half stars */
+  color: #040404; /* Black color for half stars */
 }
 
 .star.empty {
