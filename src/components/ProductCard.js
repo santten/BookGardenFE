@@ -1,4 +1,4 @@
-import OrderButton from "./AddToCartButton"
+import AddToCartButton from "./AddToCartButton"
 import LikeButton from "./LikeButton"
 import Stars from "./Stars"
 import { Link as CardLink } from 'react-router-dom';
@@ -19,7 +19,7 @@ function ProductCard(props) {
         {(rating === null) ? <p className="text-grey-dark">(No ratings)</p> : <div className="flex w-[100%] flex-row"><Stars rating={rating} className="flex-start" height="24px" background="light" /><span className="ml-auto text-grey-dark">({rating.toFixed(2)})</span></div>}
       </div>
       <div className="grid grid-cols-[1fr_1fr] gap-[0.5rem] mb-[1rem]">
-        <OrderButton /><LikeButton type="icon_only" />
+        <AddToCartButton book_id={id} /><LikeButton type="icon_only" />
       </div>
     </CardLink>
   )

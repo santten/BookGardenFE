@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './ShoppingCartItem.css'; // Import the CSS file
-import Stars from '../BlackStars';
+import Stars from '../Stars';
 
 function ShoppingCartItem({ item, onAdd, onRemove, onDelete }) {
   const { title, author, rating, price, image, year, ISBN, language, binding } = item;
@@ -25,7 +25,7 @@ function ShoppingCartItem({ item, onAdd, onRemove, onDelete }) {
   {author}
 </p>
 <p className="flex items-center">
-  <Stars rating={rating} height="20px" textColor="text-black"/>
+  <Stars rating={rating} height="20px" color="black"/>
   <span className="rating-number text-gray-500 ml-2">
     ({rating.toFixed(2)})
   </span>
@@ -48,18 +48,16 @@ function ShoppingCartItem({ item, onAdd, onRemove, onDelete }) {
 </p>
 
         <div className="item-actions">
-          <div className="button-container font-blond"> {/* Apply background only to buttons */}
+          <div className="button-container"> {/* Apply background only to buttons */}
             <button 
               onClick={() => onRemove(item)} 
-              className="px-3 py-1 bg-gray-200 hover:bg-gray-300 rounded"
-            >
+              className="bg-gray-200 hover:bg-gray-300 rounded">
               -
             </button>
-            <span className="item-quantity text-lg">{item.quantity}</span>
+            <span className="item-quantity">{item.quantity}</span>
             <button 
               onClick={() => onAdd(item)} 
-              className="px-3 py-1 bg-gray-200 hover:bg-gray-300 rounded"
-            >
+              className="bg-gray-200 hover:bg-gray-300 rounded">
               +
             </button>
           </div>
