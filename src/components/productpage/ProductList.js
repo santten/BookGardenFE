@@ -46,10 +46,10 @@ function ProductList() {
                     <h5 className="font-title text-[1.5rem] mb-[0.5rem]">Category</h5>
 
                     <ul>
-                        <><li className="inline hover:text-primary-dark" onClick={() => setCategory("Books")}>Show All</li></>
+                        <><li className={`inline hover:text-primary-dark ${category === "Books" ? 'font-bold' : 'font-regular'}`} onClick={() => setCategory("Books")}>Show All</li></>
 
                         {genrelist.sort().map((item, index) => {
-                            return <li key={"genre-" + index} className="inline"> | <span className="inline hover:text-primary-dark" onClick={() => setCategory(item)}>{item}</span></li>
+                            return <li key={"genre-" + index} className="inline"> | <span className={`inline hover:text-primary-dark ${category === item ? 'font-bold' : 'font-regular'}`} onClick={() => setCategory(item)}>{item}</span></li>
                         })}
                     </ul>
                     <h5 className="font-title text-[1.5rem] my-[0.5rem]">Price</h5>
@@ -79,13 +79,12 @@ function ProductList() {
                         /></div>
                     <h5 className="font-title text-[1.5rem] my-[0.5rem]">Binding</h5>
                     <ul>
-                        <><li className="inline hover:text-primary-dark" onClick={() => setBindingFilter("")}>Show All</li></>
+                        <><li className={`inline hover:text-primary-dark ${bindingFilter === "" ? 'font-bold' : 'font-regular'}`} onClick={() => setBindingFilter("")}>Show All</li></>
 
                         {bindinglist.sort().map((item, index) => {
-                            return <li key={"genre-" + index} className="inline"> | <span className="inline hover:text-primary-dark" onClick={() => setBindingFilter(item)}>{item}</span></li>
+                            return <li key={"genre-" + index} className="inline"> | <span className={`inline hover:text-primary-dark ${bindingFilter === item ? 'font-bold' : 'font-regular'}`} onClick={() => setBindingFilter(item)}>{item}</span></li>
                         })}
                     </ul>
-
                 </section>
             </div >
             <div>
