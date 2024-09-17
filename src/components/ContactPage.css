@@ -15,9 +15,7 @@
 .contact-title {
   font-size: 3.5rem; /* More flexible size for responsiveness */
   font-family: 'TitleFont', 'Koulen', sans-serif;
-  margin-left: 2rem;
   margin-bottom: 2rem;
-  text-align: left;
 }
 
 .contact-title span:first-child {
@@ -34,7 +32,6 @@
   display: flex;
   align-items: flex-start; /* Align items to the top for better structure */
   justify-content: space-between;
-  padding: 2rem 0; /* Reduced padding for a cleaner look */
   background-color: white;
   width: 100%;
 }

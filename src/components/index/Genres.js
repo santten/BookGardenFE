@@ -7,7 +7,7 @@ import { Icon } from '@iconify/react';
 
 const Genres = () => {
   return (
-    <div className="w-full bg-secondary-light py-8"
+    <section className="w-full bg-secondary-light py-12"
     style={{ 
       backgroundImage: `url(${genres})`, 
       //backgroundSize: 'cover', 
@@ -17,7 +17,7 @@ const Genres = () => {
 
 
     }}>
-    <div className="max-w-7xl mx-auto py-8">
+      <div className="container">
         <h1 className="text-center text-3xl font-bold mb-8">
             <span className="text-black text-[64px] font-title">FIND YOUR BOOK BY</span>
             <span className="text-secondary text-[64px] font-title"> GENRE</span>
@@ -80,7 +80,7 @@ const Genres = () => {
         </div>
       </div>
     </div>
-    </div>
+  </section>
 
   );
 };

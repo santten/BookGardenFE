@@ -3,7 +3,7 @@ import about from '../../images/about.png';
 
 function About() {
   return (
-    <div className="bg-grey-light py-12 px-4 sm:px-6 lg:px-8"
+    <section className="bg-grey-light py-12 px-4 sm:px-6 lg:px-8"
     style={{ 
       marginTop: '25px' ,
       height: '403px',
@@ -13,7 +13,7 @@ function About() {
       backgroundSize: 'contain', 
     }}>
 
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0 md:space-x-12">
+      <div className="container flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0 md:space-x-12">
         
         <div className="pl-[48px] text-center md:w-1/2">
           <h1 className="text-left leading-[86px] text-8xl font-title">
@@ -31,7 +31,7 @@ function About() {
           </p>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 
