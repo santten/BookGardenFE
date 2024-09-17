@@ -40,7 +40,7 @@ function ProductList() {
     }
 
     return (
-        <div className="grid grid-cols-[20%_auto] gap-[1.5rem] mb-[100px] max-w-[82vw] ml-auto mr-auto">
+        <div className="containerBig grid grid-cols-[20%_auto] gap-[1.5rem] mb-[100px] mt-6">
             <div>
                 <section className="bg-grey-light rounded-[32px] min-h-[10rem] p-[1rem]">
                     <h5 className="font-title text-[1.5rem] mb-[0.5rem]">Category</h5>
@@ -104,7 +104,7 @@ function ProductList() {
                                 <option value="ASC_year">Oldest Release</option>
                             </select>
                         </section>
-                        <div className="flex flex-row items-center mr-[1.25rem]">
+                        <div className="flex flex-row items-center">
                             <Icon icon="lucide:search" width="24px" className="mx-[0.5rem]" />
                             <input onInput={evt => setSearch(evt.target.value)} type="text" placeholder="Search..." className="border-solid border-grey border bg-grey-light h-[2rem] px-[1rem] rounded-[16px]"></input>
                         </div>

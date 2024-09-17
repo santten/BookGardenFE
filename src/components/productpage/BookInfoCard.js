@@ -7,7 +7,7 @@ function BookInfoCard(props) {
     const { title, author, genre, rating, year, publisher, ISBN, binding, pages, language, price } = props.bookinfo
 
     return (
-        <div className="grid grid-cols-[30%_70%] w-[70vw] bg-white m-auto">
+        <div className="grid grid-cols-[30%_70%] bg-white containerSmall mt-6">
             <div className="flex w-[100%] flex-col items-center">
                 <div className="mx-auto h-[300px] w-[240px] w-[80] bg-accent">cover image</div>
                 <div className="flex items-center py-[0.5rem]">
@@ -15,7 +15,7 @@ function BookInfoCard(props) {
                     </div>
                 <LikeButton />
             </div>
-            <div className="flex flex-col items-center mx-[1rem] gap-[1rem] h-[100%]">
+            <div className="flex flex-col items-center gap-[1rem] h-[100%]">
                 <div className="flex flex-row items-center justify-between w-[100%]">
                     <div className="mr-auto w-[100%]">
                         <span className="text-[xx-large] font-semibold">{title}<br /></span>
