@@ -35,10 +35,28 @@ module.exports = {
         '2': '2px',
       },
 
+      fontSize: {
+        '2.2rem': '2.2rem',
+        'l': '1.125rem',
+      },
+
       borderRadius: {
         'half': '9999px',
       },
     },
   },
-  plugins: [],
+
+  plugins: [
+    function ({ addUtilities }) {
+      addUtilities({
+        '.scrollbar-hide': {
+          '-ms-overflow-style': 'none',  /* IE and Edge */
+          'scrollbar-width': 'none',     /* Firefox */
+        },
+        '.scrollbar-hide::-webkit-scrollbar': {
+          display: 'none',  /* Chrome, Safari, and Opera */
+        },
+      })
+    },
+  ],
 }

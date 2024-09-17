@@ -6,9 +6,9 @@ function MyAccount(props) {
   
   return (
     <div className="w-60 h-80 p-4 bg-grey-light rounded-3xl mx-auto my-8">
-      <h2 className="font-title text-[1.5rem] text-xl mb-4">MY ACCOUNT</h2>
+      <h2 className="font-title text-[1.5rem] mb-4">MY ACCOUNT</h2>
       <ul className="space-y-4 text-black">
-        <hr className="border-t-2 border-grey w-50 mx-auto my-2" />
+        <hr className="border-t-4 border-grey w-50 mx-auto my-2" />
         <li>
           <a href="/account" className={activepage === "accountdetails" ? "font-bold hover:text-secondary" : "font-regular hover:text-primary-dark"}>Account Details</a>
         </li>

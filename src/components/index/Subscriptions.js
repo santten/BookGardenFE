@@ -22,16 +22,21 @@ const Subscriptions = () => {
 
 
       }}>
-      <div className="max-w-3xl mx-auto text-center">
-        <h2 className="text-3xl text-[64px] font-bold mb-6 font-title" style={{ whiteSpace: 'nowrap' }}>WOULD YOU LIKE TO JOIN <span className="text-primary-dark">NEWSLETTERS</span>?</h2>
 
+      <div className="max-w-3xl mx-auto text-center"> 
+        <h2 className="text-3xl text-[64px] font-bold mb-6 font-title" 
+            style={{ whiteSpace: 'nowrap',
+                    textShadow: '2px 2px 6px rgba(0, 0, 0, 0.3)' 
+                    }}
+        >
+          WOULD YOU LIKE TO JOIN <span className="text-primary-dark">NEWSLETTERS</span>?
+        </h2>
 
         <form onSubmit={handleSubmit} className="flex justify-center items-center space-x-4">
           <input
             type="email"
             placeholder="Enter your email"
-            className="px-4 py-2 w-80 rounded-full border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500"
-            value={email}
+            className="px-4 py-2 w-80 rounded-full border border-gray-300 shadow-md focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-gray-500"
             onChange={(e) => setEmail(e.target.value)}
             required
           />

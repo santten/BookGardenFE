@@ -31,9 +31,7 @@ const Hero = () => {
           </button></Link>
         </div>
       </div>
-      {/* 在背景图片容器下方添加 margin-bottom */}
-      {/* <div style={{ marginBottom: '25px' }}></div> */}
-    </section>
+   </section>
   );
 };
 
