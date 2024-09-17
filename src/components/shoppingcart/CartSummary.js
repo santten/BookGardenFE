@@ -17,7 +17,7 @@ function CartSummary({ totalItems, totalPrice }) {
       <div className="text-right flex-grow">
 
         <p className="text-[24px]">Subtotal ({totalItems} items):</p>
-        <p className="text-[40px] font-bold">{totalPrice.toFixed(2)}€</p>
+        <p className="text-[40px] font-bold">{totalPrice.toFixed(2)} €</p>
       </div>
       {/* Wrap OrderButton with a div and add the onClick for navigation */}
       <div onClick={handleProceedToCheckout} className="ml-4">

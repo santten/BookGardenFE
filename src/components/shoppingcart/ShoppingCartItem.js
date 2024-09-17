@@ -30,8 +30,8 @@ function ShoppingCartItem({ item, onAdd, onRemove, onDelete }) {
     ({rating.toFixed(2)})
   </span>
 </p>
-<p className="item-price text-xl font-semibold">
-  ${price.toFixed(2)}
+<p className="item-price text-xl">
+  {price.toFixed(2)} €
 </p>
 <p className="item-year text-sm text-gray-500">
   Publishing Year: <span className="font-semibold">{year}</span>
@@ -69,7 +69,7 @@ function ShoppingCartItem({ item, onAdd, onRemove, onDelete }) {
             className="remove-link"
             onClick={() => onDelete(item)}
           >
-            Remove from cart
+            Remove from Cart
           </div>
         </div>
       </div>
