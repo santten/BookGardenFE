@@ -4,7 +4,9 @@ import MyAccount from '../components/account/MyAccount'
 
 function UserReviewsPage() {
     return (
-        <div className="App flex justify-between">
+      <div className="relative min-h-[85.5vh] grid grid-rows-[1fr_auto]"> 
+
+        <div className="App flex justify-between pb-20">
         <div className="flex-none w-1/4 p-4">
           <MyAccount activepage="accountreviews"/>
         </div>
@@ -12,6 +14,8 @@ function UserReviewsPage() {
           <UserReviews />
         </div>
       </div>
+      </div>
+
     )
 }
 

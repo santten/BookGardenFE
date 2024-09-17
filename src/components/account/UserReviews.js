@@ -44,11 +44,11 @@ const UserReviews = () => {
     };
 
     return (
-        <div className="container mx-auto p-6">
+        <div className="container mx-auto p-2 bg-white mt-10">
             <h2 className="text-2xl font-bold mb-6 text-left">Review history</h2>
 
             <table className="min-w-full overflow-hidden">
-                <thead className="text-gray-400 text-[25px]">
+                <thead className="text-gray-500 text-lg border-b">
                     <tr>
                         <th className="py-2 px-4 text-left" style={{ fontWeight: 'normal' }}>Book</th>
                         <th className="py-2 px-4 text-left" style={{ fontWeight: 'normal' }}>Date</th>

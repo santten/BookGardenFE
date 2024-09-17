@@ -18,27 +18,27 @@ function AccountDetails() {
             <input id="lastName" type="text" defaultValue="Current info" className="mt-1 p-2 block w-full border border-gray-300 rounded-half" />
           </div>
         </div>
-        <div className="mb-4">
+        <div className="w-1/2 mb-4">
           <label htmlFor="emailAddress" className="block text-sm font-medium text-gray-700">Email address<span className="text-red-500">*</span></label>
           <input id="emailAddress" type="email" defaultValue="Current info" className="mt-1 p-2 block w-full border border-gray-300 rounded-half" />
         </div>
-        <div>
+        <div className="w-1/2 mb-4">
           <label htmlFor="username" className="block text-sm font-medium text-gray-700">Username<span className="text-red-500">*</span></label>
-          <input id="username" type="text" defaultValue="Current info" className="mt-1 p-2 block w-full border border-gray-300 rounded-half" />
+          <input id="username" type="text" defaultValue="Current info" className="mt-1 p-2 block w-full border border-gray-300 rounded-half" />   {/* placeholder="Current info"  */}
         </div>
       </div>
 
       <h3 className="text-2xl font-bold mb-6">Password change</h3>
       <div className="mb-8">
-        <div className="mb-4">
+        <div className="w-1/2 mb-4">
           <label htmlFor="currentPassword" className="block text-sm font-medium text-gray-700">Current password</label>
           <input id="currentPassword" type="password" placeholder="Enter your current password" className="mt-1 p-2 block w-full border border-gray-300 rounded-half" />
         </div>
-        <div className="mb-4">
+        <div className="w-1/2 mb-4">
           <label htmlFor="newPassword" className="block text-sm font-medium text-gray-700">New password</label>
           <input id="newPassword" type="password" placeholder="Enter your new password" className="mt-1 p-2 block w-full border border-gray-300 rounded-half" />
         </div>
-        <div>
+        <div className="w-1/2 mb-4">
           <label htmlFor="confirmNewPassword" className="block text-sm font-medium text-gray-700">Confirm new password</label>
           <input id="confirmNewPassword" type="password" placeholder="Confirm your new password" className="mt-1 p-2 block w-full border border-gray-300 rounded-half" />
         </div>

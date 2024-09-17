@@ -22,14 +22,14 @@ const OrderHistory = () => {
             orderNumber: '#3456_120',
             date: 'August 24, 2023',
             status: 'Delivered',
-            price: '2345€',
+            price: '2345.00€',
         },
         {
             id: 4,
             orderNumber: '#3456_030',
             date: 'August 12, 2023',
             status: 'Delivered',
-            price: '845€',
+            price: '845.00€',
         },
     ]);
 
@@ -38,11 +38,11 @@ const OrderHistory = () => {
     // };
 
     return (
-        <div className="container mx-auto p-6 bg-white">
+        <div className="container mx-auto p-2 bg-white mt-10">
             <h2 className="text-2xl font-bold mb-6 text-left">Order History</h2>
 
             <table className="min-w-full overflow-hidden">
-                <thead className="text-gray-400 text-[25px]">
+                <thead className="text-gray-500 text-lg border-b">
                     <tr>
                         <th className="py-2 px-4 text-left" style={{ fontWeight: 'normal' }}>Number ID</th>
                         <th className="py-2 px-4 text-left" style={{ fontWeight: 'normal' }}>Dates</th>
@@ -53,7 +53,7 @@ const OrderHistory = () => {
                 <tbody>
                     {orders.map((order) => (
                         <tr key={order.id} className="border-b">
-                            <td  className="py-3 px-4">{order.orderNumber}</td>
+                            <td  className="py-3 px-4 text-lg">{order.orderNumber}</td>
                             <td  className="py-3 px-4">{order.date}</td>
                             <td  className="py-3 px-4">{order.status}</td>
                             <td  className="py-3 px-4">{order.price}</td>
