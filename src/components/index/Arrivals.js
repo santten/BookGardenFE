@@ -17,22 +17,23 @@ const Arrivals = () => {
   };
 
   return (
-    <section className="bg-white py-12 w-[90vw] m-auto">
+    <section className="bg-white py-12">
+      <div className="containerBig">
+        <div className="flex justify-between items-center mb-4">
+          <h2 className="text-3xl text-gray-900 font-title text-[36px] ">
+            NEW <span className="text-primary-dark">ARRIVALS</span>
+          </h2>
+          <button
+            onClick={scrollRight}
+            className="flex items-center text-gray-700 hover:text-black border border-black border-2 px-4 py-2 rounded-full"
+          >
+            More products
+            <span className="ml-2"><Icon icon="tdesign:arrow-right" className="text-black" width="26px" /></span>
+          </button>
+        </div>
 
-      <div className="flex justify-between items-center mb-4">
-        <h2 className="text-3xl text-gray-900 font-title text-[36px] ">
-          NEW <span className="text-primary-dark">ARRIVALS</span>
-        </h2>
-        <button
-          onClick={scrollRight}
-          className="flex items-center text-gray-700 hover:text-black border border-black border-2 px-4 py-2 rounded-full"
-        >
-          More products
-          <span className="ml-2"><Icon icon="tdesign:arrow-right" className="text-black" width="26px" /></span>
-        </button>
+        <ProductRow ref={scrollContainerRef} items={newarrivals} className="w-full" />
       </div>
-
-      <ProductRow ref={scrollContainerRef} items={newarrivals} className="w-full" />
     </section>
 
   );

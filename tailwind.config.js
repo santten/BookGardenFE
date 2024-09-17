@@ -29,7 +29,7 @@ module.exports = {
         },
       },
       fontFamily: {
-        title: "Koulen",
+        title: "Koulen, sans-serif",
         sans: "Open Sans"
       },
     
