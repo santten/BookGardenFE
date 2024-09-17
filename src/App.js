@@ -6,7 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 // navbar contents and basic page components
 import NavBar from './components/NavBar';
 import Home from './pages/index';
-import Contacts from './pages/ContactPage';
+import Contact from './pages/contacts';
 import Footer from './components/Footer';
 
 // product and searching related components

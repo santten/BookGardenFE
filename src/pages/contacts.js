@@ -1,8 +1,8 @@
 import React from 'react';
 import ContactPage from '../components/ContactPage'; // Adjust the path as needed
-import About from '../components/About';
+import About from '../components/index/About';
 
-function App() {
+function Contact() {
     return (
         <div className="w-screen">
             
@@ -16,4 +16,4 @@ function App() {
     );
 }
 
-export default App;
+export default Contact;
