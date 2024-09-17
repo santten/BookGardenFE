@@ -30,7 +30,7 @@ function ReviewCard(props) {
     };
 
     return (
-        <div className="min-h-[11rem] p-[1rem] bg-white rounded-[24px]">
+        <div className="min-h-[11rem] p-[1rem] bg-white rounded-[24px] mb-6 mx-4">
             <div className="flex flex-row items-top">
                 <p className="flex flex-col m-0 p-0">
                     <span className="font-title text-[1.5rem]">{username}</span>
