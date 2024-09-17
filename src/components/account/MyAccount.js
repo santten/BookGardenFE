@@ -5,10 +5,9 @@ function MyAccount(props) {
   const activepage = props.activepage || "accountdetails" 
   
   return (
-    <div className="w-60 h-80 p-4 bg-grey-light rounded-3xl mx-auto my-8">
-      <h2 className="font-title text-[1.5rem] mb-4">MY ACCOUNT</h2>
-      <ul className="space-y-4 text-black">
-        <hr className="border-t-4 border-grey w-50 mx-auto my-2" />
+    <div className="w-60 p-4 bg-grey-light rounded-3xl mx-auto mt-8">
+      <h2 className="font-title text-[1.5rem] mb-4">My Account</h2>
+      <ul className="space-y-2 text-black">
         <li>
           <a href="/account" className={activepage === "accountdetails" ? "font-bold hover:text-secondary" : "font-regular hover:text-primary-dark"}>Account Details</a>
         </li>

@@ -33,7 +33,7 @@ const WishList = () => {
   };
 
   return (
-    <div className="container mx-auto p-2 bg-white mt-10">
+    <div className="container mx-auto p-2 mt-10">
       <h2 className="text-2xl font-bold mb-6 text-left">WishList</h2>
 
       <table className="min-w-full overflow-hidden">

@@ -20,10 +20,10 @@ import CheckOutPage from './pages/checkOut'
 
 // login and account related components
 import Login from './pages/login';
-import AccountDetailsPage from './pages/AccountDetailsPage'
-import UserReviews from './pages/reviews'
-import OrderHistoryPage from './pages/orders'
-import WishList from './pages/wishlist'
+import AccountDetailsPage from './pages/account/account'
+import UserReviews from './pages/account/reviews'
+import OrderHistoryPage from './pages/account/orders'
+import WishList from './pages/account/wishlist'
 
 function App() {
   return (
