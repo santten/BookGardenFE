@@ -15,6 +15,7 @@ function ReviewArea(props) {
   // for making a new review
   const [newRating, setNewRating] = useState(3);
   const [reviewtext, setReviewtext] = useState('');
+  const [readMoreReviews, setReadMoreReviews] = useState(false);
 
   // for star renders
   const [hoveredStar, setHoveredStar] = useState(0);
@@ -25,6 +26,10 @@ function ReviewArea(props) {
 
     alert(`Rating: ${newRating} Reviewtext: ${reviewtext}`);
   };
+
+  const handleReadMoreReviews = () => {
+    setReadMoreReviews(!readMoreReviews);
+  }
 
   return (
     <div className="bg-grey-light pb-[2rem]">
@@ -89,10 +94,26 @@ function ReviewArea(props) {
         ) : <></>}
 
         <div className="mx-auto grid grid-cols-[1fr_1fr] gap-[0.5rem] my-[1rem]">
-          {reviews.length < 1 ? <>(No reviews yet)</> : reviews.map((item) => <ReviewCard review={item} key={"review" + item.book_id + item.user_id} />)}
-        </div>
+          {reviews.length < 1 ? <>(No reviews yet)</> :
+            reviews.map((item, index) =>
+              <div className={
+                index > 5 ? `${readMoreReviews ? 'hidden' : 'block'}` : 'block'
+              }>
+          <ReviewCard review={item} key={"review" + item.book_id + item.user_id} /></div>
+              )}
       </div>
+      {reviews.length > 6 ?
+        <div className="text-center mt-0 bg-grey-light">
+          <button
+            onClick={handleReadMoreReviews}
+            className="px-6 py-2 mb-6 text-black border border-2 border-black rounded-full hover:border-primary-dark hover:text-primary-dark"
+          >
+            {readMoreReviews ? "Read more reviews" : "See less reviews"}
+          </button>
+        </div>
+        : <></>}
     </div>
+    </div >
   )
 }
 
