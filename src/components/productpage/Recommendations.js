@@ -28,7 +28,7 @@ function Recommendations(props) {
     } else {
         const slicedArr = recommendationArray.slice(0, 9)
         return (
-            <div className="max-w-max containerBig">
+            <div className="w-full containerBig">
                 <ProductRow ref={scrollContainerRef} items={slicedArr} title={titlecontent} />
             </div>
         )

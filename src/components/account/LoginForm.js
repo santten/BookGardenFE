@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 function Login() {
-  const [isLogin, setIsLogin] = useState(true); // 控制登录和注册表单之间的切换
+  const [isLogin, setIsLogin] = useState(true);  
 
   const handleFormSwitch = () => {
-    setIsLogin(!isLogin); // 切换状态
+    setIsLogin(!isLogin); 
   };
 
   return (
@@ -147,43 +147,3 @@ function Login() {
 
 export default Login;
 
-// import React, { useState } from 'react';
-
-// const LoginForm = ({ onSubmit }) => {
-//   const [email, setEmail] = useState('');
-//   const [password, setPassword] = useState('');
-
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
-//     onSubmit({ email, password });
-//   };
-
-//   return (
-//     <form onSubmit={handleSubmit}>
-//       <h2>Login</h2>
-//       <label>
-//         Email:
-//         <input
-//           type="email"
-//           value={email}
-//           onChange={(e) => setEmail(e.target.value)}
-//           required
-//         />
-//       </label>
-//       <br />
-//       <label>
-//         Password:
-//         <input
-//           type="password"
-//           value={password}
-//           onChange={(e) => setPassword(e.target.value)}
-//           required
-//         />
-//       </label>
-//       <br />
-//       <button type="submit">Login</button>
-//     </form>
-//   );
-// };
-
-// export default LoginForm;

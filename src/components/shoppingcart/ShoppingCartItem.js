@@ -12,40 +12,31 @@ function ShoppingCartItem({ item, onAdd, onRemove, onDelete }) {
       <img src={image} alt={title} className="item-image w-24 h-24 object-cover" />
       
       <div className="item-details flex-1">
-        {/* <h3 className="item-title text-lg font-bold">{title}</h3>
-        <p className="item-author text-gray-600">{author}</p>
-        <p className="flex items-center"><Stars rating={rating} height="20px"/><span className="rating-number text-gray-500 ml-2">({rating.toFixed(2)})</span></p>
-        <p className="item-price text-xl font-semibold">${price.toFixed(2)}</p>
-        <p className="item-year text-sm text-gray-500">Publishing Year: {year}</p>
-        <p className="item-isbn text-sm text-gray-500">ISBN: {ISBN}</p>
-        <p className="item-language text-sm text-gray-500">Language: {language}</p>
-        <p className="item-binding text-sm text-gray-500">Binding: {binding}</p> */}
-<h3 className="item-title text-lg font-bold">{title}</h3>
-<p className="item-author text-gray-600"> {/* Optional: font-semibold for additional boldness */} 
-  {author}
-</p>
-<p className="flex items-center">
-  <Stars rating={rating} height="20px" color="black"/>
-  <span className="rating-number text-gray-500 ml-2">
-    ({rating.toFixed(2)})
-  </span>
-</p>
-<p className="item-price text-xl">
-  {price.toFixed(2)} €
-</p>
-<p className="item-year text-sm text-gray-500">
-  Publishing Year: <span className="font-semibold">{year}</span>
-</p>
-
-<p className="item-year text-sm text-gray-500">
-  ISBN:  <span className="font-semibold"> {ISBN}</span> 
-</p>
-<p className="item-year text-sm text-gray-500">
-  Language: <span className="font-semibold">{language}</span>  
-</p>
-<p className="item-year text-sm text-gray-500">
-  Binding: <span className="font-semibold">{binding}</span>  
-</p>
+        <h3 className="item-title text-lg font-bold">{title}</h3>
+        <p className="item-author text-gray-600">
+          {author}
+        </p>
+        <p className="flex items-center">
+          <Stars rating={rating} height="20px" color="black"/>
+          <span className="rating-number text-gray-500 ml-2">
+          ({rating.toFixed(2)})
+          </span>
+        </p>
+        <p className="item-price text-xl">
+          {price.toFixed(2)} €
+        </p>
+        <p className="item-year text-sm text-gray-500">
+          Publishing Year: <span className="font-semibold">{year}</span>
+        </p>
+        <p className="item-year text-sm text-gray-500">
+          ISBN:  <span className="font-semibold"> {ISBN}</span> 
+        </p>
+        <p className="item-year text-sm text-gray-500">
+          Language: <span className="font-semibold">{language}</span>  
+        </p>
+        <p className="item-year text-sm text-gray-500">
+           Binding: <span className="font-semibold">{binding}</span>  
+        </p>
 
         <div className="item-actions">
           <div className="button-container"> {/* Apply background only to buttons */}
