@@ -9,7 +9,7 @@ function ReviewCard(props) {
     const date = "12.12.2012" // will be taken from db timestamp later probably
 
     const [isExpanded, setIsExpanded] = React.useState(false);
-    const maxLength = 124; // max length before showing "Read more"
+    const maxLength = 190; // max length before showing "Read more"
 
     const toggleReadMore = () => {
         setIsExpanded(!isExpanded);
