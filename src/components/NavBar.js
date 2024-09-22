@@ -16,7 +16,7 @@ function NavBar() {
 
                 <div id="middlenavlinks" className="flex flex-row gap-16 font-bold self-center">
                     <p><NavLink to="/" className="hover:text-primary-dark pt-2 pb-1 px-4">Home</NavLink></p>
-                    <p><NavLink to="/store" className="hover:text-primary-dark pt-2 pb-1 px-4">Store</NavLink></p>
+                    <p><NavLink to="/browse/all/page/1" className="hover:text-primary-dark pt-2 pb-1 px-4">Store</NavLink></p>
                     <p><NavLink to="/contacts" className="hover:text-primary-dark pt-2 pb-1 px-4">Contacts</NavLink></p>
                 </div>
 

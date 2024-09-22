@@ -10,11 +10,11 @@ import bookArray from '../../temporary_mock_data'
 
 function ProductList(props) {
     const category = props.category ?? "all"
+    const pagenumber = props.pagenumber ?? 1
 
     const specialcategorylist = ["Best Sellers", "New Arrivals"]
     const newarrivallist = [1, 40, 21, 43, 98]
     const bestsellerlist = [5, 12, 15, 67, 54, 199]
-    
 
     const [sorting, setSorting] = useState('')
     const [priceFilter, setPriceFilter] = useState([1, 999])
@@ -37,7 +37,6 @@ function ProductList(props) {
 
     const handleFiltering = (item) => {
         let categoryCheck = ""
-        console.log(category, bestsellerlist, item.id, bestsellerlist.includes(parseInt(item.id)))
 
         switch (category) {
             case "all":
@@ -62,6 +61,38 @@ function ProductList(props) {
         return (priceCheck && categoryCheck && bindingCheck && searchCheck)
     }
 
+    let contentPerPage = 20
+    let lastContentIndex = pagenumber * contentPerPage
+    let firstContentIndex = lastContentIndex - contentPerPage
+
+    const filteredItems = bookArray.filter(handleFiltering).sort((a, b) => {
+        switch (sorting) {
+            case "ALPHABET": return a.title > b.title
+            case "ASC_price": return a.price > b.price
+            case "DES_price": return a.price < b.price
+            case "ASC_rating": {
+                if (a.rating === null) {
+                    return 1;
+                }
+                else if (b.rating === null) {
+                    return -1;
+                } else {
+                    return a.rating > b.rating
+                }
+            }
+            case "DES_rating": return a.rating < b.rating
+            case "ASC_year": return a.year > b.year
+            case "DES_year": return a.year < b.year
+            default: return a.id > b.id
+        }
+    })
+
+    const displayedItems = filteredItems.slice(firstContentIndex, lastContentIndex).map((item) => {
+        return <ProductCard key={"card-" + item.id} item={item} />
+    })
+
+    let maxpages = Math.ceil(filteredItems.length / contentPerPage)
+
     return (
         <div className="containerBig grid grid-cols-[20%_auto] gap-[1.5rem] mb-[100px] mt-6">
             <div>
@@ -70,17 +101,17 @@ function ProductList(props) {
 
                     <ul className="grid grid-cols-[1fr_1fr]">
 
-                        <li className="inline"><Link to="/browse/all" className={`inline hover:text-primary-dark ${category === "all" ? 'font-bold' : 'font-regular'}`}>Show All</Link></li>
+                        <li className="inline"><Link to="/browse/all/page/1" className={`inline hover:text-primary-dark ${category === "all" ? 'font-bold' : 'font-regular'}`}>Show All</Link></li>
 
                         {genrelist.sort().map((item, index) => {
                             return <li key={"genre-" + index} className="inline">
-                                <Link to={`/browse/${item.toLowerCase()}`} className={`inline hover:text-primary-dark ${category.toLowerCase() === item.toLowerCase() ? 'font-bold' : 'font-regular'}`}> {item}</Link>
+                                <Link to={`/browse/${item.toLowerCase()}/page/1`} className={`inline hover:text-primary-dark ${category.toLowerCase() === item.toLowerCase() ? 'font-bold' : 'font-regular'}`}> {item}</Link>
                             </li>
                         })}
 
                         {specialcategorylist.sort().map((item, index) => {
                             return <li key={"category-" + index} className="inline">
-                                <Link to={`/browse/${item.toLowerCase()}`} className={`inline hover:text-primary-dark ${category.toLowerCase() === item.toLowerCase() ? 'font-bold' : 'font-regular'}`}> {item}</Link>
+                                <Link to={`/browse/${item.toLowerCase()}/page/1`} className={`inline hover:text-primary-dark ${category.toLowerCase() === item.toLowerCase() ? 'font-bold' : 'font-regular'}`}> {item}</Link>
                             </li>
                         })}
                     </ul>
@@ -141,30 +172,52 @@ function ProductList(props) {
                         </div>
                     </div>
                 </header>
-                <main className="flex flex-row flex-wrap gap-[1rem]">
-                    {bookArray.filter(handleFiltering).sort((a, b) => {
-                        switch (sorting) {
-                            case "ALPHABET": return a.title > b.title
-                            case "ASC_price": return a.price > b.price
-                            case "DES_price": return a.price < b.price
-                            case "ASC_rating": {
-                                if (a.rating === null) {
-                                    return 1;
-                                }
-                                else if (b.rating === null) {
-                                    return -1;
-                                } else {
-                                    return a.rating > b.rating
-                                }
-                            }
-                            case "DES_rating": return a.rating < b.rating
-                            case "ASC_year": return a.year > b.year
-                            case "DES_year": return a.year < b.year
-                            default: return a.id > b.id
-                        }
-                    }).map((item) => {
-                        return <ProductCard key={"card-" + item.id} item={item} />
-                    })}
+                <main className="flex flex-col">
+                    <div className="flex flex-row flex-wrap gap-[1rem]">
+                        {displayedItems}
+                    </div>
+                    <div className="flex flex-row m-auto">
+                        <div className="w-[12rem] flex flex-row justify-end items-center">
+                            {pagenumber > 1 ? <Link className="font-semibold hover:text-primary-dark min-w-[2rem]" to={`/browse/${category}/page/${parseInt(pagenumber) - 1}`}>
+                                <Icon icon="ep:arrow-left-bold" /></Link> : <></>}
+
+                            {pagenumber > 1 ? <Link className="font-semibold hover:text-primary-dark min-w-[2rem] text-center" to={`/browse/${category}/page/1`}>
+                                <>1</>
+                            </Link> : <></>}
+
+                            {pagenumber >= 5 ? <div className="min-w-[2rem] text-center">...</div> : <></>}
+
+                            {pagenumber > 3 ? <Link className="hover:text-primary-dark min-w-[2rem] text-center" to={`/browse/${category}/page/${parseInt(pagenumber) - 2}`}>
+                                <>{parseInt(pagenumber) - 2}</>
+                            </Link> : <></>}
+
+                            {pagenumber > 2 ? <Link className="hover:text-primary-dark min-w-[2rem] text-center" to={`/browse/${category}/page/${parseInt(pagenumber) - 1}`}>
+                                <>{parseInt(pagenumber) - 1}</>
+                            </Link> : <></>}
+                        </div>
+
+                        {maxpages > 1 ? <p className="font-semibold text-secondary text-xl border-b-[3px] border-b-secondary text-center m-[1rem]">{pagenumber}</p> : <></>}
+
+                        <div className="w-[12rem] flex flex-row justify-start items-center">
+                            {pagenumber < maxpages - 1 ? <Link className="hover:text-primary-dark min-w-[2rem] text-center" to={`/browse/${category}/page/${parseInt(pagenumber) + 1}`}>
+                                <>{parseInt(pagenumber) + 1}</>
+                            </Link> : <></>}
+
+                            {pagenumber < maxpages - 2 ? <Link className="hover:text-primary-dark min-w-[2rem] text-center" to={`/browse/${category}/page/${parseInt(pagenumber) + 2}`}>
+                                <>{parseInt(pagenumber) + 2}</>
+                            </Link> : <></>}
+
+                            {pagenumber < maxpages - 3 ? <div className="min-w-[2rem] text-center">...</div> : <></>}
+
+                            {pagenumber < maxpages ? <Link className="font-semibold hover:text-primary-dark min-w-[2rem] text-center" to={`/browse/${category}/page/${maxpages}`}>
+                                <>{maxpages}</>
+                            </Link> : <></>}
+
+                            {pagenumber < maxpages ? <Link className="font-semibold hover:text-primary-dark min-w-[2rem]" to={`/browse/${category}/page/${parseInt(pagenumber) + 1}`}>
+                                <Icon icon="ep:arrow-right-bold" /></Link> : <></>}
+                        </div>
+                    </div>
+
                 </main>
             </div>
         </div >

@@ -4,13 +4,12 @@ import PathLink from '../components/PathLink'
 import { useParams } from 'react-router-dom';
 
 function Store() {
-  const { category } = useParams()
-  console.log(category)
+  const { category, pagenumber } = useParams()
 
   return (
     <div className="w-full">
       <PathLink />
-      <ProductList category={category}/>
+      <ProductList category={category} pagenumber={pagenumber}/>
     </div>
   )
 }
