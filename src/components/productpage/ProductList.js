@@ -1,19 +1,25 @@
-import ProductCard from '../ProductCard'
-import { useState } from 'react'
-import ReactSlider from 'react-slider'
-import React from 'react';
+import ProductCard from '../ProductCard';
+
+import { React, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Icon } from '@iconify/react';
+import ReactSlider from 'react-slider';
 
 // imports static list from files, config database interaction asap
 import bookArray from '../../temporary_mock_data'
 
-function ProductList() {
+function ProductList(props) {
+    const category = props.category ?? "all"
+
+    const specialcategorylist = ["Best Sellers", "New Arrivals"]
+    const newarrivallist = [1, 40, 21, 43, 98]
+    const bestsellerlist = [5, 12, 15, 67, 54, 199]
+    
+
     const [sorting, setSorting] = useState('')
     const [priceFilter, setPriceFilter] = useState([1, 999])
     const [bindingFilter, setBindingFilter] = useState('')
     const [search, setSearch] = useState('')
-
-    const [category, setCategory] = useState('Books')
 
     const changeSorting = (evt) => {
         setSorting(evt.target.value)
@@ -30,8 +36,25 @@ function ProductList() {
     });
 
     const handleFiltering = (item) => {
+        let categoryCheck = ""
+        console.log(category, bestsellerlist, item.id, bestsellerlist.includes(parseInt(item.id)))
+
+        switch (category) {
+            case "all":
+                categoryCheck = item === item;
+                break;
+            case "best sellers":
+                categoryCheck = bestsellerlist.includes(parseInt(item.id))
+                break;
+            case "new arrivals":
+                categoryCheck = newarrivallist.includes(parseInt(item.id))
+                break;
+            default:
+                categoryCheck = item.genre.toLowerCase() === category.toLowerCase()
+                break;
+        }
+
         const priceCheck = ((priceFilter[0] < item.price) && (priceFilter[1] > item.price))
-        const categoryCheck = (category === 'Books' ? item : item.genre === category)
         const bindingCheck = (bindingFilter === '' ? item : item.binding === bindingFilter)
 
         const searchCheck = (search === '' ? item : item.title.toLowerCase().includes(search.toLowerCase()) || item.author.toLowerCase().includes(search.toLowerCase()))
@@ -45,11 +68,20 @@ function ProductList() {
                 <section className="bg-grey-light rounded-[32px] min-h-[10rem] p-[1rem]">
                     <h5 className="font-title text-[1.5rem] mb-[0.5rem]">Category</h5>
 
-                    <ul>
-                        <><li className={`inline hover:text-primary-dark ${category === "Books" ? 'font-bold' : 'font-regular'}`} onClick={() => setCategory("Books")}>Show All</li></>
+                    <ul className="grid grid-cols-[1fr_1fr]">
+
+                        <li className="inline"><Link to="/browse/all" className={`inline hover:text-primary-dark ${category === "all" ? 'font-bold' : 'font-regular'}`}>Show All</Link></li>
 
                         {genrelist.sort().map((item, index) => {
-                            return <li key={"genre-" + index} className="inline"> | <span className={`inline hover:text-primary-dark ${category === item ? 'font-bold' : 'font-regular'}`} onClick={() => setCategory(item)}>{item}</span></li>
+                            return <li key={"genre-" + index} className="inline">
+                                <Link to={`/browse/${item.toLowerCase()}`} className={`inline hover:text-primary-dark ${category.toLowerCase() === item.toLowerCase() ? 'font-bold' : 'font-regular'}`}> {item}</Link>
+                            </li>
+                        })}
+
+                        {specialcategorylist.sort().map((item, index) => {
+                            return <li key={"category-" + index} className="inline">
+                                <Link to={`/browse/${item.toLowerCase()}`} className={`inline hover:text-primary-dark ${category.toLowerCase() === item.toLowerCase() ? 'font-bold' : 'font-regular'}`}> {item}</Link>
+                            </li>
                         })}
                     </ul>
                     <h5 className="font-title text-[1.5rem] my-[0.5rem]">Price</h5>

@@ -35,6 +35,8 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/store" element={<Store />} />
+              <Route path="/browse/:category" element={<Store />} />
+
               <Route path="/contacts" element={<Contacts />} />
               <Route path="/search" element={<Search />} />
 
@@ -49,7 +51,7 @@ function App() {
               <Route path="/account/orders" element={<OrderHistoryPage />} />
               <Route path="/account/wishList" element={<WishList />} />
 
-              <Route path="/products/:productID" element={<ProductPage />} />
+              <Route path="/products/:productID" element={<ProductPage />} />z
             </Routes>
           </ScrollToTop>
         </main>
