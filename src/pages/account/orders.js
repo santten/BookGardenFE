@@ -5,7 +5,7 @@ import img from '../../images/clover_tilted.svg';
 
 function OrderHistoryPage() {
   return (
-    <div className="relative overflow-hidden min-h-[86vh]">
+    <div className="relative min-h-[86vh]">
       <div className="bigContainer flex flex-row gap-[1rem] mx-auto">
         <div className="basis-1/4">
           <MyAccount activepage="pastorders" />

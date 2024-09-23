@@ -24,7 +24,7 @@ const Subscriptions = () => {
       }}>
 
       <div className="container text-center"> 
-        <h2 className="text-3xl text-[64px] mb-6 font-title" 
+        <h2 className="text-2xl sm:text-4xl lg:text-[64px] mb-6 font-title"  
             style={{ whiteSpace: 'nowrap' }}
         >
           WOULD YOU LIKE TO JOIN <span className="text-primary-dark">NEWSLETTERS</span>?
