@@ -13,6 +13,7 @@ import Footer from './components/Footer';
 import Search from './pages/search';
 import Store from './pages/store';
 import ProductPage from './pages/productpage';
+import BrowseProducts from './components/productpage/BrowseProducts';
 
 // cart and checkout related components
 import Cart from './pages/cart';
@@ -50,7 +51,7 @@ function App() {
               <Route path="/account/orders" element={<OrderHistoryPage />} />
               <Route path="/account/wishList" element={<WishList />} />
 
-              <Route path="/products/:productID" element={<ProductPage />} />z
+              <Route path="/products/:productID" element={<ProductPage />} />
             </Routes>
           </ScrollToTop>
         </main>

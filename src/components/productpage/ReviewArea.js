@@ -38,7 +38,7 @@ function ReviewArea(props) {
           <h2 className="mt-[1rem] w-[100%] flex flex-row items-center">
             <span className="text-[2rem] font-title">Reviews</span>
             <span className="pl-[0.5rem] text-[1.25rem] text-grey-dark">
-              {reviews.length < 1 ? ("") :
+              {reviews.length >= 1 && rating !== undefined &&
                 <div className="flex items-center gap-[0.5rem]"><Stars rating={rating} height="1.75rem" background="light" />({rating.toFixed(2)})</div>}
             </span>
             {reviewmakingtoggle ? <></> :

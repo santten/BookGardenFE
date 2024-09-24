@@ -6,11 +6,11 @@ import { Icon } from '@iconify/react';
 import ReactSlider from 'react-slider';
 
 function ProductList(props) {
-    const apiurl = "http://localhost:4000"
+    const apiurl = "http://localhost:4000/api/books"
     const [bookArray, setBookArray] = useState([])
 
     useEffect(() => {
-        fetch(apiurl + "/api/books", {
+        fetch(apiurl, {
             method: "GET"
         })
             .then((response) => response.json())
@@ -33,8 +33,6 @@ function ProductList(props) {
     const [priceFilter, setPriceFilter] = useState([1, 999])
     const [bindingFilter, setBindingFilter] = useState('')
     const [search, setSearch] = useState('')
-    const [showMoreCategories, setShowMoreCategories] = useState(false);
-
 
     const changeSorting = (evt) => {
         setSorting(evt.target.value)
@@ -42,8 +40,7 @@ function ProductList(props) {
 
     let genrelist = []
     bookArray.forEach(element => {
-        const bookgenres = element.genre.split(", ")
-        bookgenres.forEach(item => { if (!genrelist.includes(item)) { genrelist.push(item) } });
+        if (!(genrelist.includes(element.genre))) { genrelist.push(element.genre) }
     });
 
     let bindinglist = []
@@ -65,7 +62,7 @@ function ProductList(props) {
                 categoryCheck = newarrivallist.includes(parseInt(item._id))
                 break;
             default:
-                categoryCheck = item.genre.toLowerCase().includes(category.toLowerCase())
+                categoryCheck = item.genre.toLowerCase() === category.toLowerCase()
                 break;
         }
 
@@ -74,7 +71,7 @@ function ProductList(props) {
 
         const searchCheck = (search === '' ? item : item.title.toLowerCase().includes(search.toLowerCase()) || item.author.toLowerCase().includes(search.toLowerCase()))
 
-        return (categoryCheck && bindingCheck && searchCheck && priceCheck)
+        return (priceCheck && categoryCheck && bindingCheck && searchCheck)
     }
 
     let contentPerPage = 20
@@ -106,7 +103,7 @@ function ProductList(props) {
     const displayedItems = filteredItems.slice(firstContentIndex, lastContentIndex).map((item) => {
         return <ProductCard key={"card-" + item._id} item={item} />
     })
-    console.log("filteredItems", filteredItems, "displayedItems", displayedItems)
+
     let maxpages = Math.ceil(filteredItems.length / contentPerPage)
 
     return (
@@ -115,25 +112,21 @@ function ProductList(props) {
                 <section className="bg-grey-light rounded-[32px] min-h-[10rem] p-[1rem]">
                     <h5 className="font-title text-[1.5rem] mb-[0.5rem]">Category</h5>
 
-                    <ul className="flex flex-col">
+                    <ul className="grid grid-cols-[1fr_1fr]">
 
                         <li className="inline"><Link to="/browse/all/page/1" className={`inline hover:text-primary-dark ${category === "all" ? 'font-bold' : 'font-regular'}`}>Show All</Link></li>
-                        {specialcategorylist.sort().map((item, index) => {
-                            return <li key={"category-" + index}>
+
+                        {genrelist.sort().map((item, index) => {
+                            return <li key={"genre-" + index} className="inline">
                                 <Link to={`/browse/${item.toLowerCase()}/page/1`} className={`inline hover:text-primary-dark ${category.toLowerCase() === item.toLowerCase() ? 'font-bold' : 'font-regular'}`}> {item}</Link>
                             </li>
                         })}
 
-                        {genrelist.sort().map((item, index) => {
-                            return <li key={"genre-" + index}>
-                                <Link to={`/browse/${item.toLowerCase()}/page/1`} className={`inline hover:text-primary-dark 
-                                ${category.toLowerCase() === item.toLowerCase() ? 'font-bold' : 'font-regular'} 
-                                ${(!showMoreCategories && !(category.toLowerCase() === item.toLowerCase()) && "hidden")}`}> {item}</Link>
+                        {specialcategorylist.sort().map((item, index) => {
+                            return <li key={"category-" + index} className="inline">
+                                <Link to={`/browse/${item.toLowerCase()}/page/1`} className={`inline hover:text-primary-dark ${category.toLowerCase() === item.toLowerCase() ? 'font-bold' : 'font-regular'}`}> {item}</Link>
                             </li>
                         })}
-                        <button className="hover:text-grey-dark text-secondary text-left" onClick={() => setShowMoreCategories(!showMoreCategories)}>
-                            {showMoreCategories ? '(See Less Categories)' : '(See All Categories)'}
-                        </button>
                     </ul>
                     <h5 className="font-title text-[1.5rem] my-[0.5rem]">Price</h5>
                     <div>
@@ -160,13 +153,14 @@ function ProductList(props) {
                             }}
                             withTracks={true}
                         /></div>
-                    {bindinglist.length > 1 && <><h5 className="font-title text-[1.5rem] my-[0.5rem]">Binding</h5>
-                        <ul>
-                            <><li className={`inline hover:text-primary-dark ${bindingFilter === "" ? 'font-bold' : 'font-regular'}`} onClick={() => setBindingFilter("")}>Show All</li></>
-                            {bindinglist.sort().map((item, index) => {
-                                return <li key={"genre-" + index} className="inline"> | <span className={`inline hover:text-primary-dark ${bindingFilter === item ? 'font-bold' : 'font-regular'}`} onClick={() => setBindingFilter(item)}>{item}</span></li>
-                            })}
-                        </ul></>}
+                    <h5 className="font-title text-[1.5rem] my-[0.5rem]">Binding</h5>
+                    <ul>
+                        <><li className={`inline hover:text-primary-dark ${bindingFilter === "" ? 'font-bold' : 'font-regular'}`} onClick={() => setBindingFilter("")}>Show All</li></>
+
+                        {bindinglist.sort().map((item, index) => {
+                            return <li key={"genre-" + index} className="inline"> | <span className={`inline hover:text-primary-dark ${bindingFilter === item ? 'font-bold' : 'font-regular'}`} onClick={() => setBindingFilter(item)}>{item}</span></li>
+                        })}
+                    </ul>
                 </section>
             </div >
             <div>
