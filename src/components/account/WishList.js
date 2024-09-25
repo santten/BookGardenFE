@@ -56,7 +56,7 @@ const WishList = () => {
               <td className="py-3 px-4">{wishList.date}</td>
               <td className="py-3 px-4">{wishList.price}</td>
               <td className="py-3 px-4">
-                <button className="px-4 py-2 bg-black text-white rounded-full flex items-center hover:bg-gray-800">
+                <button className="px-4 py-2 bg-black text-white sm:rounded-full lg:rounded-full flex items-center hover:bg-gray-800">
                   Add to cart
                   <span className="ml-2"> <Icon icon="material-symbols:shopping-cart"></Icon></span>
                 </button>
