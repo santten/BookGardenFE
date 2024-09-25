@@ -29,15 +29,16 @@ function Login({ setIsAuthenticated }) {
       
       if (response.ok) {
         const userData = await response.json();
-        console.log("Login success, user data:", userData);
+        console.log("Login success, user data:", userData); //  Debug message: ensure console output
 
         localStorage.setItem('user', JSON.stringify(userData));
-        setIsAuthenticated(true);
         console.log('isAuthenticated:', true);  // Debug message
         toast.success('Login Successful');
-        console.log("Navigating to home page...");
+        console.log("Navigating to home page");
         // window.location.href = '/'
-        navigate('/');  //navigate("/");
+        navigate('/'); 
+        setIsAuthenticated(true);
+
       } else {
         const errorData = await response.json();
         toast.error(errorData.message || 'Login failed');
@@ -74,9 +75,10 @@ function Login({ setIsAuthenticated }) {
       if (response.ok) {
         const userData = await response.json();
         localStorage.setItem('user', JSON.stringify(userData));
-        setIsAuthenticated(true);
         toast.success('Signup Successful');
-        navigate('/account'); //navigate("/");
+        navigate('/'); //navigate("/account");
+        setIsAuthenticated(true);
+
       } else {
         const errorData = await response.json();
         toast.error(errorData.message || 'Signup Failed');
