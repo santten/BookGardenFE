@@ -45,7 +45,9 @@ function App() {
               <Route path="/payment" element={<CheckOutPage/>} />
 
 
-              <Route path="/login" element={<Login />} />
+              {/* <Route path="/login" element={<Login />} /> */}
+              <Route path="/login" element={<Login setIsAuthenticated={setIsAuthenticated} />} />
+
 
               <Route path="/account" element={<AccountDetailsPage />} />
               <Route path="/account/reviews" element={<UserReviews />} />

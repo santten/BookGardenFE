@@ -19,7 +19,7 @@ function Login({ setIsAuthenticated }) {
     e.preventDefault();
     
     try {
-      const response = await fetch('/api/users/login', {
+      const response = await fetch('http://localhost:4000/api/users/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -29,10 +29,15 @@ function Login({ setIsAuthenticated }) {
       
       if (response.ok) {
         const userData = await response.json();
+        console.log("Login success, user data:", userData);
+
         localStorage.setItem('user', JSON.stringify(userData));
         setIsAuthenticated(true);
+        console.log('isAuthenticated:', true);  // Debug message
         toast.success('Login Successful');
-        navigate('/account');  //navigate("/");
+        console.log("Navigating to home page...");
+        // window.location.href = '/'
+        navigate('/');  //navigate("/");
       } else {
         const errorData = await response.json();
         toast.error(errorData.message || 'Login failed');
@@ -58,7 +63,7 @@ function Login({ setIsAuthenticated }) {
     };
 
     try {
-      const response = await fetch('/api/users/register', {
+      const response = await fetch('http://localhost:4000/api/users/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

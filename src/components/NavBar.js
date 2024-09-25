@@ -22,13 +22,13 @@ function NavBar({ isAuthenticated }) {
                     <NavLink className="self-center w-[32px]" to="/cart" ><Icon icon="material-symbols:shopping-cart" width="32px" className="text-black hover:text-primary-dark" /></NavLink>
 
                     {isAuthenticated ? (
-                        // 如果用户已登录，显示 "My Account"
+                        // If user login, show "My Account" button
                         <NavLink className="font-semibold text-white bg-black w-[122px] h-10 grid grid-cols-[1fr_1fr] gap-[4px] px-6 py-2 rounded-[99px] hover:bg-primary-dark" to="/account">
                             <p className="min-w-min text-base">My Account</p>
                             <Icon icon="tdesign:arrow-right" width="24px" className="h-full" />
                         </NavLink>
                     ) : (
-                        // 如果用户未登录，显示 "Login"
+                        // If user NOT login, show  "Login" button
                         <NavLink className="font-semibold text-white bg-black w-[122px] h-10 grid grid-cols-[1fr_1fr] gap-[4px] px-6 py-2 rounded-[99px] hover:bg-primary-dark" to="/login">
                             <p className="min-w-min text-base">Login</p>
                             <Icon icon="tdesign:arrow-right" width="24px" className="h-full" />
