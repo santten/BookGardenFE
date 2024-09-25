@@ -7,7 +7,7 @@ import { useState } from 'react'
 function ReviewArea(props) {
   const reviews = props.reviewlist
   const rating = props.avg_rating
-
+  console.log(reviews)
   // true: show review making area, hide add review button
   // false: show add reviewbutton, hide review making area
   const [reviewmakingtoggle, setReviewmakingtoggle] = useState(false)
@@ -93,26 +93,27 @@ function ReviewArea(props) {
           </div>
         ) : <></>}
 
-        <div className="mx-auto grid grid-cols-[1fr_1fr] gap-[0.5rem] my-[1rem]">
-          {reviews.length < 1 ? <>(No reviews yet)</> :
-            reviews.map((item, index) =>
-              <div className={
-                index > 5 ? `${readMoreReviews ? 'hidden' : 'block'}` : 'block'
-              }>
-          <ReviewCard review={item} key={"review" + item.book_id + item.user_id} /></div>
+        {reviews.message ? <p>{reviews.message}</p> :
+          <div className="mx-auto grid grid-cols-[1fr_1fr] gap-[0.5rem] my-[1rem]">
+            {reviews.length < 1 ? <>(No reviews yet)</> :
+              reviews.map((item, index) =>
+                <div className={
+                  index > 5 ? `${readMoreReviews ? 'hidden' : 'block'}` : 'block'
+                }>
+                  <ReviewCard review={item} key={"review" + item.book_id + item.user_id} /></div>
               )}
+          </div>}
+        {reviews.length > 6 ?
+          <div className="text-center mt-0 bg-grey-light">
+            <button
+              onClick={handleReadMoreReviews}
+              className="px-6 py-2 mb-6 text-black border border-2 border-black rounded-full hover:border-primary-dark hover:text-primary-dark"
+            >
+              {readMoreReviews ? "Read more reviews" : "See less reviews"}
+            </button>
+          </div>
+          : <></>}
       </div>
-      {reviews.length > 6 ?
-        <div className="text-center mt-0 bg-grey-light">
-          <button
-            onClick={handleReadMoreReviews}
-            className="px-6 py-2 mb-6 text-black border border-2 border-black rounded-full hover:border-primary-dark hover:text-primary-dark"
-          >
-            {readMoreReviews ? "Read more reviews" : "See less reviews"}
-          </button>
-        </div>
-        : <></>}
-    </div>
     </div >
   )
 }

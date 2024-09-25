@@ -6,17 +6,16 @@ import { Icon } from '@iconify/react';
 import ReactSlider from 'react-slider';
 
 function ProductList(props) {
-    const apiurl = "http://localhost:4000"
+    const apiurl = process.env.REACT_APP_API_URL
     const [bookArray, setBookArray] = useState([])
 
     useEffect(() => {
-        fetch(apiurl + "/api/books", {
+        fetch(`${apiurl}/api/books`, {
             method: "GET"
         })
             .then((response) => response.json())
             .then((data) => {
                 setBookArray(data);
-                console.log(data);
             })
             .catch((error) => console.log(error));
     }, []);

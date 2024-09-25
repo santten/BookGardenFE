@@ -4,14 +4,14 @@ import Stars from "./Stars"
 import { Link as CardLink } from 'react-router-dom';
 
 function ProductCard(props) {
-  const apiurl = "http://localhost:4000"
+  const apiurl = process.env.REACT_APP_API_URL
 
   const { title, author, rating, _id, price, image } = props.item
   const productpath = "/products/" + _id
 
   return (
     <CardLink className="w-[14rem] h-[25rem] rounded-[28px] bg-grey-light p-[1rem] border-[inset] hover:shadow-md" to={productpath} title={title + " by " + author}>
-      <img src={(apiurl + image)} className="mx-auto mb-[1rem] w-[10.5rem] h-[13.25rem]" />
+      <img src={apiurl + image} className="mx-auto mb-[1rem] w-[10.5rem] h-[13.25rem]" />
       <div className="text-center pb-[0.5rem]">
         <span className="font-semibold">{
           title.length > 18 ? title.slice(0, 18) + "..." : title

@@ -23,7 +23,7 @@ const Hero = () => {
             A GARDEN OF BOOKS </h2>
           <h2 className="text-5xl text-white font-title">
             FOR EVERY MIND.</h2>
-          <Link to="/store"><button className="mt-8 inline-flex items-center px-6 py-3 border border-transparent text-base rounded-[24px] font-semibold shadow-sm text-white bg-black hover:bg-grey-dark">
+          <Link to="/browse/all/page/1"><button className="mt-8 inline-flex items-center px-6 py-3 border border-transparent text-base rounded-[24px] font-semibold shadow-sm text-white bg-black hover:bg-grey-dark">
             Shop now &nbsp;<Icon icon="tdesign:arrow-right" width="1.5rem"></Icon>
           </button></Link>
         </div>

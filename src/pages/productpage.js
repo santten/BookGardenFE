@@ -11,7 +11,7 @@ import useLoadingComponent from '../customHooks/useLoadingComponent';
 function ProductPage() {
     const { productID } = useParams();
     const before_loading = "loading"
-    const apiurl = `http://localhost:4000/api`
+    const apiurl = process.env.REACT_APP_API_URL
     const [bookinfo, setBookinfo] = useState(before_loading)
     const [reviews, setReviews] = useState(before_loading)
 
@@ -19,7 +19,7 @@ function ProductPage() {
     const isReviewsLoading = reviews === before_loading
 
     useEffect(() => {
-        fetch((apiurl + `/books/${productID}`), {
+        fetch((apiurl + `/api/books/${productID}`), {
             method: "GET"
         })
             .then((response) => response.json())
@@ -30,7 +30,7 @@ function ProductPage() {
     }, []);
 
     useEffect(() => {
-        fetch((apiurl + `/reviews/`), {
+        fetch((apiurl + `/api/books/${productID}/reviews`), {
             method: "GET"
         })
             .then((response) => response.json())
@@ -41,6 +41,7 @@ function ProductPage() {
             .catch((error) => console.log(error));
     }, []);
 
+    console.log("Reviews", reviews)
     return (
         <div className="m-auto min-h-[90vh] pb-[4rem]">
             <PathLink />
@@ -49,9 +50,9 @@ function ProductPage() {
                 BookInfoCard, { key: "bookinfo_for_" + bookinfo._id, bookinfo })}
             {useLoadingComponent(isReviewsLoading, "Loading reviews...",
                 ReviewArea, {
-                    className: "bg-accent", key: "reviews_for_" + bookinfo._id,
-                    reviewlist: reviews,
-                    avg_rating: bookinfo.rating
+                className: "bg-accent", key: "reviews_for_" + bookinfo._id,
+                reviewlist: reviews,
+                avg_rating: bookinfo.rating
             })}
             {useLoadingComponent(isBooksLoading, "Loading recommendations...",
                 Recommendations, { key: "recs_for_" + bookinfo._id, bookinfo })}

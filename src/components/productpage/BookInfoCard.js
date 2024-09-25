@@ -4,7 +4,7 @@ import LikeButton from '../LikeButton'
 import AddToCartButton from '../AddToCartButton'
 
 function BookInfoCard(props) {
-    const apiurl = "http://localhost:4000"
+    const apiurl = process.env.REACT_APP_API_URL;
     console.log(props, "props")
     const { _id, image, title, author, genre, rating, year, publisher, ISBN, binding, pages, language, price, description } = props.bookinfo
     
