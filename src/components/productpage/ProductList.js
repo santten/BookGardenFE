@@ -56,7 +56,7 @@ function ProductList(props) {
 
         switch (category) {
             case "all":
-                categoryCheck = item === item;
+                categoryCheck = item;
                 break;
             case "best sellers":
                 categoryCheck = bestsellerlist.includes(parseInt(item._id))
@@ -103,9 +103,12 @@ function ProductList(props) {
         }
     })
 
-    const displayedItems = filteredItems.slice(firstContentIndex, lastContentIndex).map((item) => {
+    const slicedItems = filteredItems.slice(firstContentIndex, lastContentIndex)
+    
+    const displayedItems = slicedItems.length >= 1 ? slicedItems.map((item) => {
         return <ProductCard key={"card-" + item._id} item={item} />
-    })
+    }) : <>No items found!</>
+
     console.log("filteredItems", filteredItems, "displayedItems", displayedItems)
     let maxpages = Math.ceil(filteredItems.length / contentPerPage)
 
