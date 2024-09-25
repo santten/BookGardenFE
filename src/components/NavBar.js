@@ -22,7 +22,7 @@ function NavBar() {
 
                 <div id="middlenavlinks" className="hidden md:flex gap-16 font-bold">
                     <NavLink to="/" className="hover:text-primary-dark pt-2 pb-1 px-4">Home</NavLink>
-                    <NavLink to="/store" className="hover:text-primary-dark pt-2 pb-1 px-4">Store</NavLink>
+                    <NavLink to="/browse/all/page/1" className="hover:text-primary-dark pt-2 pb-1 px-4">Store</NavLink>
                     <NavLink to="/contacts" className="hover:text-primary-dark pt-2 pb-1 px-4">Contacts</NavLink>
                 </div>
 

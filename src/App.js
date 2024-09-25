@@ -13,6 +13,7 @@ import Footer from './components/Footer';
 import Search from './pages/search';
 import Store from './pages/store';
 import ProductPage from './pages/productpage';
+import BrowseProducts from './components/productpage/BrowseProducts';
 
 // cart and checkout related components
 import Cart from './pages/cart';
@@ -34,7 +35,8 @@ function App() {
           <ScrollToTop>
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/store" element={<Store />} />
+              <Route path="/browse/:category/page/:pagenumber" element={<Store />} />
+
               <Route path="/contacts" element={<Contacts />} />
               <Route path="/search" element={<Search />} />
 

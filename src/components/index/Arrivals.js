@@ -1,11 +1,26 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import ProductRow from "../ProductRow";
 import { Icon } from "@iconify/react";
 
+import useLoadingComponent from "../../customHooks/useLoadingComponent"
 import { Link } from "react-router-dom";
 
 const Arrivals = () => {
-  const newarrivals = [1, 2, 43, 55, 64, 21]
+  const before_loading = "status: loading"
+  const [arrivals, setArrivals] = useState(before_loading)
+  const isLoading = arrivals === before_loading;
+
+  useEffect(() => {
+    fetch((process.env.REACT_APP_API_URL + `/api/books/new`), {
+      method: "GET"
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("new arrivals", data)
+        setArrivals(data);
+      })
+      .catch((error) => console.log(error));
+  }, []);
 
   return (
     <section className="bg-white py-12">
@@ -14,14 +29,16 @@ const Arrivals = () => {
           <h2 className="text-3xl text-gray-900 font-title text-[36px] ">
             NEW <span className="text-primary-dark">ARRIVALS</span>
           </h2>
-          <Link to="/store"
+          <Link to="/browse/all/page/1"
             className="flex items-center text-black hover:text-primary-dark font-semibold hover:border-primary-dark border border-black border-2 px-4 py-2 rounded-full">
             More products
             <Icon className="ml-2" icon="tdesign:arrow-right" width="26px" />
           </Link>
         </div>
 
-        <ProductRow items={newarrivals} className="w-full" />
+        {useLoadingComponent(isLoading, "Loading book information...",
+          ProductRow, { items: arrivals })}
+
       </div>
     </section>
 
