@@ -1,0 +1,9 @@
+body {
+  background-color: theme('colors.white');
+  color: theme('colors.black');
+  font-family: "Open Sans";
+}
+
+#middlenavlinks a.active {
+  @apply text-secondary font-bold border-b-[3px] border-b-secondary border-solid
+}

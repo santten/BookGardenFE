@@ -1,0 +1,53 @@
+/* src/CartSummary.css */
+
+.cart-summary {
+    display: flex;
+    justify-content: flex-end; /* Align content to the right */
+    align-items: center;
+    padding: 20px;
+    border-top: 1px solid #000000;
+    background-color: #ffffff;
+    margin-top: 20px;
+  }
+  
+  .summary-details {
+    display: flex;
+    gap: 20px; /* Add spacing between items */
+    font-size: 18px;
+    color: #000000; /* Set text color to white for better visibility */
+    margin-right: 20px; /* Push the summary text slightly from the right */
+  }
+  
+  .summary-details p {
+    margin: 0; /* Ensure no extra margins around paragraphs */
+  }
+  
+  .orderButton {
+    display: flex;
+    align-items: center;
+    background-color: #000000;
+    color: white;
+    border-radius: 50px;
+    padding: 8px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .orderButton:hover {
+    background-color: #3a3c3f;
+  }
+  
+  .orderButton p {
+    margin: 0;
+    font-weight: 600;
+    margin-right: 10px;
+    font-size: 16px;
+  }
+  
+  .orderButton .iconify {
+    color: white;
+    font-size: 20px;
+    margin-left: 12px;
+  }
+  
+

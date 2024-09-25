@@ -1,0 +1,25 @@
+/* General Cart Styles */
+.cart {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background-color: #ffffff;
+}
+
+.cart-items {
+  margin-top: 20px;
+}
+
+/* Cart Heading Styles */
+.cart-heading {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+
+
+
+
