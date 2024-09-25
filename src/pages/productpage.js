@@ -35,7 +35,6 @@ function ProductPage() {
         })
             .then((response) => response.json())
             .then((data) => {
-                console.log("reviews", data)
                 setReviews(data);
             })
             .catch((error) => console.log(error));
@@ -51,8 +50,7 @@ function ProductPage() {
             {useLoadingComponent(isReviewsLoading, "Loading reviews...",
                 ReviewArea, {
                 className: "bg-accent", key: "reviews_for_" + bookinfo._id,
-                reviewlist: reviews,
-                avg_rating: bookinfo.rating
+                reviewlist: reviews
             })}
             {useLoadingComponent(isBooksLoading, "Loading recommendations...",
                 Recommendations, { key: "recs_for_" + bookinfo._id, bookinfo })}

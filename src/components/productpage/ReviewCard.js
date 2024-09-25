@@ -1,5 +1,4 @@
 import React from 'react'
-import placeholder_pfp from "../../images/customer1.png"
 import Stars from '../Stars'
 
 function ReviewCard(props) {
@@ -7,6 +6,8 @@ function ReviewCard(props) {
 
     const username = "Matti Lewinston" // will be taken from db according to user_id later
     const date = "12.12.2012" // will be taken from db timestamp later probably
+
+    console.log("PROPS.REVIEW", props.review)
 
     const [isExpanded, setIsExpanded] = React.useState(false);
     const maxLength = 190; // max length before showing "Read more"

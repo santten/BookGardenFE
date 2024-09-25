@@ -5,9 +5,14 @@ import { Icon } from '@iconify/react'
 import { useState } from 'react'
 
 function ReviewArea(props) {
+  const apiurl = process.env.REACT_APP_API_URL;
   const reviews = props.reviewlist
-  const rating = props.avg_rating
+  
+  // placeholder
+  const rating = undefined
+
   console.log(reviews)
+
   // true: show review making area, hide add review button
   // false: show add reviewbutton, hide review making area
   const [reviewmakingtoggle, setReviewmakingtoggle] = useState(false)
