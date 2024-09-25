@@ -9,6 +9,7 @@ import { Icon } from '@iconify/react';
 
 const ProductRow = (props) => {
     const titleContent = props.title || "";
+    
     const scrollContainerRef = useRef(null);
     const [canScrollLeft, setCanScrollLeft] = useState(false);
     const [canScrollRight, setCanScrollRight] = useState(false);
@@ -75,10 +76,8 @@ const ProductRow = (props) => {
                         </button>
                     )}
                     <div ref={scrollContainerRef} className="flex flex-row gap-[1.5rem] pb-[1rem] h-[100%] overflow-hidden">
-
-                        {props.items.map((item) => {
-                            let bookobject = bookArray.find((element) => element.id == item);
-                            return <ProductCard key={"card-" + item} item={bookobject} />;
+                        {props.items.map((book) => {
+                            return <ProductCard key={"card-" + book._id} item={book} />;
                         })}
                     </div>
 
