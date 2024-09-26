@@ -1,13 +1,15 @@
 import ProductCard from '../ProductCard';
 
 import { React, useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Icon } from '@iconify/react';
 import ReactSlider from 'react-slider';
 
 function ProductList(props) {
     const apiurl = process.env.REACT_APP_API_URL
     const [bookArray, setBookArray] = useState([])
+    const navigate = useNavigate();
+    const location = useLocation();
 
     useEffect(() => {
         fetch(`${apiurl}/api/books`, {
@@ -29,15 +31,27 @@ function ProductList(props) {
     const bestsellerlist = [5, 12, 15, 67, 54, 199]
 
     const [sorting, setSorting] = useState('')
+    const [contentPerPage, setContentPerPage] = useState(20)
     const [priceFilter, setPriceFilter] = useState([1, 999])
     const [bindingFilter, setBindingFilter] = useState('')
-    const [search, setSearch] = useState('')
     const [showMoreCategories, setShowMoreCategories] = useState(false);
 
 
     const changeSorting = (evt) => {
         setSorting(evt.target.value)
     }
+
+    const changeContentPerPage = (evt) => {
+        setContentPerPage(evt.target.value)
+    }
+    
+    const changePageNumber = (newPageNumber) => {
+        const pathParts = location.pathname.split('/');
+        pathParts[pathParts.length - 1] = newPageNumber; // seeing as the page number is the last part of the path
+        const newPath = pathParts.join('/');
+        navigate(newPath);
+    };
+
 
     let genrelist = []
     bookArray.forEach(element => {
@@ -71,12 +85,9 @@ function ProductList(props) {
         const priceCheck = ((priceFilter[0] < item.price) && (priceFilter[1] > item.price))
         const bindingCheck = (bindingFilter === '' ? item : item.binding === bindingFilter)
 
-        const searchCheck = (search === '' ? item : item.title.toLowerCase().includes(search.toLowerCase()) || item.author.toLowerCase().includes(search.toLowerCase()))
-
-        return (categoryCheck && bindingCheck && searchCheck && priceCheck)
+        return (categoryCheck && bindingCheck && priceCheck)
     }
 
-    let contentPerPage = 20
     let lastContentIndex = pagenumber * contentPerPage
     let firstContentIndex = lastContentIndex - contentPerPage
 
@@ -104,15 +115,23 @@ function ProductList(props) {
 
     const slicedItems = filteredItems.slice(firstContentIndex, lastContentIndex)
     
+    const handleNoItems = () => {
+        if (location.pathname.endsWith('/1')) {
+            return <>No items found!</>;
+        } else {
+            changePageNumber(1);
+        }
+    }
+
     const displayedItems = slicedItems.length >= 1 ? slicedItems.map((item) => {
         return <ProductCard key={"card-" + item._id} item={item} />
-    }) : <>No items found!</>
+    }) : handleNoItems()    
 
     console.log("filteredItems", filteredItems, "displayedItems", displayedItems)
     let maxpages = Math.ceil(filteredItems.length / contentPerPage)
 
     return (
-        <div className="containerBig grid grid-cols-[20%_auto] gap-[1.5rem] mb-[100px] mt-6">
+        <div className="containerBig flex flex-col md:grid md:grid-cols-[20%_auto] gap-[1.5rem] mb-[100px] mt-6">
             <div>
                 <section className="bg-grey-light rounded-[32px] min-h-[10rem] p-[1rem]">
                     <h5 className="font-title text-[1.5rem] mb-[0.5rem]">Category</h5>
@@ -172,12 +191,12 @@ function ProductList(props) {
                 </section>
             </div >
             <div>
-                <header className="flex flex-row items-center">
+                <header className="flex flex-col md:flex-row md:items-center">
                     <h3 className="font-title text-[40px] mr-auto">{category}</h3>
-                    <div className="flex ml-auto">
-                        <section>
-                            <label htmlFor="sortSelect">Sort by:&nbsp;&nbsp;</label>
-                            <select className="border-solid border-grey border bg-grey-light h-[2rem] px-[1rem] py-[0.25rem] rounded-[16px] appearance-none" name="sortSelect" onChange={changeSorting}>
+                    <div className="flex flex-col my-[0.5rem] gap-[0.5rem] md:flex-row md:ml-auto">
+                        <section className="ml-auto flex flex-row items-center">
+                            <label htmlFor="sortSelect" className="px-[0.5rem]">Sort by:</label>
+                            <select className="border-solid border-grey border bg-grey-light h-[2rem] px-[1rem] cursor-pointer py-[0.25rem] rounded-[16px] appearance-none" name="sortSelect" onChange={changeSorting}>
                                 <option value="ALPHABET">Alphabetical</option>
                                 <option value="DES_rating">Highest Rating</option>
                                 <option value="ASC_rating">Lowest Rating</option>
@@ -187,20 +206,25 @@ function ProductList(props) {
                                 <option value="ASC_year">Oldest Release</option>
                             </select>
                         </section>
-                        <div className="flex flex-row items-center">
-                            <Icon icon="lucide:search" width="24px" className="mx-[0.5rem]" />
-                            <input onInput={evt => setSearch(evt.target.value)} type="text" placeholder="Search..." className="border-solid border-grey border bg-grey-light h-[2rem] px-[1rem] rounded-[16px]"></input>
-                        </div>
+                        <section className="ml-auto flex flex-row items-center">
+                            <label htmlFor="contentPerPageSelect" className="px-[0.5rem]">Books Per Page:</label>
+                            <select className="text-left border-solid border-grey border bg-grey-light h-[2rem] px-[1rem] cursor-pointer py-[0.25rem] rounded-[16px] appearance-none" name="contentPerPageSelect" onChange={changeContentPerPage}>
+                                <option value="20">20</option>
+                                <option value="50">50</option>
+                                <option value="100">100</option>
+                            </select>
+                        </section>
                     </div>
                 </header>
-                <main className="flex flex-col">
-                    <div className="flex flex-row flex-wrap gap-[1rem]">
+                <main className="flex flex-col mx-auto">
+                    <div className="flex flex-col mx-auto md:mx-0 md:flex-row md:flex-wrap gap-[1rem]">
                         {displayedItems}
                     </div>
+
                     <div className="flex flex-row m-auto">
-                        <div className="w-[12rem] flex flex-row justify-end items-center">
-                            {pagenumber > 1 ? <Link className="font-semibold hover:text-primary-dark min-w-[2rem]" to={`/browse/${category}/page/${parseInt(pagenumber) - 1}`}>
-                                <Icon icon="ep:arrow-left-bold" /></Link> : <></>}
+                        <div className="flex flex-row justify-end items-center">
+                            {pagenumber > 1 ? <Link className="font-semibold hover:text-primary-dark min-w-[2rem] text-center" to={`/browse/${category}/page/${parseInt(pagenumber) - 1}`}>
+                                <Icon className="m-auto" icon="ep:arrow-left-bold" /></Link> : <></>}
 
                             {pagenumber > 1 ? <Link className="font-semibold hover:text-primary-dark min-w-[2rem] text-center" to={`/browse/${category}/page/1`}>
                                 <>1</>
@@ -219,7 +243,7 @@ function ProductList(props) {
 
                         {maxpages > 1 ? <p className="font-semibold text-secondary text-xl border-b-[3px] border-b-secondary text-center m-[1rem]">{pagenumber}</p> : <></>}
 
-                        <div className="w-[12rem] flex flex-row justify-start items-center">
+                        <div className="flex flex-row justify-start items-center">
                             {pagenumber < maxpages - 1 ? <Link className="hover:text-primary-dark min-w-[2rem] text-center" to={`/browse/${category}/page/${parseInt(pagenumber) + 1}`}>
                                 <>{parseInt(pagenumber) + 1}</>
                             </Link> : <></>}
@@ -234,8 +258,8 @@ function ProductList(props) {
                                 <>{maxpages}</>
                             </Link> : <></>}
 
-                            {pagenumber < maxpages ? <Link className="font-semibold hover:text-primary-dark min-w-[2rem]" to={`/browse/${category}/page/${parseInt(pagenumber) + 1}`}>
-                                <Icon icon="ep:arrow-right-bold" /></Link> : <></>}
+                            {pagenumber < maxpages ? <Link className="font-semibold hover:text-primary-dark min-w-[2rem] text-center" to={`/browse/${category}/page/${parseInt(pagenumber) + 1}`}>
+                                <Icon className="m-auto" icon="ep:arrow-right-bold" /></Link> : <></>}
                         </div>
                     </div>
 
