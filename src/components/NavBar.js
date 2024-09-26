@@ -24,7 +24,7 @@ function NavBar({ isAuthenticated }) {
                     {isAuthenticated ? (
                         // If user login, show "My Account" button
                         <NavLink className="font-semibold text-white bg-black w-[122px] h-10 grid grid-cols-[1fr_1fr] gap-[4px] px-6 py-2 rounded-[99px] hover:bg-primary-dark" to="/account">
-                            <p className="min-w-min text-base">My Account</p>
+                            <p className="min-w-min text-base">Account</p>
                             <Icon icon="tdesign:arrow-right" width="24px" className="h-full" />
                         </NavLink>
                     ) : (

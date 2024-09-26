@@ -1,8 +1,9 @@
+
 // some general imports
 import ScrollToTop from "./components/ScrollToTop";
 import './App.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import React, { useState } from 'react'; 
+import React, { useState, useEffect } from 'react'; 
 
 // navbar contents and basic page components
 import NavBar from './components/NavBar';
@@ -28,6 +29,14 @@ import WishList from './pages/account/wishlist'
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+    // check for the authentication state from localStorage
+    useEffect(() => {
+      const storedUser = localStorage.getItem('user');
+      if (storedUser) {
+        setIsAuthenticated(true);  // If user data is found in localStorage, set isAuthenticated to true
+      }
+    }, []);
 
   return (
     <div className="flex flex-col min-h-screen mr-auto ml-auto">
