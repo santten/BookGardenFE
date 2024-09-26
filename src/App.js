@@ -2,6 +2,7 @@
 import ScrollToTop from "./components/ScrollToTop";
 import './App.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import NotFoundPage from './pages/NotFoundPage'
 
 // navbar contents and basic page components
 import NavBar from './components/NavBar';
@@ -52,6 +53,7 @@ function App() {
               <Route path="/account/wishList" element={<WishList />} />
 
               <Route path="/products/:productID" element={<ProductPage />} />
+              <Route path="*" element={<NotFoundPage />} />
             </Routes>
           </ScrollToTop>
         </main>
