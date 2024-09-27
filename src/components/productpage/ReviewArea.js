@@ -99,7 +99,7 @@ function ReviewArea(props) {
         ) : <></>}
 
         {reviews.message ? <p>{reviews.message}</p> :
-          <div className="mx-auto grid grid-cols-[1fr_1fr] gap-[0.5rem] my-[1rem]">
+          <div className="mx-auto flex flex-col md:grid md:grid-cols-[1fr_1fr] gap-[0.5rem] my-[1rem]">
             {reviews.length < 1 ? <>(No reviews yet)</> :
               reviews.map((item, index) =>
                 <div className={
