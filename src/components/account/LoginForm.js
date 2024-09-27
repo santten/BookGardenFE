@@ -41,7 +41,7 @@ function Login({ setIsAuthenticated }) {
 
       } else {
         const errorData = await response.json();
-        toast.error(errorData.message || 'Login failed');
+        toast.error(errorData.error || 'Login failed');
       }
     } catch (error) {
       toast.error('Login failed. Please try again.');
@@ -81,7 +81,7 @@ function Login({ setIsAuthenticated }) {
 
       } else {
         const errorData = await response.json();
-        toast.error(errorData.message || 'Signup Failed');
+        toast.error(errorData.error || 'Signup Failed');
       }
     } catch (error) {
       toast.error('Signup Failed. Please try again.');
