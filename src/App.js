@@ -1,8 +1,11 @@
+// App.js
+
+import React, { useState, useEffect } from 'react'; 
+
 // some general imports
 import ScrollToTop from "./components/ScrollToTop";
 import './App.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import NotFoundPage from './pages/NotFoundPage'
 
 // navbar contents and basic page components
 import NavBar from './components/NavBar';
@@ -15,6 +18,8 @@ import Search from './pages/search';
 import Store from './pages/store';
 import ProductPage from './pages/productpage';
 import BrowseProducts from './components/productpage/BrowseProducts';
+import NotFoundPage from './pages/NotFoundPage'
+
 
 // cart and checkout related components
 import Cart from './pages/cart';
@@ -28,15 +33,25 @@ import OrderHistoryPage from './pages/account/orders'
 import WishList from './pages/account/wishlist'
 
 function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+    // check for the authentication state from localStorage
+    useEffect(() => {
+      const storedUser = localStorage.getItem('user');
+      if (storedUser) {
+        setIsAuthenticated(true);  // If user data is found in localStorage, set isAuthenticated to true
+      }
+    }, []);
+
   return (
     <div className="flex flex-col min-h-screen mr-auto ml-auto">
       <BrowserRouter>
-        <NavBar />
+      <NavBar isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} />
         <main className="flex-grow w-full">
           <ScrollToTop>
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/browse/:category/page/:pagenumber" element={<Store />} />
+              <Route path="/browse/:category/page/:pagenumber" element={<BrowseProducts />} />
 
               <Route path="/contacts" element={<Contacts />} />
               <Route path="/search" element={<Search />} />
@@ -45,7 +60,9 @@ function App() {
               <Route path="/payment" element={<CheckOutPage/>} />
 
 
-              <Route path="/login" element={<Login />} />
+              {/* <Route path="/login" element={<Login />} /> */}
+              <Route path="/login" element={<Login setIsAuthenticated={setIsAuthenticated} />} />
+
 
               <Route path="/account" element={<AccountDetailsPage />} />
               <Route path="/account/reviews" element={<UserReviews />} />

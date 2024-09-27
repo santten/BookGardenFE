@@ -8,7 +8,7 @@ import SearchModal from './SearchModal';
 import { NavLink } from 'react-router-dom';
 import { Icon } from '@iconify/react';
 
-function NavBar() {
+function NavBar({ isAuthenticated }) {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [searchModalOpen, setSearchModalOpen] = useState(false);
 
@@ -50,8 +50,9 @@ function NavBar() {
                         <Icon icon="material-symbols:shopping-cart" width="32px" className="md:inline hidden text-black hover:text-primary-dark" />
                     </NavLink>
 
-                    <NavLink onClick={() => toggleModal(false)} className="hidden md:flex flex-row gap-[4px] items-center align-center font-semibold text-white bg-black max-w-[122px] px-[1.5rem] py-[0.5rem] rounded-[99px] hover:bg-primary-dark" to="/login" >
-                        <p>Login</p>
+                    <NavLink onClick={() => toggleModal(false)} className="hidden md:flex flex-row gap-[4px] items-center align-center font-semibold text-white bg-black max-w-[122px] px-[1.5rem] py-[0.5rem] rounded-[99px] hover:bg-primary-dark" 
+                    to={isAuthenticated ? "/account" : "/login"} >
+                        {isAuthenticated ? <p className="min-w-min text-base">Account</p> : <p className="min-w-min text-base">Login</p>}
                         <Icon icon="tdesign:arrow-right" width="24px" />
                     </NavLink>
 
@@ -74,4 +75,3 @@ function NavBar() {
 }
 
 export default NavBar;
-
