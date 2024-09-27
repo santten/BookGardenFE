@@ -1,91 +1,35 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import { useLogin } from '../../customHooks/useLogin'; // Importing custom hook for login
+import { useSignup } from '../../customHooks/useSignup'; // Importing custom hook for signup
 
 function Login({ setIsAuthenticated }) {
-  const [isLogin, setIsLogin] = useState(true);  
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const navigate = useNavigate();
+  const [isLogin, setIsLogin] = useState(true);
+
+  // Using custom hooks
+  const {
+    email: loginEmail,
+    password: loginPassword,
+    setEmail: setLoginEmail,
+    setPassword: setLoginPassword,
+    handleLogin,
+  } = useLogin(setIsAuthenticated);
+
+  const {
+    firstName,
+    lastName,
+    email: signupEmail,
+    password: signupPassword,
+    confirmPassword,
+    setFirstName,
+    setLastName,
+    setEmail: setSignupEmail,
+    setPassword: setSignupPassword,
+    setConfirmPassword,
+    handleRegister,
+  } = useSignup(setIsAuthenticated);
 
   const handleFormSwitch = () => {
-    setIsLogin(!isLogin); 
-  };
-
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    
-    try {
-      const response = await fetch('http://localhost:4000/api/users/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email, password }),
-      });
-      
-      if (response.ok) {
-        const userData = await response.json();
-        // console.log("Login success, user data:", userData); //  Debug message: ensure console output
-
-        localStorage.setItem('user', JSON.stringify(userData));
-        // console.log('isAuthenticated:', true);  // Debug message
-        toast.success('Login Successful');
-        // console.log("Navigating to home page");
-        // window.location.href = '/'
-        navigate('/'); 
-        setIsAuthenticated(true);
-
-      } else {
-        const errorData = await response.json();
-        toast.error(errorData.error || 'Login failed');
-      }
-    } catch (error) {
-      toast.error('Login failed. Please try again.');
-    }
-  };
-
-  const handleRegister = async (e) => {
-    e.preventDefault();
-
-    if (password !== confirmPassword) {
-      toast.error('Passwords do not match');
-      return;
-    }
-
-    const newUser = {
-      firstName,
-      lastName,
-      email,
-      password,
-    };
-
-    try {
-      const response = await fetch('http://localhost:4000/api/users/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(newUser),
-      });
-
-      if (response.ok) {
-        const userData = await response.json();
-        localStorage.setItem('user', JSON.stringify(userData));
-        toast.success('Signup Successful');
-        navigate('/'); //navigate("/account");
-        setIsAuthenticated(true);
-
-      } else {
-        const errorData = await response.json();
-        toast.error(errorData.error || 'Signup Failed');
-      }
-    } catch (error) {
-      toast.error('Signup Failed. Please try again.');
-    }
+    setIsLogin(!isLogin);
   };
 
   return (
@@ -103,8 +47,8 @@ function Login({ setIsAuthenticated }) {
                   type="email"
                   placeholder="Enter your email"
                   className="w-full p-2 border rounded"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  value={loginEmail}
+                  onChange={(e) => setLoginEmail(e.target.value)}
                   required
                 />
               </div>
@@ -114,8 +58,8 @@ function Login({ setIsAuthenticated }) {
                   type="password"
                   placeholder="Enter your password"
                   className="w-full p-2 border rounded"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  value={loginPassword}
+                  onChange={(e) => setLoginPassword(e.target.value)}
                   required
                 />
               </div>
@@ -167,8 +111,8 @@ function Login({ setIsAuthenticated }) {
                   type="email"
                   placeholder="Enter your email address"
                   className="w-full p-2 border rounded"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  value={signupEmail}
+                  onChange={(e) => setSignupEmail(e.target.value)}
                   required
                 />
               </div>
@@ -178,8 +122,8 @@ function Login({ setIsAuthenticated }) {
                   type="password"
                   placeholder="Create a password"
                   className="w-full p-2 border rounded"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  value={signupPassword}
+                  onChange={(e) => setSignupPassword(e.target.value)}
                   required
                 />
               </div>
