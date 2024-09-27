@@ -16,7 +16,6 @@ const Arrivals = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("new arrivals", data)
         setArrivals(data);
       })
       .catch((error) => console.log(error));

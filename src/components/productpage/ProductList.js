@@ -127,7 +127,6 @@ function ProductList(props) {
         return <ProductCard key={"card-" + item._id} item={item} />
     }) : handleNoItems()    
 
-    console.log("filteredItems", filteredItems, "displayedItems", displayedItems)
     let maxpages = Math.ceil(filteredItems.length / contentPerPage)
 
     return (

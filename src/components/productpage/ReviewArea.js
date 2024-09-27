@@ -11,8 +11,6 @@ function ReviewArea(props) {
   // placeholder
   const rating = undefined
 
-  console.log(reviews)
-
   // true: show review making area, hide add review button
   // false: show add reviewbutton, hide review making area
   const [reviewmakingtoggle, setReviewmakingtoggle] = useState(false)

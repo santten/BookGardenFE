@@ -17,7 +17,6 @@ const BestSellers = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("best sellers", data)
         setBestSellers(data);
       })
       .catch((error) => console.log(error));

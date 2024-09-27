@@ -16,7 +16,6 @@ function ProductList(props) {
             .then((response) => response.json())
             .then((data) => {
                 setBookArray(data);
-                console.log(data);
             })
             .catch((error) => console.log(error));
     }, []);

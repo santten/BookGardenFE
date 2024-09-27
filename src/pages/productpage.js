@@ -40,7 +40,6 @@ function ProductPage() {
             .catch((error) => console.log(error));
     }, []);
 
-    console.log("Reviews", reviews)
     return (
         <div className="m-auto min-h-[90vh] pb-[4rem]">
             <PathLink />

@@ -29,12 +29,12 @@ function Login({ setIsAuthenticated }) {
       
       if (response.ok) {
         const userData = await response.json();
-        console.log("Login success, user data:", userData); //  Debug message: ensure console output
+        // console.log("Login success, user data:", userData); //  Debug message: ensure console output
 
         localStorage.setItem('user', JSON.stringify(userData));
-        console.log('isAuthenticated:', true);  // Debug message
+        // console.log('isAuthenticated:', true);  // Debug message
         toast.success('Login Successful');
-        console.log("Navigating to home page");
+        // console.log("Navigating to home page");
         // window.location.href = '/'
         navigate('/'); 
         setIsAuthenticated(true);

@@ -50,10 +50,11 @@ function NavBar({ isAuthenticated }) {
                         <Icon icon="material-symbols:shopping-cart" width="32px" className="md:inline hidden text-black hover:text-primary-dark" />
                     </NavLink>
 
-                    <NavLink onClick={() => toggleModal(false)} className="hidden md:flex flex-row gap-[4px] items-center align-center font-semibold text-white bg-black max-w-[122px] px-[1.5rem] py-[0.5rem] rounded-[99px] hover:bg-primary-dark" 
-                    to={isAuthenticated ? "/account" : "/login"} >
-                        {isAuthenticated ? <p className="min-w-min text-base">Account</p> : <p className="min-w-min text-base">Login</p>}
-                        <Icon icon="tdesign:arrow-right" width="24px" />
+                    <NavLink onClick={() => toggleModal(false)} className="hidden md:flex flex-row gap-[0.25rem] items-center align-center font-semibold text-white bg-black px-[1.5rem] py-[0.5rem] rounded-[99px] hover:bg-primary-dark" 
+                    to={isAuthenticated ? "/account" : "/login"}>
+                        {isAuthenticated ? 
+                        <><Icon icon="mdi:account" width="24px" /><p className="min-w-min text-base">Account</p></> :
+                         <><p className="min-w-min text-base">Login</p><Icon icon="tdesign:arrow-right" width="24px" /></>}
                     </NavLink>
 
                     <button onClick={toggleMenu} className="md:hidden">
@@ -65,9 +66,10 @@ function NavBar({ isAuthenticated }) {
             <div className={`${isMenuOpen ? 'flex' : 'hidden'} bg-grey-light flex-col pb-[1.5rem] gap-[1.5rem] md:hidden`}>
                 <SearchModal />
                 <NavLink to="/" onClick={closeMenu} className="block px-4 font-semibold">Home</NavLink>
-                <NavLink to="/browse/all/pages/1" onClick={closeMenu} className="block px-4 font-semibold">Store</NavLink>
+                <NavLink to="/browse/all/page/1" onClick={closeMenu} className="block px-4 font-semibold">Store</NavLink>
                 <NavLink to="/contacts" onClick={closeMenu} className="block px-4 font-semibold">Contacts</NavLink>
-                <NavLink to="/login" onClick={closeMenu} className="block px-4 font-semibold">Login</NavLink>
+                <NavLink to={isAuthenticated ? "/account" : "/login"} 
+                onClick={closeMenu} className="block px-4 font-semibold">{isAuthenticated ? "My Account" : "Login"}</NavLink>
             </div>
 
         </header>
