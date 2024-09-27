@@ -17,7 +17,6 @@ import Footer from './components/Footer';
 import Search from './pages/search';
 import Store from './pages/store';
 import ProductPage from './pages/productpage';
-import BrowseProducts from './components/productpage/BrowseProducts';
 import NotFoundPage from './pages/NotFoundPage'
 
 
@@ -55,15 +54,15 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/browse/:category/page/:pagenumber" element={<Store />} />
-
+              <Route path="/browse/search/:query/page/:pagenumber" element={<Store />} />
+              <Route path="/browse/genre/:category/page/:pagenumber" element={<Store />} />
+              
               <Route path="/contacts" element={<Contacts />} />
               <Route path="/search" element={<Search />} />
 
               <Route path="/cart" element={<Cart />} />
               <Route path="/payment" element={<CheckOutPage/>} />
 
-
-              {/* <Route path="/login" element={<Login />} /> */}
               <Route path="/login" element={<Login setIsAuthenticated={setIsAuthenticated} />} />
 
 

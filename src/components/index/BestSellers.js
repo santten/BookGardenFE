@@ -29,7 +29,7 @@ const BestSellers = () => {
           <h2 className="text-3xl text-gray-900 font-title text-[36px]">
             OUR <span className="text-accent">BEST SELLERS</span>
           </h2>
-          <Link to="/browse/best%20sellers/page/1"
+          <Link to="/browse/genre/topsellers/page/1"
             className="flex items-center text-black hover:text-primary-dark font-semibold hover:border-primary-dark border border-black border-2 px-4 py-2 rounded-full">
             See more
             <Icon className="ml-2" icon="tdesign:arrow-right" width="26px" />
