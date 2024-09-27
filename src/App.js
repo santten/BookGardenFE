@@ -31,6 +31,8 @@ import AccountDetailsPage from './pages/account/account'
 import UserReviews from './pages/account/reviews'
 import OrderHistoryPage from './pages/account/orders'
 import WishList from './pages/account/wishlist'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -46,6 +48,7 @@ function App() {
   return (
     <div className="flex flex-col min-h-screen mr-auto ml-auto">
       <BrowserRouter>
+      <ToastContainer />
       <NavBar isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} />
         <main className="flex-grow w-full">
           <ScrollToTop>
