@@ -1,3 +1,4 @@
+// src/ShoppingCartItem.js
 import React from 'react';
 import PropTypes from 'prop-types';
 import './ShoppingCartItem.css'; // Import the CSS file

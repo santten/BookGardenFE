@@ -6,8 +6,7 @@ import Logo from '../svg_icons/logo.svg';
 import { NavLink } from 'react-router-dom';
 import { Icon } from '@iconify/react';
 
-
-function NavBar() {
+function NavBar({ isAuthenticated }) {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     const toggleMenu = () => {
@@ -33,8 +32,10 @@ function NavBar() {
                     <NavLink className="w-[32px]" to="/cart" >
                         <Icon icon="material-symbols:shopping-cart" width="32px" className="text-black hover:text-primary-dark" />
                     </NavLink>
-                    <NavLink className="font-semibold text-white bg-black w-[122px] h-10 grid grid-cols-[1fr_1fr] gap-[4px] px-6 py-2 rounded-[99px] hover:bg-primary-dark" to="/login" >
-                        <p className="min-w-min text-base">Login</p>
+
+                    <NavLink className="font-semibold text-white bg-black w-[122px] h-10 grid grid-cols-[1fr_1fr] gap-[4px] px-6 py-2 rounded-[99px] hover:bg-primary-dark" 
+                        to={isAuthenticated ? "/account" : "/login"} >
+                        {isAuthenticated ? <p className="min-w-min text-base">Account</p> : <p className="min-w-min text-base">Login</p>}
                         <Icon icon="tdesign:arrow-right" width="24px" className="h-full" />
                     </NavLink>
                 </div>
@@ -54,4 +55,3 @@ function NavBar() {
 }
 
 export default NavBar;
-
