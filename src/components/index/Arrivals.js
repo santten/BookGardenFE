@@ -28,7 +28,7 @@ const Arrivals = () => {
           <h2 className="text-3xl text-gray-900 font-title text-[36px] ">
             NEW <span className="text-primary-dark">ARRIVALS</span>
           </h2>
-          <Link to="/browse/new%20arrivals/page/1"
+          <Link to="/browse/genre/new/page/1"
             className="flex items-center text-black hover:text-primary-dark font-semibold hover:border-primary-dark border border-black border-2 px-4 py-2 rounded-full">
             See more
             <Icon className="ml-2" icon="tdesign:arrow-right" width="26px" />
