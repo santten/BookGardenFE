@@ -72,7 +72,7 @@ const CustomerReviews = () => {
           OUR <span className="text-primary-dark">HAPPY CUSTOMERS</span>
         </h2>
 
-        <div className="flex items-center">
+        <div className="hidden md:flex items-center">
           <button
             onClick={scrollLeft}
             className="pr-10 flex items-center text-black hover:text-black"
@@ -92,15 +92,13 @@ const CustomerReviews = () => {
       <div>
         <div
           ref={scrollContainerRef} // Reference the scrollable container
-          className="flex space-x-4 pb-4 pr-0 gap-[30px] overflow-x-auto scrollbar-hide overflow-y-hidden"
-          style={{ paddingLeft: "1rem", paddingRight: "1rem" }}  // Ensures the last card aligns with the page edge
-        >
+          className="flex space-x-4 pb-4 pr-0 gap-[30px] overflow-x-auto scrollbar-hide overflow-y-hidden px-[1rem]"
+          >
           {customers.map((customer, index) => (
             <div
               key={customer.id}
-              className={`bg-white hover:shadow-lg p-10 rounded-3xl shadow-md flex-none min-w-[25rem] ${index === customers.length - 1 ? "mr-0" : "mr-1"
+              className={`bg-white hover:shadow-lg p-10 rounded-3xl shadow-md flex-none max-h-[300px] min-w-[25rem] max-w-[28rem] ${index === customers.length - 1 ? "mr-0" : "mr-1"
                 } h-96`} // Remove margin-right for the last card
-              style={{ maxHeight: "300px", width: "30rem" }}
             >
               <div className="flex items-center mb-4">
                 <img

@@ -74,7 +74,7 @@ const ProductRow = (props) => {
                             <Icon icon="weui:arrow-filled" height="3rem" className="hover:text-primary ml-[4rem]" />
                         </button>
                     )}
-                    <div ref={scrollContainerRef} className="flex flex-row gap-[1.5rem] pb-[1rem] h-[100%] overflow-hidden">
+                    <div ref={scrollContainerRef} className="flex flex-row gap-[1.5rem] pb-[1rem] h-[100%] max-w-[100%] overflow-scroll scrollbar-hide">
                         {props.items.map((book) => {
                             return <ProductCard key={"card-" + book._id} item={book} />;
                         })}
