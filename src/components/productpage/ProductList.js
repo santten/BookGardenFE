@@ -63,7 +63,7 @@ function ProductList(props) {
                     const items = item.split(", ")
                     genresArr.includes(...items) ? <></> : genresArr.push(...items)
                 })
-                setUniqueGenres(genresArr);
+                setUniqueGenres(genresArr.sort());
             })
             .catch((error) => console.log(error));
     }, []);
@@ -71,15 +71,13 @@ function ProductList(props) {
     const [sorting, setSorting] = useState('')
     const [contentPerPage, setContentPerPage] = useState(20)
     const [priceFilter, setPriceFilter] = useState([1, 999])
-    const [bindingFilter, setBindingFilter] = useState('')
     const [showMoreCategories, setShowMoreCategories] = useState(false);
-    // example genrelist. maybe it will be more dynamic in the future
-
+    
+    // genrelist special categories
     const genrelist = [{ title: "Show All", linkitem: "all" },
     { title: "New Arrivals", linkitem: "new" },
-    { title: "Top Sellers", linkitem: "topsellers" },
-    { title: "Dystopian", linkitem: "dystopian" }]
-
+    { title: "Top Sellers", linkitem: "topsellers" }]
+    // push fetched genre values
     uniqueGenres.map((item) => genrelist.push({ title: item, linkitem: item }))
 
     const changeSorting = (evt) => {
@@ -152,7 +150,7 @@ function ProductList(props) {
 
                     <ul className="flex flex-col">
 
-                        {genrelist.sort().map((item, index) => {
+                        {genrelist.map((item, index) => {
                             return <li key={"genre-" + index}>
                                 <Link to={`/browse/genre/${item.linkitem.toLowerCase()}/page/1`} className={`inline hover:text-primary-dark 
                                 ${category.toLowerCase() === item.linkitem.toLowerCase() ? 'font-bold' : 'font-regular'} 
