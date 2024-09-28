@@ -18,7 +18,7 @@ function ProductCard(props) {
         }</span>
         <br />{author.length > 18 ? author.slice(0, 18) + "..." : author}
         <br />{price.toFixed(2) + " €"}
-        {rating === undefined ? <p className="text-grey-dark">(No ratings)</p> : <div className="flex w-[100%] flex-row flex-center"><Stars rating={rating} className="flex-start" height="24px" background="light" /><span className="ml-auto text-grey-dark">({rating.toFixed(2)})</span></div>}
+        {rating === 0.0 ? <p className="text-grey-dark">(No ratings)</p> : <div className="flex w-[100%] flex-row flex-center"><Stars rating={rating} className="flex-start" height="24px" background="light" /><span className="ml-auto text-grey-dark">({rating.toFixed(2)})</span></div>}
       </div>
       <div className="grid grid-cols-[1fr_1fr] gap-[0.5rem] mb-[1rem]">
         <AddToCartButton book_id={_id} /><LikeButton type="icon_only" />
