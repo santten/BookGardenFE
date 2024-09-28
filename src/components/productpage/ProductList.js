@@ -28,11 +28,11 @@ function ProductList(props) {
             break;
         case "new":
             completeapiurl = apiurl + `/api/books/new`
-            category = 'New Arrivals'
+            category = "New Arrivals"
             break;
         case "topsellers":
+            category = "Top Sellers"
             completeapiurl = apiurl + `/api/books/topsellers`
-            category = 'Top Sellers'
             break;
         default:
             completeapiurl = apiurl + `/api/books/genre/${category}`
@@ -50,7 +50,9 @@ function ProductList(props) {
                 setBookArray(data);
             })
             .catch((error) => console.log(error));
-    });
+    }, [category]);
+
+    const reallyOnlyUnique = (value, index, array) => array.indexOf(value) === index;
 
     useEffect(() => {
         fetch(apiurl + `/api/books/unique/genre`, {
@@ -61,9 +63,9 @@ function ProductList(props) {
                 let genresArr = []
                 data.map((item) => {
                     const items = item.split(", ")
-                    genresArr.includes(...items) ? <></> : genresArr.push(...items)
+                    genresArr.push(...items)
                 })
-                setUniqueGenres(genresArr.sort());
+                setUniqueGenres(genresArr.filter(reallyOnlyUnique).sort());
             })
             .catch((error) => console.log(error));
     }, []);
@@ -72,7 +74,7 @@ function ProductList(props) {
     const [contentPerPage, setContentPerPage] = useState(20)
     const [priceFilter, setPriceFilter] = useState([1, 999])
     const [showMoreCategories, setShowMoreCategories] = useState(false);
-    
+
     // genrelist special categories
     const genrelist = [{ title: "Show All", linkitem: "all" },
     { title: "New Arrivals", linkitem: "new" },
@@ -97,7 +99,7 @@ function ProductList(props) {
 
     const handleFiltering = (item) => {
         const priceCheck = ((priceFilter[0] < item.price) && (priceFilter[1] > item.price))
-        
+
         return (priceCheck)
     }
 
@@ -153,7 +155,9 @@ function ProductList(props) {
                         {genrelist.map((item, index) => {
                             return <li key={"genre-" + index}>
                                 <Link to={`/browse/genre/${item.linkitem.toLowerCase()}/page/1`} className={`inline hover:text-primary-dark 
-                                ${category.toLowerCase() === item.linkitem.toLowerCase() ? 'font-bold' : 'font-regular'} 
+                                ${(category.toLowerCase() === item.linkitem.toLowerCase()) ||
+                                        (category.toLowerCase() === item.title.toLowerCase())
+                                        ? 'font-bold' : 'font-regular'} 
                                 ${(!showMoreCategories && (index > 4) && !(category.toLowerCase() === item.linkitem.toLowerCase()) && "hidden")}`}> {item.title}</Link>
                             </li>
                         })}
