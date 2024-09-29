@@ -1,4 +1,3 @@
-// src/CartSummary.js
 import React from 'react';
 import PropTypes from 'prop-types';
 import CheckOutButton from './CheckOutButton';
@@ -12,21 +11,19 @@ function CartSummary({ totalItems, totalPrice }) {
   };
 
   return (
-      <div className="relative flex flex-col items-end">
-      <div className="flex items-center justify-between w-full mb-4">
-      <div className="text-right flex-grow">
+    <div className="relative flex flex-col items-end px-4 py-6 md:px-8 md:py-10 bg-white border-t border-black mt-4">
+      <div className="flex flex-col md:flex-row items-center justify-between w-full mb-4">
+        <div className="text-right flex-grow">
+          <p className="text-xl md:text-2xl">Subtotal ({totalItems} items):</p>
+          <p className="text-3xl md:text-4xl font-bold">{totalPrice.toFixed(2)} €</p>
+        </div>
 
-        <p className="text-[24px]">Subtotal ({totalItems} items):</p>
-        <p className="text-[40px] font-bold">{totalPrice.toFixed(2)} €</p>
-      </div>
-      {/* Wrap OrderButton with a div and add the onClick for navigation */}
-      <div onClick={handleProceedToCheckout} className="ml-4">
-        <CheckOutButton />
+        {/* Wrap OrderButton with a div and add the onClick for navigation */}
+        <div onClick={handleProceedToCheckout} className="mt-4 md:mt-0 md:ml-4">
+          <CheckOutButton />
+        </div>
       </div>
     </div>
-    </div>
-
-
   );
 }
 
