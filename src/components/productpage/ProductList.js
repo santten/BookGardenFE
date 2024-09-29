@@ -8,10 +8,12 @@ import ReactSlider from 'react-slider';
 function ProductList(props) {
     const apiurl = process.env.REACT_APP_API_URL
     const [bookArray, setBookArray] = useState([])
+    const [uniqueGenres, setUniqueGenres] = useState([])
+
     const navigate = useNavigate();
     const location = useLocation();
 
-    const category = props.category
+    let category = props.category
 
     let completeapiurl = apiurl
 
@@ -22,11 +24,14 @@ function ProductList(props) {
         case "search":
             const query = props.query
             completeapiurl = apiurl + `/api/books/search/${query}`
+            category = `Search results for "${query}"`
             break;
         case "new":
             completeapiurl = apiurl + `/api/books/new`
+            category = "New Arrivals"
             break;
         case "topsellers":
+            category = "Top Sellers"
             completeapiurl = apiurl + `/api/books/topsellers`
             break;
         default:
@@ -45,23 +50,37 @@ function ProductList(props) {
                 setBookArray(data);
             })
             .catch((error) => console.log(error));
-    });
+    }, [category]);
+
+    const reallyOnlyUnique = (value, index, array) => array.indexOf(value) === index;
+
+    useEffect(() => {
+        fetch(apiurl + `/api/books/unique/genre`, {
+            method: "GET"
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                let genresArr = []
+                data.map((item) => {
+                    const items = item.split(", ")
+                    genresArr.push(...items)
+                })
+                setUniqueGenres(genresArr.filter(reallyOnlyUnique).sort());
+            })
+            .catch((error) => console.log(error));
+    }, []);
 
     const [sorting, setSorting] = useState('')
     const [contentPerPage, setContentPerPage] = useState(20)
     const [priceFilter, setPriceFilter] = useState([1, 999])
-    const [bindingFilter, setBindingFilter] = useState('')
     const [showMoreCategories, setShowMoreCategories] = useState(false);
-    // example genrelist. maybe it will be more dynamic in the future
 
+    // genrelist special categories
     const genrelist = [{ title: "Show All", linkitem: "all" },
     { title: "New Arrivals", linkitem: "new" },
-    { title: "Top Sellers", linkitem: "topsellers" },
-    { title: "Dystopian", linkitem: "dystopian" },
-    { title: "Satire", linkitem: "satire" },
-    { title: "Political", linkitem: "political" },
-    { title: "Romance", linkitem: "romance" },
-    ]
+    { title: "Top Sellers", linkitem: "topsellers" }]
+    // push fetched genre values
+    uniqueGenres.map((item) => genrelist.push({ title: item, linkitem: item }))
 
     const changeSorting = (evt) => {
         setSorting(evt.target.value)
@@ -80,9 +99,8 @@ function ProductList(props) {
 
     const handleFiltering = (item) => {
         const priceCheck = ((priceFilter[0] < item.price) && (priceFilter[1] > item.price))
-        const bindingCheck = (bindingFilter === '' ? item : item.binding === bindingFilter)
 
-        return (bindingCheck && priceCheck)
+        return (priceCheck)
     }
 
     let lastContentIndex = pagenumber * contentPerPage
@@ -94,10 +112,10 @@ function ProductList(props) {
             case "ASC_price": return a.price > b.price
             case "DES_price": return a.price < b.price
             case "ASC_rating": {
-                if (a.rating === null) {
+                if (a.rating === 0.0) {
                     return 1;
                 }
-                else if (b.rating === null) {
+                else if (b.rating === 0.0) {
                     return -1;
                 } else {
                     return a.rating > b.rating
@@ -134,16 +152,18 @@ function ProductList(props) {
 
                     <ul className="flex flex-col">
 
-                        {genrelist.sort().map((item, index) => {
+                        {genrelist.map((item, index) => {
                             return <li key={"genre-" + index}>
                                 <Link to={`/browse/genre/${item.linkitem.toLowerCase()}/page/1`} className={`inline hover:text-primary-dark 
-                                ${category.toLowerCase() === item.linkitem.toLowerCase() ? 'font-bold' : 'font-regular'} 
+                                ${(category.toLowerCase() === item.linkitem.toLowerCase()) ||
+                                        (category.toLowerCase() === item.title.toLowerCase())
+                                        ? 'font-bold' : 'font-regular'} 
                                 ${(!showMoreCategories && (index > 4) && !(category.toLowerCase() === item.linkitem.toLowerCase()) && "hidden")}`}> {item.title}</Link>
                             </li>
                         })}
-                        {/* <button className="hover:text-grey-dark text-secondary text-left" onClick={() => setShowMoreCategories(!showMoreCategories)}>
+                        <button className="hover:text-grey-dark text-secondary text-left" onClick={() => setShowMoreCategories(!showMoreCategories)}>
                             {showMoreCategories ? '(See Less Categories)' : '(See All Categories)'}
-                        </button> */}
+                        </button>
                     </ul>
                     <h5 className="font-title text-[1.5rem] my-[0.5rem]">Price</h5>
                     <div>
@@ -170,13 +190,6 @@ function ProductList(props) {
                             }}
                             withTracks={true}
                         /></div>
-                    {/* bindinglist.length > 1 && <><h5 className="font-title text-[1.5rem] my-[0.5rem]">Binding</h5>
-                        <ul>
-                            <><li className={`inline hover:text-primary-dark ${bindingFilter === "" ? 'font-bold' : 'font-regular'}`} onClick={() => setBindingFilter("")}>Show All</li></>
-                            {bindinglist.sort().map((item, index) => {
-                                return <li key={"genre-" + index} className="inline"> | <span className={`inline hover:text-primary-dark ${bindingFilter === item ? 'font-bold' : 'font-regular'}`} onClick={() => setBindingFilter(item)}>{item}</span></li>
-                            })}
-                        </ul></>*/}
                 </section>
             </div >
             <div>
