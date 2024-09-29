@@ -3,9 +3,10 @@ import PropTypes from 'prop-types';
 
 const CartHeading = ({ itemCount }) => {
   return (
-    <div className="shopping-cart font-bold text-gray-800 text-2xl sm:text-3xl md:text-4xl lg:text-5xl mt-8 mb-8 ml-4 sm:ml-8 lg:ml-20">
-      <span className="block">Shopping Cart</span>
-      <span className="item-count text-black-500">
+    <div className="flex flex-row items-center gap-[0.5rem] shopping-cart mt-2 mb-8">
+      <span className="font-title text-black text-4xl">Shopping</span>
+      <span className="font-title text-primary-dark text-4xl"> Cart</span>
+      <span className="font-semibold text-grey-dark text-xl item-count text-md text-black">
         ({itemCount} item{itemCount !== 1 ? 's' : ''})
       </span>
     </div>
