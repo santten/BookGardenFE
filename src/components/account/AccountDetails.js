@@ -2,8 +2,45 @@
 // AccountDetails.js
 import React from 'react';
 import { Icon } from '@iconify/react'
+// import { useEffect, useState } from 'react';
 
 function AccountDetails() {
+
+  // const [userDetails, setUserDetails] = useState({
+  //   firstName: '',
+  //   lastName: '',
+  //   emailAddress: '',
+  //   username: '',
+  // });
+
+  // const fetchUserDetails = async () => {
+  //   try {
+  //     const userId = localStorage.getItem('userId');   
+  //     const token = localStorage.getItem('token');     
+
+  //     const response = await fetch(`http://localhost:4000/api/users/${userId}`, {
+  //       method: 'GET',
+  //       headers: {
+  //         'Authorization': `Bearer ${token}`,  
+  //         'Content-Type': 'application/json',
+  //       },
+  //     });
+
+  //     if (!response.ok) {
+  //       throw new Error('Network response was not ok');
+  //     }
+
+  //     const data = await response.json();  
+  //     setUserDetails(data);  
+  //   } catch (error) {
+  //     console.error('Error fetching user details:', error);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   fetchUserDetails();
+  // }, []);
+
   return (
     <div className="w-3/4 p-8 my-12">
       <h3 className="text-2xl font-bold mb-6">Personal information</h3>
