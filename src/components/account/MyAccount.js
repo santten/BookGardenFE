@@ -1,36 +1,17 @@
-import React, { useEffect, useState }  from 'react';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
-function MyAccount(props) {
+const MyAccount = ({ setIsAuthenticated }) => {
   // set active page to be accountdetails if not provided
-  const activepage = props.activepage || "accountdetails" 
+  const activepage = "accountdetails";
+  
   const navigate = useNavigate();
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      setIsAuthenticated(true);   
-    } else {
-      setIsAuthenticated(false);  
-    }
-  }, []); // 只在组件挂载时运行
-
-  const handleLogout = () => {
-    console.log('Logging out...');   
-
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-    sessionStorage.removeItem('token');
-    sessionStorage.removeItem('user');
-    
-    console.log('Token after removal:', localStorage.getItem('token')); 
-  
-    document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-    
+  const handleLogout = (e) => {
     setIsAuthenticated(false);
-  
+    localStorage.removeItem("user");
+    toast.success('Logout successful. Thank you for visiting! 👋');
+    document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     navigate('/');
   };
   
