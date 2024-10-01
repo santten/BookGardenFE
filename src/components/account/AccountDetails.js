@@ -20,7 +20,7 @@ function AccountDetails() {
         return;
       }
 
-      const response = await fetch('http://localhost:4000/api/users/profile', {
+      const response = await fetch('http://localhost:4000/api/users/${userId}', {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,  
