@@ -21,7 +21,11 @@ export const useLogin = (setIsAuthenticated) => {
       
       if (response.ok) {
         const userData = await response.json();
-        localStorage.setItem('user', JSON.stringify(userData));
+        localStorage.setItem('token', userData.token);
+        localStorage.setItem('userId', userData.userId);
+        localStorage.setItem('email', userData.email);   
+        console.log('Login successful'); 
+        console.log('User ID:', userData.userId);         
         toast.success('Login Successful');
         navigate('/');
         setIsAuthenticated(true);

@@ -36,7 +36,11 @@ export const useSignup = (setIsAuthenticated) => {
 
       if (response.ok) {
         const userData = await response.json();
-        localStorage.setItem('user', JSON.stringify(userData));
+        // localStorage.setItem('user', JSON.stringify(userData));
+        localStorage.setItem('token', userData.token);
+        localStorage.setItem('userId', userData.userId);
+        localStorage.setItem('email', userData.email);  
+        console.log('Signup successful');
         toast.success('Signup Successful');
         navigate('/');
         setIsAuthenticated(true);
