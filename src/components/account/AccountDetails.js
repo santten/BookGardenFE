@@ -14,13 +14,14 @@ function AccountDetails() {
   const fetchUserDetails = async () => {
     try {
       const token = localStorage.getItem('token');  
+      const userId = localStorage.getItem('userId');
       
       if (!token) {
         console.error('No token found');
         return;
       }
 
-      const response = await fetch('http://localhost:4000/api/users/${userId}', {
+      const response = await fetch(`http://localhost:4000/api/users/${userId}`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,  
