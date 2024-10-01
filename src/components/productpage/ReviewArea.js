@@ -7,7 +7,8 @@ import { useState } from 'react'
 function ReviewArea(props) {
   const apiurl = process.env.REACT_APP_API_URL;
   const reviews = props.reviewlist
-  
+  const bookID = props.bookID
+
   // placeholder
   const rating = undefined
 
@@ -24,10 +25,30 @@ function ReviewArea(props) {
   const [hoveredStar, setHoveredStar] = useState(0);
 
   // put form submission logic here when possible
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    const user = JSON.parse(localStorage.getItem('user'));
+    const token = user.token
 
-    alert(`Rating: ${newRating} Reviewtext: ${reviewtext}`);
+    const newReview = {
+      "user": "66f6aa52bcb72c81d5d1db39",
+      "book": bookID,
+      "comment": reviewtext,
+      "rating": newRating.toString(),
+    }
+
+    try {
+      fetch(apiurl + "/api/reviews", {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify(newReview)
+      })
+    } catch (error) {
+      console.error(error)
+    }
   };
 
   const handleReadMoreReviews = () => {
@@ -63,7 +84,7 @@ function ReviewArea(props) {
                   <div>
                     {[1, 2, 3, 4, 5].map((star) => (
                       <Icon
-                        key={star}
+                        key={"star-" + star}
                         icon="material-symbols:star"
                         width="1.5rem"
                         className={newRating >= star || hoveredStar >= star ? "inline text-grey-dark" : "inline text-grey-light"}
@@ -103,7 +124,7 @@ function ReviewArea(props) {
                 <div className={
                   index > 5 ? `${readMoreReviews ? 'hidden' : 'block'}` : 'block'
                 }>
-                  <ReviewCard review={item} key={"review" + item.book_id + item.user_id} /></div>
+                  <ReviewCard review={item} key={"review" + index} /></div>
               )}
           </div>}
         {reviews.length > 6 ?
