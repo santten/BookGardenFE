@@ -10,8 +10,6 @@ const Login = ({ setIsAuthenticated }) => {
   const email = useField("email");
   const password = useField("password");
   const [passwordVisible, setPasswordVisible] = useState(false);
-  console.log(password);
-  
 
   const { login } = useLogin();
 
