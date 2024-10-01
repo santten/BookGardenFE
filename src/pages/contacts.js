@@ -19,7 +19,7 @@ function Contact() {
       </div>
       
       {/* About Section */}
-      <div className="flex-none mt-0 flex-1">
+      <div className="mt-0 flex-1">
         <About />
       </div>
     </div>
