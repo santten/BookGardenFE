@@ -7,15 +7,21 @@ const MyAccount = ({ setIsAuthenticated }) => {
   
   const navigate = useNavigate();
 
-  const handleLogout = (e) => {
+  const handleLogout = () => {
+    console.log('Logging out...');
+
     setIsAuthenticated(false);
-    localStorage.removeItem("user");
+
+    localStorage.removeItem('token');
+    localStorage.removeItem('email');
+    localStorage.removeItem('userId');
+    
+    console.log('Token after removal:', localStorage.getItem('token')); 
     toast.success('Logout successful. Thank you for visiting! 👋');
     document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     navigate('/');
   };
   
-
   return (
     <div className="w-60 p-4 bg-grey-light rounded-3xl mx-auto mt-8">
       <h2 className="font-title text-[1.5rem] mb-4">My Account</h2>
