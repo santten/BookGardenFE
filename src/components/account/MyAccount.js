@@ -15,15 +15,18 @@ function MyAccount(props) {
     } else {
       setIsAuthenticated(false);  
     }
-  }, []); // 只在组件挂载时运行
+  }, []); 
 
   const handleLogout = () => {
     console.log('Logging out...');   
 
     localStorage.removeItem('token');
-    localStorage.removeItem('user');
+    localStorage.removeItem('email');
+    localStorage.removeItem('userId');
+
     sessionStorage.removeItem('token');
-    sessionStorage.removeItem('user');
+    sessionStorage.removeItem('email');
+    sessionStorage.removeItem('userId');
     
     console.log('Token after removal:', localStorage.getItem('token')); 
   
