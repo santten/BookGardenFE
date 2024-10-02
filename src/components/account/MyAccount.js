@@ -1,43 +1,27 @@
-import React, { useEffect, useState }  from 'react';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
-function MyAccount(props) {
+const MyAccount = ({ setIsAuthenticated }) => {
   // set active page to be accountdetails if not provided
-  const activepage = props.activepage || "accountdetails" 
-  const navigate = useNavigate();
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-
+  const activepage = "accountdetails";
   
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      setIsAuthenticated(true);   
-    } else {
-      setIsAuthenticated(false);  
-    }
-  }, []); 
+  const navigate = useNavigate();
 
   const handleLogout = () => {
-    console.log('Logging out...');   
+    console.log('Logging out...');
+
+    setIsAuthenticated(false);
 
     localStorage.removeItem('token');
     localStorage.removeItem('email');
     localStorage.removeItem('userId');
-
-    sessionStorage.removeItem('token');
-    sessionStorage.removeItem('email');
-    sessionStorage.removeItem('userId');
     
     console.log('Token after removal:', localStorage.getItem('token')); 
-  
+    toast.success('Logout successful. Thank you for visiting! 👋');
     document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-    
-    setIsAuthenticated(false);
-  
     navigate('/');
   };
   
-
   return (
     <div className="w-60 p-4 bg-grey-light rounded-3xl mx-auto mt-8">
       <h2 className="font-title text-[1.5rem] mb-4">My Account</h2>

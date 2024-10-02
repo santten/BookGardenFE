@@ -8,11 +8,41 @@ import ReactSlider from 'react-slider';
 function ProductList(props) {
     const apiurl = process.env.REACT_APP_API_URL
     const [bookArray, setBookArray] = useState([])
+    const [uniqueGenres, setUniqueGenres] = useState([])
+
     const navigate = useNavigate();
     const location = useLocation();
 
+    let category = props.category
+
+    let completeapiurl = apiurl
+
+    switch (category) {
+        case "all":
+            completeapiurl = apiurl + `/api/books/`
+            break;
+        case "search":
+            const query = props.query
+            completeapiurl = apiurl + `/api/books/search/${query}`
+            category = `Search results for "${query}"`
+            break;
+        case "new":
+            completeapiurl = apiurl + `/api/books/new`
+            category = "New Arrivals"
+            break;
+        case "topsellers":
+            category = "Top Sellers"
+            completeapiurl = apiurl + `/api/books/topsellers`
+            break;
+        default:
+            completeapiurl = apiurl + `/api/books/genre/${category}`
+            break;
+    }
+
+    const pagenumber = props.pagenumber ?? 1
+
     useEffect(() => {
-        fetch(`${apiurl}/api/books`, {
+        fetch(completeapiurl, {
             method: "GET"
         })
             .then((response) => response.json())
@@ -20,22 +50,37 @@ function ProductList(props) {
                 setBookArray(data);
             })
             .catch((error) => console.log(error));
+    }, [category]);
+
+    const reallyOnlyUnique = (value, index, array) => array.indexOf(value) === index;
+
+    useEffect(() => {
+        fetch(apiurl + `/api/books/unique/genre`, {
+            method: "GET"
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                let genresArr = []
+                data.map((item) => {
+                    const items = item.split(", ")
+                    genresArr.push(...items)
+                })
+                setUniqueGenres(genresArr.filter(reallyOnlyUnique).sort());
+            })
+            .catch((error) => console.log(error));
     }, []);
-
-
-    const category = props.category ?? "all"
-    const pagenumber = props.pagenumber ?? 1
-
-    const specialcategorylist = ["Best Sellers", "New Arrivals"]
-    const newarrivallist = [1, 40, 21, 43, 98]
-    const bestsellerlist = [5, 12, 15, 67, 54, 199]
 
     const [sorting, setSorting] = useState('')
     const [contentPerPage, setContentPerPage] = useState(20)
     const [priceFilter, setPriceFilter] = useState([1, 999])
-    const [bindingFilter, setBindingFilter] = useState('')
     const [showMoreCategories, setShowMoreCategories] = useState(false);
 
+    // genrelist special categories
+    const genrelist = [{ title: "Show All", linkitem: "all" },
+    { title: "New Arrivals", linkitem: "new" },
+    { title: "Top Sellers", linkitem: "topsellers" }]
+    // push fetched genre values
+    uniqueGenres.map((item) => genrelist.push({ title: item, linkitem: item }))
 
     const changeSorting = (evt) => {
         setSorting(evt.target.value)
@@ -44,7 +89,7 @@ function ProductList(props) {
     const changeContentPerPage = (evt) => {
         setContentPerPage(evt.target.value)
     }
-    
+
     const changePageNumber = (newPageNumber) => {
         const pathParts = location.pathname.split('/');
         pathParts[pathParts.length - 1] = newPageNumber; // seeing as the page number is the last part of the path
@@ -52,40 +97,10 @@ function ProductList(props) {
         navigate(newPath);
     };
 
-
-    let genrelist = []
-    bookArray.forEach(element => {
-        const bookgenres = element.genre.split(", ")
-        bookgenres.forEach(item => { if (!genrelist.includes(item)) { genrelist.push(item) } });
-    });
-
-    let bindinglist = []
-    bookArray.forEach(element => {
-        if (!(bindinglist.includes(element.binding)) && (element.binding !== null)) { bindinglist.push(element.binding) }
-    });
-
     const handleFiltering = (item) => {
-        let categoryCheck = ""
-
-        switch (category) {
-            case "all":
-                categoryCheck = item;
-                break;
-            case "best sellers":
-                categoryCheck = bestsellerlist.includes(parseInt(item._id))
-                break;
-            case "new arrivals":
-                categoryCheck = newarrivallist.includes(parseInt(item._id))
-                break;
-            default:
-                categoryCheck = item.genre.toLowerCase().includes(category.toLowerCase())
-                break;
-        }
-
         const priceCheck = ((priceFilter[0] < item.price) && (priceFilter[1] > item.price))
-        const bindingCheck = (bindingFilter === '' ? item : item.binding === bindingFilter)
 
-        return (categoryCheck && bindingCheck && priceCheck)
+        return (priceCheck)
     }
 
     let lastContentIndex = pagenumber * contentPerPage
@@ -97,10 +112,10 @@ function ProductList(props) {
             case "ASC_price": return a.price > b.price
             case "DES_price": return a.price < b.price
             case "ASC_rating": {
-                if (a.rating === null) {
+                if (a.rating === 0.0) {
                     return 1;
                 }
-                else if (b.rating === null) {
+                else if (b.rating === 0.0) {
                     return -1;
                 } else {
                     return a.rating > b.rating
@@ -114,7 +129,7 @@ function ProductList(props) {
     })
 
     const slicedItems = filteredItems.slice(firstContentIndex, lastContentIndex)
-    
+
     const handleNoItems = () => {
         if (location.pathname.endsWith('/1')) {
             return <>No items found!</>;
@@ -125,7 +140,7 @@ function ProductList(props) {
 
     const displayedItems = slicedItems.length >= 1 ? slicedItems.map((item) => {
         return <ProductCard key={"card-" + item._id} item={item} />
-    }) : handleNoItems()    
+    }) : handleNoItems()
 
     let maxpages = Math.ceil(filteredItems.length / contentPerPage)
 
@@ -137,18 +152,13 @@ function ProductList(props) {
 
                     <ul className="flex flex-col">
 
-                        <li className="inline"><Link to="/browse/all/page/1" className={`inline hover:text-primary-dark ${category === "all" ? 'font-bold' : 'font-regular'}`}>Show All</Link></li>
-                        {specialcategorylist.sort().map((item, index) => {
-                            return <li key={"category-" + index}>
-                                <Link to={`/browse/${item.toLowerCase()}/page/1`} className={`inline hover:text-primary-dark ${category.toLowerCase() === item.toLowerCase() ? 'font-bold' : 'font-regular'}`}> {item}</Link>
-                            </li>
-                        })}
-
-                        {genrelist.sort().map((item, index) => {
+                        {genrelist.map((item, index) => {
                             return <li key={"genre-" + index}>
-                                <Link to={`/browse/${item.toLowerCase()}/page/1`} className={`inline hover:text-primary-dark 
-                                ${category.toLowerCase() === item.toLowerCase() ? 'font-bold' : 'font-regular'} 
-                                ${(!showMoreCategories && !(category.toLowerCase() === item.toLowerCase()) && "hidden")}`}> {item}</Link>
+                                <Link to={`/browse/genre/${item.linkitem.toLowerCase()}/page/1`} className={`inline hover:text-primary-dark 
+                                ${(category.toLowerCase() === item.linkitem.toLowerCase()) ||
+                                        (category.toLowerCase() === item.title.toLowerCase())
+                                        ? 'font-bold' : 'font-regular'} 
+                                ${(!showMoreCategories && (index > 4) && !(category.toLowerCase() === item.linkitem.toLowerCase()) && "hidden")}`}> {item.title}</Link>
                             </li>
                         })}
                         <button className="hover:text-grey-dark text-secondary text-left" onClick={() => setShowMoreCategories(!showMoreCategories)}>
@@ -180,13 +190,6 @@ function ProductList(props) {
                             }}
                             withTracks={true}
                         /></div>
-                    {bindinglist.length > 1 && <><h5 className="font-title text-[1.5rem] my-[0.5rem]">Binding</h5>
-                        <ul>
-                            <><li className={`inline hover:text-primary-dark ${bindingFilter === "" ? 'font-bold' : 'font-regular'}`} onClick={() => setBindingFilter("")}>Show All</li></>
-                            {bindinglist.sort().map((item, index) => {
-                                return <li key={"genre-" + index} className="inline"> | <span className={`inline hover:text-primary-dark ${bindingFilter === item ? 'font-bold' : 'font-regular'}`} onClick={() => setBindingFilter(item)}>{item}</span></li>
-                            })}
-                        </ul></>}
                 </section>
             </div >
             <div>

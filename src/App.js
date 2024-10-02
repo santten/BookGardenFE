@@ -1,5 +1,3 @@
-// App.js
-
 import React, { useState, useEffect } from 'react'; 
 
 // some general imports
@@ -17,7 +15,6 @@ import Footer from './components/Footer';
 import Search from './pages/search';
 import Store from './pages/store';
 import ProductPage from './pages/productpage';
-import BrowseProducts from './components/productpage/BrowseProducts';
 import NotFoundPage from './pages/NotFoundPage'
 
 
@@ -27,44 +24,48 @@ import CheckOutPage from './pages/checkOut'
 
 // login and account related components
 import Login from './pages/login';
+import Signup from './pages/signup';
 import AccountDetailsPage from './pages/account/account'
 import UserReviews from './pages/account/reviews'
 import OrderHistoryPage from './pages/account/orders'
 import WishList from './pages/account/wishlist'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-    // check for the authentication state from localStorage
-    useEffect(() => {
-      const storedUser = localStorage.getItem('token');
-      if (storedUser) {
-        setIsAuthenticated(true);  // If user data is found in localStorage, set isAuthenticated to true
-      }
-    }, []);
+  // check for the authentication state from localStorage
+  useEffect(() => {
+    const storedUser = localStorage.getItem('token');
+    if (storedUser) {
+      setIsAuthenticated(true);  // If user data is found in localStorage, set isAuthenticated to true
+    }
+  }, []);
 
   return (
     <div className="flex flex-col min-h-screen mr-auto ml-auto">
       <BrowserRouter>
+      <ToastContainer />
       <NavBar isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} />
         <main className="flex-grow w-full">
           <ScrollToTop>
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/browse/:category/page/:pagenumber" element={<Store />} />
-
+              <Route path="/browse/search/:query/page/:pagenumber" element={<Store />} />
+              <Route path="/browse/genre/:category/page/:pagenumber" element={<Store />} />
+              
               <Route path="/contacts" element={<Contacts />} />
               <Route path="/search" element={<Search />} />
 
               <Route path="/cart" element={<Cart />} />
               <Route path="/payment" element={<CheckOutPage/>} />
 
-
-              {/* <Route path="/login" element={<Login />} /> */}
               <Route path="/login" element={<Login setIsAuthenticated={setIsAuthenticated} />} />
+              <Route path="/signup" element={<Signup setIsAuthenticated={setIsAuthenticated} />} />
 
-
-              <Route path="/account" element={<AccountDetailsPage />} />
+              <Route path="/account" element={<AccountDetailsPage setIsAuthenticated={setIsAuthenticated} />} />
               <Route path="/account/reviews" element={<UserReviews />} />
               <Route path="/account/orders" element={<OrderHistoryPage />} />
               <Route path="/account/wishList" element={<WishList />} />

@@ -1,64 +1,72 @@
-// src/ShoppingCartItem.js
 import React from 'react';
 import PropTypes from 'prop-types';
-import './ShoppingCartItem.css'; // Import the CSS file
 import Stars from '../Stars';
+import { Icon } from '@iconify/react';
 
 function ShoppingCartItem({ item, onAdd, onRemove, onDelete }) {
   const { title, author, rating, price, image, year, ISBN, language, binding, quantity } = item;
 
   return (
-    <div className="shopping-cart-item flex flex-col md:flex-row space-y-4 md:space-y-0 space-x-4 p-4 border-b border-gray-300 relative">
-      <img src={image} alt={title} className="item-image w-24 h-24 object-cover" />
-      
-      <div className="item-details flex-1">
-        <h3 className="item-title text-lg font-bold">{title}</h3>
-        <p className="item-author text-gray-600">
-          {author}
-        </p>
-        <p className="flex items-center">
+    <div className="shopping-cart-item flex flex-col md:items-start md:flex-row bg-grey-light p-4 md:p-6 mb-4 rounded-[2rem] border-[2px] border-grey relative">
+      <div className="grid grid-cols-[50%_50%] md:flex">
+        <img
+          src={image}
+          alt={title}
+          className="item-image w-36 h-48 object-cover rounded-md md:mr-6 mb-4 md:mb-0"
+        />
+        <h3 className="md:hidden text-lg font-semibold text-black">
+          {title}
+        </h3>
+      </div>
+
+      <div>
+        <h3 className="text-lg hidden md:block font-semibold text-black">
+          {title}
+        </h3>
+
+        <div className="flex flex-row items-center justify-start gap-[0.5rem]">
+          <p className="text-grey-dark text-md">
+            {author}
+          </p>
           <Stars rating={rating} height="20px" color="black" />
-          <span className="rating-number text-gray-500 ml-2">
+          <span className="rating-number text-grey-dark text-xs">
             ({rating.toFixed(2)})
           </span>
-        </p>
-        <p className="item-price text-xl mt-2 md:mt-4">
+        </div>
+
+        <div>
+          <p className="item-year text-sm text-grey-dark">
+            Publishing Year: <span className="font-semibold">{year}</span><br />
+            ISBN: <span className="font-semibold">{ISBN}</span><br />
+            Language: <span className="font-semibold">{language}</span><br />
+            Binding: <span className="font-semibold">{binding}</span><br />
+          </p>
+        </div>
+      </div>
+
+      <div className="ml-auto flex flex-col-reverse md:flex-col gap-[0.5rem]">
+        <p className="ml-auto text-right text-4xl font-semibold text-black">
           {price.toFixed(2)} €
         </p>
-        <p className="item-year text-sm text-gray-500">
-          Publishing Year: <span className="font-semibold">{year}</span>
-        </p>
-        <p className="item-year text-sm text-gray-500">
-          ISBN: <span className="font-semibold"> {ISBN}</span> 
-        </p>
-        <p className="item-year text-sm text-gray-500">
-          Language: <span className="font-semibold">{language}</span>  
-        </p>
-        <p className="item-year text-sm text-gray-500">
-          Binding: <span className="font-semibold">{binding}</span>  
-        </p>
-
-        <div className="item-actions mt-4 md:mt-0 flex flex-col items-start md:items-end">
-          <div className="button-container flex items-center space-x-2">
-            <button 
-              onClick={() => onRemove(item)} 
-              className="bg-gray-200 hover:bg-gray-300 rounded-md">
+        <div className="flex flex-row gap-[0.5rem] items-center mt-4">
+          <div className="text-[16px] rounded-[1rem] border-[2px] border-grey flex flex-row items-center overflow-hidden">
+            <button
+              className="px-[0.75rem] py-[0.25rem] hover:bg-grey"
+              onClick={() => onRemove(item)}>
               -
             </button>
-            <span className="item-quantity">{quantity}</span>
-            <button 
-              onClick={() => onAdd(item)} 
-              className="bg-gray-200 hover:bg-gray-300 rounded-md">
+            <span className="px-[0.75rem] py-[0.25rem] font-semibold">
+              {quantity}</span>
+            <button
+              className="px-[0.75rem] py-[0.25rem] hover:bg-grey"
+              onClick={() => onAdd(item)}>
               +
             </button>
           </div>
-
-          {/* Remove from cart link without background color */}
-          <div 
-            className="remove-link text-red-600 mt-2 cursor-pointer hover:text-red-800"
-            onClick={() => onDelete(item)}
-          >
-            Remove from Cart
+          <div
+            className="cursor-pointer"
+            onClick={() => onDelete(item)}>
+            <Icon icon="mdi:trashcan-outline" className="text-black hover:text-warning" width="32px"></Icon>
           </div>
         </div>
       </div>
@@ -74,15 +82,15 @@ ShoppingCartItem.propTypes = {
     price: PropTypes.number.isRequired,
     image: PropTypes.string.isRequired,
     rating: PropTypes.number.isRequired,
-    year: PropTypes.string.isRequired,  // Publishing year
-    ISBN: PropTypes.string.isRequired,  // ISBN (Uppercase to match the object)
-    language: PropTypes.string.isRequired,  // Language
-    binding: PropTypes.string.isRequired,  // Binding
-    quantity: PropTypes.number.isRequired, // Quantity
+    year: PropTypes.string.isRequired,
+    ISBN: PropTypes.string.isRequired,
+    language: PropTypes.string.isRequired,
+    binding: PropTypes.string.isRequired,
+    quantity: PropTypes.number.isRequired,
   }).isRequired,
   onAdd: PropTypes.func.isRequired,
   onRemove: PropTypes.func.isRequired,
-  onDelete: PropTypes.func.isRequired,  // Added PropTypes for onDelete
+  onDelete: PropTypes.func.isRequired,
 };
 
 export default ShoppingCartItem;

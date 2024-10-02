@@ -1,20 +1,20 @@
-// ShoppingCart.js
 import React from 'react';
 import PropTypes from 'prop-types';
-import './CartHeading.css'; // Import the CSS file if using CSS for styling
 
-const CartHeading = ({ itemCount, onRemove }) => {
+const CartHeading = ({ itemCount }) => {
   return (
-    <div className=" font-title  text-[48px]">
-      <span>Shopping Cart </span>
-      <span>({itemCount} item{itemCount !== 1 ? 's' : ''})</span>
+    <div className="flex flex-row items-center gap-[0.5rem] shopping-cart mt-2 mb-8">
+      <span className="font-title text-black text-4xl">Shopping</span>
+      <span className="font-title text-primary-dark text-4xl"> Cart</span>
+      <span className="font-semibold text-grey-dark text-xl item-count text-md text-black">
+        ({itemCount} item{itemCount !== 1 ? 's' : ''})
+      </span>
     </div>
   );
 };
 
 CartHeading.propTypes = {
   itemCount: PropTypes.number.isRequired,
-  onRemove: PropTypes.func.isRequired, // Ensure a remove function is passed
 };
 
 export default CartHeading;

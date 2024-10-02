@@ -6,7 +6,7 @@ import BookInfoCard from '../components/productpage/BookInfoCard';
 import Recommendations from '../components/productpage/Recommendations';
 import ReviewArea from '../components/productpage/ReviewArea';
 
-import useLoadingComponent from '../customHooks/useLoadingComponent';
+import useLoadingComponent from '../hooks/useLoadingComponent';
 
 function ProductPage() {
     const { productID } = useParams();

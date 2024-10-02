@@ -1,17 +1,19 @@
 import { React, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { Icon } from '@iconify/react';
 
 function SearchModal() {
     const [query, setQuery] = useState('')
+    const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        query.length >= 1 && alert(query)
+        navigate(`browse/search/${query}/page/1`)
     };
 
     return (
         <div className="md:absolute flex-col md:flex-row md:left-0 z-[2] md:top-[2.5rem] bg-grey-light md:bg-white md:rounded-b-[0.75rem] p-[1rem]">
-            <span className="font-title text-xl">search</span>
+            <span className="font-title text-xl">Search</span>
             <form onSubmit={handleSubmit} className="flex flex-row w-[100%] gap-0 mt-[0.5rem] rounded-[0.5rem]">
                 <input value={query}
                     onChange={(e) => setQuery(e.target.value)}
