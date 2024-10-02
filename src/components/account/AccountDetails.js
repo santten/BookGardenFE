@@ -13,19 +13,19 @@ function AccountDetails() {
 
   const fetchUserDetails = async () => {
     try {
-      const token = localStorage.getItem('token');  
-      const userId = localStorage.getItem('userId');
+      let token = JSON.parse(localStorage.getItem('token'));
+      let userId = JSON.parse(localStorage.getItem('userId'));
       
       if (!token) {
         console.error('No token found');
         return;
       }
-
+      
       const response = await fetch(`http://localhost:4000/api/users/${userId}`, {
         method: 'GET',
         headers: {
-          'Authorization': `Bearer ${token}`,  
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
         },
       });
 
@@ -51,12 +51,14 @@ function AccountDetails() {
   }, []);
 
   const handleSaveClick = async () => {
+    let token = JSON.parse(localStorage.getItem('token'));
+
     try {
       const response = await fetch(`http://localhost:4000/api/users/${formData.userId}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('token')}`,   
+          'Authorization': `Bearer ${token}`,
         },
         body: JSON.stringify(formData),
       });

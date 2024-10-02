@@ -9,6 +9,7 @@ function Signup() {
   const navigate = useNavigate();
   const firstName = useField("text");
   const lastName = useField("text");
+  const username = useField("text");
   const email = useField("email");
   const password = useField("password");
   const confirmPassword = useField("password");
@@ -28,6 +29,7 @@ function Signup() {
     const errorMessage = await signup({
       firstName: firstName.value,
       lastName: lastName.value,
+      username: username.value,
       email: email.value,
       password: password.value
     });
@@ -59,6 +61,15 @@ function Signup() {
             <label className="block text-gray-700">Last Name:</label>
             <input
               {...lastName}
+              placeholder="Enter your last name"
+              className="w-full p-2 border rounded"
+              required
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block text-gray-700">Username:</label>
+            <input
+              {...username}
               placeholder="Enter your last name"
               className="w-full p-2 border rounded"
               required
