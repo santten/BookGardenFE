@@ -49,7 +49,8 @@ function ProductPage() {
             {useLoadingComponent(isReviewsLoading, "Loading reviews...",
                 ReviewArea, {
                 className: "bg-accent", key: "reviews_for_" + bookinfo._id,
-                reviewlist: reviews
+                reviewlist: reviews,
+                bookID: bookinfo._id,
             })}
             {useLoadingComponent(isBooksLoading, "Loading recommendations...",
                 Recommendations, { key: "recs_for_" + bookinfo._id, bookinfo })}
