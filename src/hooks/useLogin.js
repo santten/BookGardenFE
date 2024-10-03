@@ -22,7 +22,9 @@ export const useLogin = () => {
       return user.error;
     }
 
-    localStorage.setItem('user', JSON.stringify(user));
+    localStorage.setItem('token', JSON.stringify(user.token));
+    localStorage.setItem('email', JSON.stringify(user.email));
+    localStorage.setItem('userId', JSON.stringify(user.userId));
     setIsLoading(false);
   };
 

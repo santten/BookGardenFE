@@ -23,7 +23,9 @@ export const useSignup = () => {
       return error;
     }
 
-    localStorage.setItem('user', JSON.stringify(user));
+    localStorage.setItem('token', JSON.stringify(user.token));
+    localStorage.setItem('userId', JSON.stringify(user.userId));
+    localStorage.setItem('email', JSON.stringify(user.email));
     setIsLoading(false);
   };
 
