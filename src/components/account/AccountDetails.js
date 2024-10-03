@@ -5,6 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import AuthContext  from '../../context/AuthContext';
 
 function AccountDetails() {
+  const apiurl = process.env.REACT_APP_API_URL
+
   const navigate = useNavigate();
   const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
 
@@ -35,7 +37,7 @@ function AccountDetails() {
         return;
       }
       
-      const response = await fetch(`http://localhost:4000/api/users/${userId}`, {
+      const response = await fetch(`${apiurl}/api/users/${userId}`, {
         method: 'GET',
         headers: {
           "Content-Type": "application/json",
@@ -84,7 +86,7 @@ function AccountDetails() {
     let token = JSON.parse(localStorage.getItem('token'));
 
     try {
-      const response = await fetch(`http://localhost:4000/api/users/${formData.userId}`, {
+      const response = await fetch(`${apiurl}/api/users/${formData.userId}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -117,7 +119,7 @@ function AccountDetails() {
     }
 
     try {
-      const response = await fetch(`http://localhost:4000/api/users/${formData.userId}/password`, {
+      const response = await fetch(`${apiurl}/api/users/${formData.userId}/password`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -158,7 +160,7 @@ function AccountDetails() {
 
     if (window.confirm("Are you sure you want to delete your account? This action cannot be undone.")) {
       try {
-        const response = await fetch(`http://localhost:4000/api/users/${userId}`, {
+        const response = await fetch(`${apiurl}/api/users/${userId}`, {
           method: 'DELETE',
           headers: {
             'Content-Type': 'application/json',
