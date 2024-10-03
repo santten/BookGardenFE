@@ -1,16 +1,20 @@
 import React, { useState } from 'react';
 import "../index.css"
 
-import Logo from '../svg_icons/logo.svg';
-import SmallLogo from '../svg_icons/logoSmall.svg';
+import { useContext } from "react";
+import AuthContext from "../context/AuthContext";
+
+import Logo from '../images/logo.svg';
+import SmallLogo from '../images/logoSmall.svg';
 import SearchModal from './SearchModal';
 
 import { NavLink } from 'react-router-dom';
 import { Icon } from '@iconify/react';
 
-function NavBar({ isAuthenticated }) {
+function NavBar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [searchModalOpen, setSearchModalOpen] = useState(false);
+    const { isAuthenticated } = useContext(AuthContext)
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);

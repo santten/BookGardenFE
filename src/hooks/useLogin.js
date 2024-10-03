@@ -1,8 +1,10 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import AuthContext from '../context/AuthContext';
 
 export const useLogin = () => {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(null);
+  const { setIsAuthenticated } = useContext(AuthContext)
 
   const login = async (object) => {
     setIsLoading(true);
@@ -25,6 +27,7 @@ export const useLogin = () => {
     localStorage.setItem('token', JSON.stringify(user.token));
     localStorage.setItem('email', JSON.stringify(user.email));
     localStorage.setItem('userId', JSON.stringify(user.userId));
+    setIsAuthenticated(true)
     setIsLoading(false);
   };
 

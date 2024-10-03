@@ -1,14 +1,18 @@
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
-const MyAccount = ({ setIsAuthenticated }) => {
+import { useContext } from "react";
+import AuthContext from '../../context/AuthContext';
+
+const MyAccount = () => {
+  const { setIsAuthenticated } = useContext(AuthContext)
   // set active page to be accountdetails if not provided
   const activepage = "accountdetails";
   
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    console.log('Logging out...');
+    // console.log('Logging out...');
 
     setIsAuthenticated(false);
 
@@ -16,7 +20,7 @@ const MyAccount = ({ setIsAuthenticated }) => {
     localStorage.removeItem('email');
     localStorage.removeItem('userId');
     
-    console.log('Token after removal:', localStorage.getItem('token')); 
+    // console.log('Token after removal:', localStorage.getItem('token')); 
     toast.success('Logout successful. Thank you for visiting! 👋');
     document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     navigate('/');

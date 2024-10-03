@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 import { useState } from 'react';
 import { Icon } from '@iconify/react';
 
-const Login = ({ setIsAuthenticated }) => {
+const Login = () => {
   const navigate = useNavigate();
   const email = useField("email");
   const password = useField("password");
@@ -19,7 +19,7 @@ const Login = ({ setIsAuthenticated }) => {
     
     if (!errorMessage) {
       toast.success('Login successful. Welcome back! 🎉');
-      setIsAuthenticated(true);
+      
       navigate("/");
     } else {
       toast.error(errorMessage);

@@ -27,7 +27,7 @@ function ProductPage() {
                 setBookinfo(data);
             })
             .catch((error) => console.log(error));
-    }, []);
+    }, [apiurl, productID]);
 
     useEffect(() => {
         fetch((apiurl + `/api/books/${productID}/reviews`), {
@@ -38,7 +38,7 @@ function ProductPage() {
                 setReviews(data);
             })
             .catch((error) => console.log(error));
-    }, []);
+    }, [apiurl, productID]);
 
     return (
         <div className="m-auto min-h-[90vh] pb-[4rem]">
