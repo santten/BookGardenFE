@@ -3,8 +3,12 @@ import ReviewCard from './ReviewCard'
 import Stars from '../Stars'
 import { Icon } from '@iconify/react'
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 function ReviewArea(props) {
+  const navigate = useNavigate()
+  const userId = JSON.parse(localStorage.getItem('userId'));
+
   const apiurl = process.env.REACT_APP_API_URL;
   const reviews = props.reviewlist
   const bookID = props.bookID
@@ -27,11 +31,10 @@ function ReviewArea(props) {
   // put form submission logic here when possible
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const user = JSON.parse(localStorage.getItem('user'));
-    const token = user.token
+    const token = JSON.parse(localStorage.getItem('token'));
 
     const newReview = {
-      "user": "66f6aa52bcb72c81d5d1db39",
+      "user": userId,
       "book": bookID,
       "comment": reviewtext,
       "rating": newRating.toString(),
@@ -65,16 +68,19 @@ function ReviewArea(props) {
               {reviews.length >= 1 && rating !== undefined &&
                 <div className="flex items-center gap-[0.5rem]"><Stars rating={rating} height="1.75rem" background="light" />({rating.toFixed(2)})</div>}
             </span>
-            {reviewmakingtoggle ? <></> :
+            {!reviewmakingtoggle && userId &&
               <button onClick={() => setReviewmakingtoggle(true)} className="ml-auto flex items-center flex-row gap-[0.5rem] l-auto bg-black hover:bg-primary-dark text-white font-semibold p-[0.5rem] rounded-[99px] px-[1rem] py-[0.5rem]">
                 <span>Add A Review </span>
                 <Icon icon="jam:write-f" className="inline" />
-              </button>
-            }
+              </button>}
+            {!reviewmakingtoggle && !userId &&
+              <button onClick={() => navigate("../login")} className="ml-auto flex items-center flex-row gap-[0.5rem] l-auto bg-black hover:bg-primary-dark text-white font-semibold p-[0.5rem] rounded-[99px] px-[1rem] py-[0.5rem]">
+                <span>Login to Add Your Review </span>
+                <Icon icon="jam:write-f" className="inline" />
+              </button>}
           </h2>
         </div>
-
-        {reviewmakingtoggle ? (
+        {reviewmakingtoggle && userId && (
           <div className="rounded-[12px] bg-primary p-[1rem]">
             <form onSubmit={handleSubmit}>
               <div className="flex flex-row w-[100%]">
@@ -115,7 +121,7 @@ function ReviewArea(props) {
               </button>
             </form>
           </div>
-        ) : <></>}
+        )}
 
         {reviews.message ? <p>{reviews.message}</p> :
           <div className="mx-auto flex flex-col md:grid md:grid-cols-[1fr_1fr] gap-[0.5rem] my-[1rem]">
