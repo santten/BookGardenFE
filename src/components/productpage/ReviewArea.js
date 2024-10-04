@@ -1,29 +1,65 @@
 import React from 'react'
-import ReviewCard from './ReviewCard'
+import RenderReviews from './RenderReviews'
 import Stars from '../Stars'
 import { Icon } from '@iconify/react'
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
+import AuthContext from '../../context/AuthContext'
 
 function ReviewArea(props) {
-  const navigate = useNavigate()
+  const { isAuthenticated } = useContext(AuthContext)
   const userId = JSON.parse(localStorage.getItem('userId'));
+  const [firstName, setFirstName] = useState("")
+  const [lastName, setLastName] = useState("")
+
+  const { curUserHasLeftReview, setCurUserHasLeftReview } = props
+
+  const fetchUserDetails = async () => {
+    try {
+      let token = JSON.parse(localStorage.getItem('token'));
+
+      if (!token) {
+        console.error('No token found');
+        return;
+      }
+
+      const response = await fetch(`http://localhost:4000/api/users/${userId}`, {
+        method: 'GET',
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setLastName(data.lastName)
+        setFirstName(data.firstName)
+        setReviewmakingtoggle(true)
+      } else {
+        console.error('Failed to fetch user details');
+      }
+    } catch (error) {
+      console.error('Error fetching user details:', error);
+    }
+  };
+
+  const navigate = useNavigate()
 
   const apiurl = process.env.REACT_APP_API_URL;
   const reviews = props.reviewlist
   const bookID = props.bookID
 
-  // placeholder
+  // initializing variable for overall book rating
   const rating = undefined
 
   // true: show review making area, hide add review button
   // false: show add reviewbutton, hide review making area
-  const [reviewmakingtoggle, setReviewmakingtoggle] = useState(false)
+  const { reviewmakingtoggle, setReviewmakingtoggle } = props
 
-  // for making a new review
-  const [newRating, setNewRating] = useState(3);
-  const [reviewtext, setReviewtext] = useState('');
-  const [readMoreReviews, setReadMoreReviews] = useState(false);
+  let curUsersReview = reviews.find(element => element.user._id === userId) || {"rating": 3, "comment": ''}
+  const [newRating, setNewRating] = useState(curUsersReview.rating);
+  const [reviewtext, setReviewtext] = useState(curUsersReview.comment);
 
   // for star renders
   const [hoveredStar, setHoveredStar] = useState(0);
@@ -40,22 +76,35 @@ function ReviewArea(props) {
       "rating": newRating.toString(),
     }
 
+    const setmethod = curUserHasLeftReview ? "PATCH" : "POST"
+    const seturladditions = curUserHasLeftReview ? `/api/reviews/${curUsersReview._id}` : "/api/reviews"
+
     try {
-      fetch(apiurl + "/api/reviews", {
-        method: "POST",
+      const response = await fetch(apiurl + seturladditions, {
+        method: setmethod,
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify(newReview)
       })
+
+      if (!response.ok) {
+        console.log("Error while handling form submit")
+      } else {
+        const responseData = await response.json();
+        console.log(responseData)
+        curUsersReview = responseData
+        setCurUserHasLeftReview(true)
+        setReviewmakingtoggle(false)
+      }
     } catch (error) {
       console.error(error)
     }
   };
 
-  const handleReadMoreReviews = () => {
-    setReadMoreReviews(!readMoreReviews);
+  const handleReviewMakingToggle = () => {
+    fetchUserDetails()
   }
 
   return (
@@ -68,25 +117,24 @@ function ReviewArea(props) {
               {reviews.length >= 1 && rating !== undefined &&
                 <div className="flex items-center gap-[0.5rem]"><Stars rating={rating} height="1.75rem" background="light" />({rating.toFixed(2)})</div>}
             </span>
-            {!reviewmakingtoggle && userId &&
-              <button onClick={() => setReviewmakingtoggle(true)} className="ml-auto flex items-center flex-row gap-[0.5rem] l-auto bg-black hover:bg-primary-dark text-white font-semibold p-[0.5rem] rounded-[99px] px-[1rem] py-[0.5rem]">
-                <span>Add A Review </span>
+            {!reviewmakingtoggle && isAuthenticated &&
+              <button onClick={handleReviewMakingToggle} className="ml-auto flex items-center flex-row gap-[0.5rem] l-auto bg-black hover:bg-primary-dark text-white font-semibold p-[0.5rem] rounded-[99px] px-[1rem] py-[0.5rem]">
+                <span>{curUserHasLeftReview ? "Edit Your Review" : "Add A Review"} </span>
                 <Icon icon="jam:write-f" className="inline" />
               </button>}
-            {!reviewmakingtoggle && !userId &&
+            {!reviewmakingtoggle && !isAuthenticated &&
               <button onClick={() => navigate("../login")} className="ml-auto flex items-center flex-row gap-[0.5rem] l-auto bg-black hover:bg-primary-dark text-white font-semibold p-[0.5rem] rounded-[99px] px-[1rem] py-[0.5rem]">
                 <span>Login to Add Your Review </span>
                 <Icon icon="jam:write-f" className="inline" />
               </button>}
           </h2>
         </div>
-        {reviewmakingtoggle && userId && (
+        {reviewmakingtoggle && isAuthenticated && (
           <div className="rounded-[12px] bg-primary p-[1rem]">
             <form onSubmit={handleSubmit}>
               <div className="flex flex-row w-[100%]">
                 <div className="flex flex-row">
                   <label htmlFor="rating" className="block text-[1.5rem] pr-[0.5rem] text-gray font-title">Rating</label>
-
                   <div>
                     {[1, 2, 3, 4, 5].map((star) => (
                       <Icon
@@ -104,6 +152,7 @@ function ReviewArea(props) {
 
                 <Icon icon="ic:outline-close" width="1.75rem" className="hover:text-primary-dark text-black ml-auto" onClick={() => setReviewmakingtoggle(false)} />
               </div>
+              <p>(Leaving a review as {firstName + " " + lastName})</p>
               <div className="mb-[1rem]">
                 <label htmlFor="reviewtext" className="hidden">Review</label>
                 <textarea
@@ -124,25 +173,16 @@ function ReviewArea(props) {
         )}
 
         {reviews.message ? <p>{reviews.message}</p> :
-          <div className="mx-auto flex flex-col md:grid md:grid-cols-[1fr_1fr] gap-[0.5rem] my-[1rem]">
-            {reviews.length < 1 ? <>(No reviews yet)</> :
-              reviews.map((item, index) =>
-                <div className={
-                  index > 5 ? `${readMoreReviews ? 'hidden' : 'block'}` : 'block'
-                }>
-                  <ReviewCard review={item} key={"review" + index} /></div>
-              )}
-          </div>}
-        {reviews.length > 6 ?
-          <div className="text-center mt-0 bg-grey-light">
-            <button
-              onClick={handleReadMoreReviews}
-              className="px-6 py-2 mb-6 text-black border border-2 border-black rounded-full hover:border-primary-dark hover:text-primary-dark"
-            >
-              {readMoreReviews ? "Read more reviews" : "See less reviews"}
-            </button>
+          <div className="flex flex-col">
+            <RenderReviews
+              reviewmakingtoggle={reviewmakingtoggle}
+              setReviewmakingtoggle={setReviewmakingtoggle}
+              reviews={reviews}
+              userId={userId}
+              curUserHasLeftReview={curUserHasLeftReview}
+              setCurUserHasLeftReview={setCurUserHasLeftReview} />
           </div>
-          : <></>}
+        }
       </div>
     </div >
   )
