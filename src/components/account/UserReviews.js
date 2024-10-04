@@ -1,87 +1,73 @@
 // components/UserReviews.js
-import React, { useState } from 'react';
-import { Icon } from '@iconify/react'
-import Stars from '../Stars';
+import React, { useEffect, useState } from 'react';
+
+import ReviewRow from './ReviewRow';
+import { Link } from 'react-router-dom';
 
 const UserReviews = () => {
-    const [reviews, setReviews] = useState([
-        {
-            id: 1,
-            title: 'Book title 1',
-            author: 'Book author 1',
-            date: 'October 17, 2023',
-            rating: 5,
-            review: 'Lorem ipsum dolor sit amet consectetur...',
-        },
-        {
-            id: 2,
-            title: 'Book title 2',
-            author: 'Book author 2',
-            date: 'October 11, 2023',
-            rating: 3,
-            review: 'Lorem ipsum dolor sit amet consectetur...',
-        },
-        {
-            id: 3,
-            title: 'Book title 3',
-            author: 'Book author 3',
-            date: 'August 24, 2023',
-            rating: 4,
-            review: 'Lorem ipsum dolor sit amet consectetur...',
-        },
-        {
-            id: 4,
-            title: 'Book title 4',
-            author: 'Book author 4',
-            date: 'August 12, 2023',
-            rating: 2,
-            review: 'Lorem ipsum dolor sit amet consectetur...',
-        },
-    ]);
+    const [userReviews, setUserReviews] = useState([])
+    const [reloadReviews, setReloadReviews] = useState(false)
 
-    const deleteReview = (id) => {
-        setReviews(reviews.filter(review => review.id !== id)); 
-    };
+    // GET reviews fetch
+    useEffect(() => {
+        const fetchUsersReviews = async () => {
+            const apiurl = process.env.REACT_APP_API_URL
+            const userId = JSON.parse(localStorage.getItem("userId"))
+            const token = JSON.parse(localStorage.getItem("token"))
 
-    return (
-        <div className="container mx-auto mb-[2rem] p-2 bg-white mt-10">
-            <h2 className="text-2xl font-bold mb-6 text-left">Review history</h2>
+            const response = await fetch(`${apiurl}/api/reviews/user/${userId}`, {
+                method: 'GET',
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                },
+            });
 
-            <table className="min-w-full overflow-hidden">
-                <thead className="text-gray-500 text-lg border-b">
+            const data = await response.json()
+            setUserReviews(data)
+            console.log("userReviews", userReviews)
+        }
+        fetchUsersReviews()
+    }, [reloadReviews])
+
+    // DELETE selected review fetch
+    const deleteReview = async (id) => {
+        alert(`delete ${id}`)
+        const apiurl = process.env.REACT_APP_API_URL
+        const userId = JSON.parse(localStorage.getItem("userId"))
+        const token = JSON.parse(localStorage.getItem("token"))
+
+        const response = await fetch(`${apiurl}/api/reviews/${id}`, {
+            method: 'DELETE',
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`,
+            },
+        });
+        if (response.ok) {
+            setReloadReviews(!reloadReviews)
+        }
+    }
+
+    return (<div className="container mx-auto mb-[2rem] p-2 bg-white mt-10">
+        <h2 className="text-3xl font-title text-left">Review history</h2>
+        {userReviews.length >= 1 ?
+            <table className="my-[1rem] w-[95%]">
+                <thead className="text-grey-dark text-semibold text-md border-b border-b-grey-dark border-b-[2px]">
                     <tr>
-                        <th className="py-2 px-4 text-left" style={{ fontWeight: 'normal' }}>Book</th>
-                        <th className="py-2 px-4 text-left" style={{ fontWeight: 'normal' }}>Date</th>
-                        <th className="py-2 px-4 text-left" style={{ fontWeight: 'normal' }}>Score</th>
-                        <th className="py-2 px-4 text-left" style={{ fontWeight: 'normal' }}>Review</th>
-                        <th className="py-2 px-4 text-left" style={{ fontWeight: 'normal' }}>Delete</th>
+                        <th className="py-2 pl-4 pr-2 text-left">Book</th>
+                        <th className="py-2 px-2 text-left">Date</th>
+                        <th className="py-2 px-2 text-left">Rating</th>
+                        <th className="py-2 px-2 text-left">Review</th>
+                        <th className="py-2 pl-2 pr-4 text-center">Delete</th>
                     </tr>
                 </thead>
-                <tbody>
-                    {reviews.map((review) => (
-                        <tr key={review.id} className="border-b">
-                            <td className="py-3 px-4">
-                                <p className="font-semibold">{review.title}</p>
-                                <p className="text-sm text-gray-600">by {review.author}</p>
-                            </td>
-                            <td className="py-3 px-4">{review.date}</td>
-                            <td className="py-3 px-4"><Stars rating={review.rating} height="12px" background="white"/></td>
-                            <td className="py-3 px-4">
-                                {review.review} <span className="text-gray-600 cursor-pointer">Read more</span>
-                            </td>
-                            <td className="py-3 px-4">
-                                <button 
-                                    onClick={() => deleteReview(review.id)} 
-                                >
-                                <Icon icon="mdi:trashcan-outline" width="1.25rem" className="text-black hover:text-warning"></Icon>
-                                 </button>
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-        </div>
-    );
+                {userReviews.map((item, index) =>
+                    <ReviewRow deleteReview={deleteReview} item={item} index={index} />
+                )}</table> :
+            <p>No reviews yet...<br />
+                <Link className="text-primary-dark underline hover:text-grey-dark" to="/browse/all/page/1">Find your next favorite book</Link> and start writing!</p>}
+    </div>)
 };
 
 export default UserReviews;
