@@ -1,55 +1,154 @@
-import React, { useState } from 'react'; // Import useState
-
+import React, { useState, useEffect } from 'react';  
+import { toast } from 'react-toastify';
 import CartHeading from '../components/shoppingcart/CartHeading';
 import ShoppingCartItem from '../components/shoppingcart/ShoppingCartItem';
 import CartSummary from '../components/shoppingcart/CartSummary';
 import './cartPage.css';
 
 function Cart() {
-  // removed import to mockdata, since we are using database now. 
-  const bookArray = [{ "id": 5, "title": "Adventures of Ford Fairlane, The", "author": "Andreana Grimes", "genre": "Thriller", "rating": 3.31, "year": 2005, "publisher": "Plajo", "ISBN": "830266193-7", "binding": "Hardcover", "pages": 418, "language": "Persian", "price": 24.96 },
-  { "id": 6, "title": "My Best Friend (Mon meilleur ami)", "author": "Cecilius New", "genre": "Drama", "rating": 4.66, "year": 1958, "publisher": "Leexo", "ISBN": "465761365-0", "binding": "Paperback", "pages": 144, "language": "Luxembourgish", "price": 4.49 },
-  { "id": 7, "title": "Windfall", "author": "Emmet Seldner", "genre": "Thriller", "rating": 1.04, "year": 1969, "publisher": "Voonder", "ISBN": "407785307-9", "binding": "Softcover", "pages": 895, "language": "Yiddish", "price": 146.82 },]
 
-  const [cartItems, setCartItems] = useState([{ ...bookArray[1], quantity: 2 }, { ...bookArray[2], quantity: 1 }])
+  const [cartItems, setCartItems] = useState([]);  
+  const apiurl = process.env.REACT_APP_API_URL;  
+  const token = JSON.parse(localStorage.getItem('token'));
+  const userId = JSON.parse(localStorage.getItem('userId'));
+  console.log('Token being sent:', token); 
 
-  // the initial code had the cart open automatically with 1 of every item in stock. uncomment to see how:  
-  // const [cartItems, setCartItems] = useState(bookArray.map(item => ({ ...item, quantity: 1 }))); // Initialize cart with quantity
+  // Get all of the shopping cart items 
+  useEffect(() => {
+    const fetchCartItems = async () => {
+      if (!token) {
+        toast.error('Please login.');
+        return;
+      }
+      try {
+        const response = await fetch(`${apiurl}/api/cart`, {
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+        });
+        if (!response.ok) {
+          throw new Error('Failed to fetch cart items');
+        }
+        const data = await response.json();
+        console.log('Fetched cart items:', data);
+        setCartItems(data.products);   
+      } catch (error) {
+        console.error('Error fetching cart items:', error);
+        toast.error('Failed to load cart items');
+      }
+    };
+    fetchCartItems();
+  }, [apiurl, token]);
 
-  // the handling of the items will be thought about later, but it should likely be initially empty
-  // uncomment this line if you want to start with an empty cart:
-  // const [cartItems, setCartItems] = useState([])
-
+  // Add the cart item quantity
   const handleAdd = (item) => {
-    // Update the cart item quantity
     setCartItems(prevItems =>
       prevItems.map(cartItem =>
-        cartItem.id === item.id
-          ? { ...cartItem, quantity: cartItem.quantity + 1 }
+        cartItem.book._id === item.book._id
+          ? { ...cartItem, quantity: Number(cartItem.quantity) + 1 }
           : cartItem
       )
     );
+
+    fetch(`${apiurl}/api/cart/add`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        bookId: item.book._id,   
+        quantity: item.quantity + 1  
+      })
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Updated cart item:', data);  
+    })
+    .catch(error => {
+      console.error('Error updating cart item:', error);
+    });
   };
 
+  // Remove the item or decrease quantity if more than 1
   const handleRemove = (item) => {
-    // Remove the item or decrease quantity if more than 1
+    if (item.quantity <= 1) {
+      handleDelete(item);
+      return;
+    }
+
     setCartItems(prevItems =>
-      prevItems
-        .map(cartItem =>
-          cartItem.id === item.id && cartItem.quantity > 0
-            ? { ...cartItem, quantity: cartItem.quantity - 1 }
-            : cartItem
-        )
-        .filter(cartItem => cartItem.id !== item.id || cartItem.quantity > 0) // Filter out item if quantity is 0
+      prevItems.map(cartItem =>
+        cartItem.book._id === item.book._id
+          ? { ...cartItem, quantity: Number(cartItem.quantity) - 1 }
+          : cartItem
+      )
     );
+
+    fetch(`${apiurl}/api/cart/reduce`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        bookId: item.book._id,   
+        quantity: item.quantity - 1   
+      })
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Updated cart item:', data);  
+    })
+    .catch(error => {
+      console.error('Error updating cart item:', error);
+    });
   };
 
+  // Delete the item
   const handleDelete = (item) => {
-    setCartItems(prevItems => prevItems.filter(cartItem => cartItem.id !== item.id));
-  };
+    setCartItems(prevItems => prevItems.filter(cartItem => cartItem.book._id !== item.book._id));
 
-  const totalItems = cartItems.reduce((total, item) => total + item.quantity, 0);
-  const totalPrice = cartItems.reduce((total, item) => total + item.quantity * item.price, 0);
+    fetch(`${apiurl}/api/cart/remove`, {
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        bookId: item.book._id  
+      })
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.error) {
+        console.error('Error removing item from cart:', data.error);
+        toast.error('Failed to remove item from cart');
+      } else {
+        console.log('Item removed from cart:', data);
+        toast.success('Item successfully removed');
+      }
+    })
+    .catch(error => {
+      console.error('Error removing item from cart:', error);
+      toast.error('Failed to remove item from cart');
+    });
+};
+
+  // Calculate the quantity of all items
+  const totalItems = cartItems.reduce((total, item) => {
+    const quantity = item.quantity ? Number(item.quantity) : 0;  
+    return total + quantity;
+  }, 0);
+
+  // Calculate the price of all items
+  const totalPrice = cartItems.reduce((total, item) => {
+    const price = Number(item.book.price);   
+    const quantity = item.quantity ? Number(item.quantity) : 0;   
+    return total + (quantity * price);   
+  }, 0);
 
   return (
     <div className="cart">
@@ -57,8 +156,9 @@ function Cart() {
       <div className="cart-items">
         {cartItems.map(element => (
           <ShoppingCartItem
-            key={element.id}
+            key={element.book._id}// key={element.id}
             item={element}
+            apiurl={apiurl}
             onAdd={handleAdd}
             onRemove={handleRemove}
             onDelete={handleDelete}
@@ -71,4 +171,3 @@ function Cart() {
 }
 
 export default Cart;
-

@@ -1,37 +1,44 @@
 // components/OrderHistory.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { toast } from 'react-toastify';
 
 const OrderHistory = () => {
-    const [orders, setOrders] = useState([
-        {
-            id: 1,
-            orderNumber: '#3456_768',
-            date: 'October 17, 2023',
-            status: 'Delivered',
-            price: '1234.00€',
-        },
-        {
-            id: 2,
-            orderNumber: '#3456_980',
-            date: 'October 11, 2023',
-            status: 'Delivered',
-            price: '345.00€',
-        },
-        {
-            id: 3,
-            orderNumber: '#3456_120',
-            date: 'August 24, 2023',
-            status: 'Delivered',
-            price: '2345.00€',
-        },
-        {
-            id: 4,
-            orderNumber: '#3456_030',
-            date: 'August 12, 2023',
-            status: 'Delivered',
-            price: '845.00€',
-        },
-    ]);
+    const [orders, setOrders] = useState([]);
+    const apiurl = process.env.REACT_APP_API_URL;
+    const token = JSON.parse(localStorage.getItem('token'));
+    const userId = JSON.parse(localStorage.getItem('userId'));
+
+    useEffect(() => {
+        const fetchOrders = async () => {
+            if (!token) {
+                toast.error('Please login to view your order history.');
+                return;
+            }
+
+            try {
+                const response = await fetch(`${apiurl}/api/orders/${userId}`, {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json',
+                    },
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to fetch order history.');
+                }
+
+                const data = await response.json();
+                setOrders(data);
+            } catch (error) {
+                console.error('Error fetching order history:', error);
+                toast.error('Failed to load order history.');
+            }
+        };
+
+        fetchOrders();
+    }, [apiurl, token, userId]);
+
 
     // const deleteOrder = (id) => {
     //     setOrders(orders.filter(order => order.id !== id));
@@ -53,13 +60,14 @@ const OrderHistory = () => {
                 <tbody>
                     {orders.map((order) => (
                         <tr key={order.id} className="border-b">
-                            <td  className="py-3 px-4 text-lg">{order.orderNumber}</td>
-                            <td  className="py-3 px-4">{order.date}</td>
-                            <td  className="py-3 px-4">{order.status}</td>
-                            <td  className="py-3 px-4">{order.price}</td>
-                            {/* <td>
-                                <button onClick={() => deleteOrder(order.id)}>Delete</button>
-                            </td> */}
+                            <td className="py-3 px-4 text-lg">{order.number}</td>
+                            <td className="py-3 px-4">{new Date(order.createdAt).toLocaleDateString('en-US', {
+                                year: 'numeric',
+                                month: 'long',
+                                day: 'numeric'
+                            })}</td>
+                            <td className="py-3 px-4">{order.status}</td>
+                            <td className="py-3 px-4">{order.price.toFixed(2)} €</td>
                         </tr>
                     ))}
                 </tbody>

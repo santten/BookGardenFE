@@ -3,14 +3,17 @@ import PropTypes from 'prop-types';
 import Stars from '../Stars';
 import { Icon } from '@iconify/react';
 
-function ShoppingCartItem({ item, onAdd, onRemove, onDelete }) {
-  const { title, author, rating, price, image, year, ISBN, language, binding, quantity } = item;
+function ShoppingCartItem({ item, apiurl, onAdd, onRemove, onDelete }) {
+  // const { title, author, rating = 0, price = 0, image, year, ISBN, language, binding, quantity } = item;
+  const { book, quantity } = item;
+  const { title, author, rating = 0, price = 0, image, year, ISBN, language, binding } = book;
+  const imageUrl = `${apiurl}${image}`;
 
   return (
     <div className="shopping-cart-item flex flex-col md:items-start md:flex-row bg-grey-light p-4 md:p-6 mb-4 rounded-[2rem] border-[2px] border-grey relative">
       <div className="grid grid-cols-[50%_50%] md:flex">
         <img
-          src={image}
+          src={imageUrl}
           alt={title}
           className="item-image w-36 h-48 object-cover rounded-md md:mr-6 mb-4 md:mb-0"
         />
@@ -76,21 +79,25 @@ function ShoppingCartItem({ item, onAdd, onRemove, onDelete }) {
 
 ShoppingCartItem.propTypes = {
   item: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    author: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    image: PropTypes.string.isRequired,
-    rating: PropTypes.number.isRequired,
-    year: PropTypes.string.isRequired,
-    ISBN: PropTypes.string.isRequired,
-    language: PropTypes.string.isRequired,
-    binding: PropTypes.string.isRequired,
+    book: PropTypes.shape({
+      _id: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      author: PropTypes.string.isRequired,
+      price: PropTypes.number.isRequired,
+      image: PropTypes.string.isRequired,
+      rating: PropTypes.number.isRequired,
+      year: PropTypes.string.isRequired,
+      ISBN: PropTypes.string.isRequired,
+      language: PropTypes.string.isRequired,
+      binding: PropTypes.string.isRequired,
+    }).isRequired,
     quantity: PropTypes.number.isRequired,
   }).isRequired,
+  apiurl: PropTypes.string.isRequired,   
   onAdd: PropTypes.func.isRequired,
   onRemove: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
 };
+
 
 export default ShoppingCartItem;

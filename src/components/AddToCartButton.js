@@ -19,7 +19,9 @@ function AddToCartButton({ book_id }) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        bookId: book_id,    
+        bookId: book_id,
+        quantity: 1  
+    
       }),
     })
     .then(response => response.json())
@@ -34,6 +36,7 @@ function AddToCartButton({ book_id }) {
   };
 
   const handleAddToCart = () => {
+    console.log('Add to cart button clicked'); //Test
     addToCart();   
   }
 
