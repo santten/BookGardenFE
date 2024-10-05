@@ -3,7 +3,7 @@ import ProductCard from './ProductCard';
 import { Icon } from '@iconify/react';
 
 // props
-// items: array of numbers (bookIDs)
+// items: array of books
 // title: string (product row title) - defaults to none if not provided 
 
 const ProductRow = (props) => {
