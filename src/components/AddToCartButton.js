@@ -1,9 +1,43 @@
 import React from 'react'
 import { Icon } from '@iconify/react';
+import { toast } from 'react-toastify';
 
 function AddToCartButton({ book_id }) {
+  const apiurl = process.env.REACT_APP_API_URL
+
+   // Update the shopping cart
+  const addToCart = () => {
+    const token = JSON.parse(localStorage.getItem('token'));
+    if (!token) {
+      toast.error('Please login.');
+      return null; 
+    }
+    fetch(`${apiurl}/api/cart/add`, {   
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${token}`, 
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        bookId: book_id,
+        quantity: 1  
+    
+      }),
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Cart update:', data);
+      toast.success('Book added to shopping cart successfully');
+    })
+    .catch(error => {
+      console.error('Error adding book to cart:', error);
+      toast.error('Failed to add book to shopping cart');
+    });
+  };
+
   const handleAddToCart = () => {
-    alert(`Added book with ID: ${book_id} to cart`);
+    console.log('Add to cart button clicked'); //Test
+    addToCart();   
   }
 
   return (
