@@ -3,11 +3,8 @@ import Stars from '../Stars';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 
-const ReviewRow = ({ index, item, deleteReview }) => {
+const ReviewRow = ({ index, item, reloadReviews, setReloadReviews }) => {
     const [commentReadMore, setCommentReadMore] = useState(false)
-    const [bookTitleReadMore, setBookTitleReadMore] = useState(false)
-
-    console.log(item.book._id, item.book.title, item.book.author)
 
     // format date
     const formatDate = (isoDate) => {
@@ -18,6 +15,25 @@ const ReviewRow = ({ index, item, deleteReview }) => {
             year: 'numeric'
         });
     };
+
+    // DELETE selected review fetch
+    const deleteReview = async (id) => {
+        if (window.confirm(`Are you sure you want to delete your review of "${item.book.title}"? This can not be undone.`)) {
+            const apiurl = process.env.REACT_APP_API_URL
+            const token = JSON.parse(localStorage.getItem("token"))
+
+            const response = await fetch(`${apiurl}/api/reviews/${id}`, {
+                method: 'DELETE',
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`,
+                },
+            });
+            if (response.ok) {
+                setReloadReviews(!reloadReviews)
+            }
+        }
+    }
 
     // make sure too-long comments and titles are under a read more
     const renderPossiblyLongText = (content, toggle, setToggle, maxLength) => {
@@ -38,9 +54,9 @@ const ReviewRow = ({ index, item, deleteReview }) => {
     return (
         <tr key={`review-${index}`} className="text-grey-dark text-md border-b border-b-grey-dark border-b-[1px]">
             <td className="align-top py-3 pl-4 pr-2 min-w-[14rem]">
-                {renderPossiblyLongText(
-                    `${item.book.title} by ${item.book.author}`,
-                    bookTitleReadMore, setBookTitleReadMore, 64)}
+                <Link className="hover:text-primary-dark" to={`../products/${item.book._id}`}>
+                    <b>{item.book.title}</b> by {item.book.author}
+                </Link>
             </td>
             <td className="align-top py-3 px-2 align-top">
                 {formatDate(item.updatedAt)}

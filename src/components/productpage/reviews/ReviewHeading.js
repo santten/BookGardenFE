@@ -22,14 +22,20 @@ const ReviewHeading = () => {
             </span>
 
             <div className="ml-auto">
-                {isAuthenticated && userHasLeftReview && !makingReview &&
-                    <button className="ml-auto flex items-center flex-row gap-[0.5rem] l-auto bg-black hover:bg-primary-dark text-white font-semibold p-[0.5rem] rounded-[99px] px-[1rem] py-[0.5rem]"
-                        onClick={() => setMakingReview(true)}>Edit <span className="hidden md:inline">Your Review</span><Icon icon="jam:write-f" className="inline" />
-                    </button>}
-
                 {isAuthenticated && !userHasLeftReview && !makingReview &&
                     <button className="ml-auto flex items-center flex-row gap-[0.5rem] l-auto bg-black hover:bg-primary-dark text-white font-semibold p-[0.5rem] rounded-[99px] px-[1rem] py-[0.5rem]"
-                        onClick={() => setMakingReview(true)}>Add <span className="hidden md:inline">A Review</span><Icon icon="jam:write-f" className="inline" />
+                        onClick={() => setMakingReview(true)}>
+                        <span className="md:hidden block">Add</span>
+                        <span className="hidden md:block">Add Your Review</span>
+                        <Icon icon="jam:write-f" className="inline" />
+                    </button>}
+
+                {isAuthenticated && userHasLeftReview && !makingReview &&
+                    <button className="ml-auto flex items-center flex-row gap-[0.5rem] l-auto bg-black hover:bg-primary-dark text-white font-semibold p-[0.5rem] rounded-[99px] px-[1rem] py-[0.5rem]"
+                        onClick={() => setMakingReview(true)}>
+                        <span className="md:hidden block">Edit</span>
+                        <span className="hidden md:block">Edit Your Review</span>
+                        <Icon icon="jam:write-f" className="inline" />
                     </button>}
 
                 {!isAuthenticated &&

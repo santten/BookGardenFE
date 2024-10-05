@@ -30,25 +30,6 @@ const UserReviews = () => {
         fetchUsersReviews()
     }, [reloadReviews])
 
-    // DELETE selected review fetch
-    const deleteReview = async (id) => {
-        alert(`delete ${id}`)
-        const apiurl = process.env.REACT_APP_API_URL
-        const userId = JSON.parse(localStorage.getItem("userId"))
-        const token = JSON.parse(localStorage.getItem("token"))
-
-        const response = await fetch(`${apiurl}/api/reviews/${id}`, {
-            method: 'DELETE',
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${token}`,
-            },
-        });
-        if (response.ok) {
-            setReloadReviews(!reloadReviews)
-        }
-    }
-
     return (<div className="container mx-auto mb-[2rem] p-2 bg-white mt-10">
         <h2 className="text-3xl font-title text-left">Review history</h2>
         {userReviews.length >= 1 ?
@@ -63,7 +44,7 @@ const UserReviews = () => {
                     </tr>
                 </thead>
                 {userReviews.map((item, index) =>
-                    <ReviewRow deleteReview={deleteReview} item={item} index={index} />
+                    <ReviewRow reloadReviews={reloadReviews} setReloadReviews={setReloadReviews} item={item} index={index} />
                 )}</table> :
             <p>No reviews yet...<br />
                 <Link className="text-primary-dark underline hover:text-grey-dark" to="/browse/all/page/1">Find your next favorite book</Link> and start writing!</p>}

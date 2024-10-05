@@ -19,7 +19,6 @@ const ReviewMaking = () => {
 
     useEffect(() => {
         const updateEditingField = () => {
-            userReview = reviews.message ? undefined : reviews.find(element => element.user._id === userId)
 
             if (userReview !== undefined) {
                 setNewRating(userReview.rating)
@@ -30,7 +29,7 @@ const ReviewMaking = () => {
             }
         }
         updateEditingField()
-    }, [userHasLeftReview])
+    }, [userHasLeftReview, reviews, userReview])
 
 
     const [hoveredStar, setHoveredStar] = useState(0);

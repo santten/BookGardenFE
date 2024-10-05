@@ -11,7 +11,7 @@ function BookInfoCard(props) {
         <div className="flex flex-col md:flex-row gap-[1rem] bg-white containerSmall justify-center my-6">
             <div className="flex flex-col gap-[0.5rem] items-center">
                 <img src={apiurl + image} className="w-[200px]"></img>
-                {(rating === undefined) ? <p className="text-grey-dark">(No ratings)</p> : <div className="flex w-[100%] flex-row"><Stars rating={rating} className="flex-start" height="32px" background="white" /><span className="text-grey-dark text-[24px] text-[#A9A9A9] ml-[0.5rem] ml-auto">({rating.toFixed(2)})</span></div>}
+                {(rating < 1) ? <p className="text-grey-dark">(No ratings)</p> : <div className="flex w-[100%] flex-row"><Stars rating={rating} className="flex-start" height="32px" background="white" /><span className="text-grey-dark text-[24px] text-[#A9A9A9] ml-[0.5rem] ml-auto">({rating.toFixed(2)})</span></div>}
                 <LikeButton />
             </div>
             <div className="flex flex-col items-center gap-[1rem] min-w-[40vw] h-[100%]">
