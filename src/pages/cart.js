@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';  
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom'; 
+
 import CartHeading from '../components/shoppingcart/CartHeading';
 import ShoppingCartItem from '../components/shoppingcart/ShoppingCartItem';
 import CartSummary from '../components/shoppingcart/CartSummary';
@@ -11,15 +13,15 @@ function Cart() {
   const apiurl = process.env.REACT_APP_API_URL;  
   const token = JSON.parse(localStorage.getItem('token'));
   const userId = JSON.parse(localStorage.getItem('userId'));
-  console.log('Token being sent:', token); 
+  const navigate = useNavigate(); 
 
   // Get all of the shopping cart items 
   useEffect(() => {
+    if (!token) {
+      navigate('/login'); // Redirect to login page
+      return;
+    }
     const fetchCartItems = async () => {
-      if (!token) {
-        toast.error('Please login.');
-        return;
-      }
       try {
         const response = await fetch(`${apiurl}/api/cart`, {
           method: 'GET',
