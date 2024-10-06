@@ -3,16 +3,7 @@ import about from '../../images/about.png';
 
 function About() {
   return (
-    <section className="bg-grey-light py-12 px-4 sm:px-6 lg:px-8"
-      style={{ 
-        marginTop: '25px',
-        height: 'auto', // 移除固定高度，允许内容自适应
-        backgroundImage: `url(${about})`, 
-        backgroundPosition: 'left', 
-        backgroundRepeat: 'no-repeat',
-        backgroundSize: 'cover', // 改为 cover，使图片覆盖整个容器
-      }}
-    >
+    <section className="bg-grey-light py-12 px-4 sm:px-6 lg:px-8">
       <div className="container flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0 md:space-x-12">
         
         <div className="md:w-1/2 text-center md:text-left">

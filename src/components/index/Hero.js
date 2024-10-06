@@ -6,14 +6,11 @@ import { Link } from "react-router-dom";
 const Hero = () => {
   return (
     <section
-      className="bg-white relative containerBig rounded-4xl"
+      className="bg-white mx-auto mb-[2rem] relative max-w-[95vw] containerBig rounded-4xl"
       style={{
         backgroundImage: `url(${hero})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
-        height: 'auto',
-        padding: '20px',
-        maxWidth: '95vw',
       }}
     >
 

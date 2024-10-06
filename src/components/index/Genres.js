@@ -34,13 +34,13 @@ const Genres = () => {
 
             <Link
               to="/browse/genre/books%20for%20students/page/1"
-              className="text-md font-semibold absolute top-20 left-6 sm:left-8 bg-black hover:text-primary text-white px-6 py-2 rounded-full flex items-center"
+              className="text-md font-semibold absolute top-16 md:top-20 left-6 sm:left-8 bg-black hover:text-primary text-white px-6 py-2 rounded-full flex items-center"
             >
               Find more&nbsp;
               <Icon width="1.5rem" icon="tdesign:arrow-right" />
             </Link>
 
-            <p className="absolute top-8 left-8 text-black text-4xl font-title">FOR STUDENTS</p>
+            <p className="absolute top-8 left-8 text-black text-2xl md:text-4xl font-title">FOR STUDENTS</p>
           </div>
 
           <div className="h-[100%] flex flex-col gap-8 justify-between">
@@ -55,13 +55,13 @@ const Genres = () => {
 
               <Link
                 to="/browse/genre/books%20for%20children/page/1"
-                className="text-md font-semibold absolute top-20 left-6 sm:left-8 bg-black hover:text-primary text-white px-6 py-2 rounded-full flex items-center"
+                className="text-md font-semibold absolute top-16 md:top-20 left-6 sm:left-8 bg-black hover:text-primary text-white px-6 py-2 rounded-full flex items-center"
               >
                 Find more&nbsp;
                 <Icon width="1.5rem" icon="tdesign:arrow-right" />
               </Link>
 
-              <p className="absolute top-8 left-8 text-black text-4xl font-title">Children's books</p>
+              <p className="absolute top-8 left-8 text-black text-2xl md:text-4xl font-title">Children's books</p>
             </div>
 
             {/* Classic Books */}
@@ -75,13 +75,13 @@ const Genres = () => {
 
               <Link
                 to="/browse/genre/classics/page/1"
-                className="text-md font-semibold absolute top-20 left-6 sm:left-8 bg-black hover:text-primary text-white px-6 py-2 rounded-full flex items-center"
+                className="text-md font-semibold absolute top-16 md:top-20 left-6 sm:left-8 bg-black hover:text-primary text-white px-6 py-2 rounded-full flex items-center"
               >
                 Find more&nbsp;
                 <Icon width="1.5rem" icon="tdesign:arrow-right" />
               </Link>
 
-              <p className="absolute top-8 left-8 text-black text-4xl font-title">The Classics</p>
+              <p className="absolute top-8 left-8 text-black text-2xl md:text-4xl font-title">The Classics</p>
             </div>
           </div>
         </div>
