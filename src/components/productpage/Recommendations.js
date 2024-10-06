@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import ProductRow from "../ProductRow"
 import useLoadingComponent from "../../hooks/useLoadingComponent"
-import { findHooksRx } from "pixi.js"
+// import { findHooksRx } from "pixi.js"
 
 const Recommendations = (props) => {
     const apiurl = process.env.REACT_APP_API_URL
