@@ -4,6 +4,7 @@ import genres1 from '../../images/genres-1.png';
 import genres2 from '../../images/genres-2.png';
 import genres3 from '../../images/genres-3.png';
 import { Icon } from '@iconify/react';
+import { Link } from 'react-router-dom';
 
 const Genres = () => {
   return (
@@ -32,10 +33,13 @@ const Genres = () => {
             />
             <div className="rounded-[2rem] absolute inset-0 bg-black opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
 
-            <button className="text-sm sm:text-base md:text-[1rem] font-semibold absolute top-16 sm:top-20 left-6 sm:left-8 bg-black text-white px-4 sm:px-6 py-[0.4rem] sm:py-[0.5rem] rounded-full flex items-center">
+            <Link 
+              to="/browse/genre/books%20for%20students/page/1"
+              className="text-sm sm:text-base md:text-[1rem] font-semibold absolute top-16 sm:top-20 left-6 sm:left-8 bg-black text-white px-4 sm:px-6 py-[0.4rem] sm:py-[0.5rem] rounded-full flex items-center"
+            >
               Find more{'\u00A0'}
               <Icon width="1.25rem" icon="tdesign:arrow-right" />
-            </button>
+            </Link>
 
             <p className="absolute top-4 sm:top-5 left-6 sm:left-8 text-black text-2xl sm:text-[2.2rem] font-title">FOR STUDENTS</p>
           </div>
@@ -50,10 +54,13 @@ const Genres = () => {
               />
               <div className="rounded-[2rem] absolute inset-0 bg-black opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
 
-              <button className="text-sm sm:text-base md:text-[1rem] font-semibold absolute top-16 sm:top-20 left-6 sm:left-8 bg-black text-white px-4 sm:px-6 py-[0.4rem] sm:py-[0.5rem] rounded-full flex items-center">
+              <Link 
+                to="/browse/genre/books%20for%20children/page/1"
+                className="text-sm sm:text-base md:text-[1rem] font-semibold absolute top-16 sm:top-20 left-6 sm:left-8 bg-black text-white px-4 sm:px-6 py-[0.4rem] sm:py-[0.5rem] rounded-full flex items-center"
+              >
                 Find more{'\u00A0'}
                 <Icon width="1.25rem" icon="tdesign:arrow-right" />
-              </button>
+              </Link>
 
               <p className="absolute top-4 sm:top-5 left-6 sm:left-8 text-black text-2xl sm:text-[2.2rem] font-title">Children's books</p>
             </div>
@@ -67,10 +74,13 @@ const Genres = () => {
               />
               <div className="rounded-[2rem] absolute inset-0 bg-black opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
 
-              <button className="text-sm sm:text-base md:text-[1rem] font-semibold absolute top-16 sm:top-20 left-6 sm:left-8 bg-black text-white px-4 sm:px-6 py-[0.4rem] sm:py-[0.5rem] rounded-full flex items-center">
+              <Link 
+                to="/browse/genre/classics/page/1"
+                className="text-sm sm:text-base md:text-[1rem] font-semibold absolute top-16 sm:top-20 left-6 sm:left-8 bg-black text-white px-4 sm:px-6 py-[0.4rem] sm:py-[0.5rem] rounded-full flex items-center"
+              >
                 Find more{'\u00A0'}
                 <Icon width="1.25rem" icon="tdesign:arrow-right" />
-              </button>
+              </Link>
 
               <p className="absolute top-4 sm:top-5 left-6 sm:left-8 text-black text-2xl sm:text-[2.2rem] font-title">The Classics</p>
             </div>
