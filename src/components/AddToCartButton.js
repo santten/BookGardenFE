@@ -42,9 +42,8 @@ function AddToCartButton({ book_id }) {
 
   return (
     <div onClick={handleAddToCart}
-      className="text-center flex flex-row items-center px-[0.75rem] md:px-[1rem] py-[0.25rem] md:py-[0.5rem] bg-black w-max rounded-[99px] hover:bg-secondary">
-      <p className="text-base text-white font-semibold hidden md:inline">Add To Cart&ensp;</p>
-      <p className="text-sm text-white font-semibold md:hidden inline">Add&ensp;</p>
+      className="text-center flex flex-row items-center px-[0.75rem] md:px-[1rem] py-[0.5rem] bg-black w-max rounded-[99px] hover:bg-secondary">
+      <p className="text-base text-white font-semibold inline">Add To Cart&ensp;</p>
       <Icon icon="material-symbols:shopping-cart" width="1.25rem" className="text-white inline" />
     </div>
   )

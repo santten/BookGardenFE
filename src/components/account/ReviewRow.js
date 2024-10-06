@@ -61,12 +61,10 @@ const ReviewRow = ({ index, item, reloadReviews, setReloadReviews }) => {
             <td className="align-top py-3 px-2 align-top">
                 {formatDate(item.updatedAt)}
             </td>
-            <td className="px-2 align-top py-3 min-w-[6rem]">
+            <td className="px-2 align-top py-4 min-w-[6rem]">
                 <Stars height={"1rem"} color="grey" rating={item.rating} />
             </td>
             <td className="px-2 align-top py-3">
-
-
                 {renderPossiblyLongText(
                     `${item.comment}`,
                     commentReadMore, setCommentReadMore, 72)}
