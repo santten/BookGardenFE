@@ -14,7 +14,7 @@ function Stars({ rating, height, background, color }) {
     const starColor = color || "accent"
 
     return (
-        <div>
+        <div className="flex flex-row">
             {numArray.map((item, index) => {
                 return <Icon key={"star" + index} icon="material-symbols:star" width={height}
                     className={`inline text-${rating >= item ? starColor : noStarColor}`}></Icon>
