@@ -29,7 +29,7 @@ const Arrivals = () => {
             NEW <span className="text-primary-dark">ARRIVALS</span>
           </h2>
           <Link to="/browse/genre/new/page/1"
-            className="flex items-center text-black hover:text-primary-dark font-semibold hover:border-primary-dark border border-black px-4 py-2 rounded-full">
+            className="flex items-center text-black hover:text-primary-dark font-semibold hover:border-primary-dark border border-[2px] border-black px-4 py-2 rounded-full">
             See more
             <Icon className="ml-2" icon="tdesign:arrow-right" width="26px" />
           </Link>

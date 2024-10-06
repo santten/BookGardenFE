@@ -39,7 +39,7 @@ function BookInfoCard(props) {
                     </div>
                     <LikeButton />
                 </div>
-                <div className="flex flex-col items-center gap-[1rem] min-w-[40vw] max-w-[70vw] h-[100%]">
+                <div className="flex flex-col items-center gap-[1rem] min-w-[40vw] max-w-[100%] md:max-w-[70vw] h-[100%]">
                     <div className="flex flex-col md:flex-row items-center justify-between w-[100%]">
                         <div className="mr-auto w-[100%]">
                             <span className="text-[xx-large] font-semibold">{title}<br /></span>

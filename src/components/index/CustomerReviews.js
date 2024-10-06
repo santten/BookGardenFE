@@ -15,15 +15,15 @@ const CustomerReviews = () => {
       customerName: "Matti Lewinston",
       rating: 5,
       review:
-        "Lorem ipsum dolor sit amet consectetur. Mauris elit commodo dui nunc consectetur. Leo ut volutpat non fermentum viverra sem. In lacus posuere placerat eu platea. Leo lacus ac suscipit volutpat.",
+        "I love shopping at Book Garden! The selection is fantastic, and I always find what I'm looking for. Shipping is quick and my books always arrive in pristine condition. Highly recommend!",
       img: customer1,
     },
     {
       id: 2,
       customerName: "Esther Howard",
-      rating: 4.5,
+      rating: 5,
       review:
-        "Lorem ipsum dolor sit amet consectetur. Mauris elit commodo dui nunc consectetur. Leo ut volutpat non fermentum viverra sem. In lacus posuere placerat eu platea. Leo lacus ac suscipit volutpat.",
+        "My experiences with Book Garden have been great. It is easy to browse different genres and find what I want. I really like looking through the user reviews — they’ve helped me choose some fantastic reads.",
       img: customer2,
     },
     {
@@ -31,15 +31,7 @@ const CustomerReviews = () => {
       customerName: "Jacob Jones",
       rating: 5,
       review:
-        "Lorem ipsum dolor sit amet consectetur. Mauris elit commodo dui nunc consectetur. Leo ut volutpat non fermentum viverra sem. In lacus posuere placerat eu platea. Leo lacus ac suscipit volutpat.",
-      img: customer3,
-    },
-    {
-      id: 4,
-      customerName: "Jacob Jones",
-      rating: 5,
-      review:
-        "Lorem ipsum dolor sit amet consectetur. Mauris elit commodo dui nunc consectetur. Leo ut volutpat non fermentum viverra sem. In lacus posuere placerat eu platea. Leo lacus ac suscipit volutpat.",
+        "I've been an avid reader since childhood, but my book collection only got really impressive after discovering Book Garden - I’ve found so many titles I couldn’t find elsewhere! Simply put, I love Book Garden.",
       img: customer3,
     }
   ];
@@ -72,7 +64,7 @@ const CustomerReviews = () => {
           OUR <span className="text-primary-dark">HAPPY CUSTOMERS</span>
         </h2>
 
-        <div className="hidden md:flex items-center">
+        <div className="hidden md:flex 2xl:hidden items-center">
           <button
             onClick={scrollLeft}
             className="pr-10 flex items-center text-black hover:text-black"
@@ -93,12 +85,12 @@ const CustomerReviews = () => {
         <div
           ref={scrollContainerRef} // Reference the scrollable container
           className="flex space-x-4 pb-4 pr-0 gap-[30px] overflow-x-auto scrollbar-hide overflow-y-hidden px-[1rem]"
-          >
+        >
           {customers.map((customer, index) => (
             <div
               key={customer.id}
-              className={`bg-white hover:shadow-lg p-10 rounded-3xl shadow-md flex-none max-h-[300px] min-w-[25rem] max-w-[28rem] ${index === customers.length - 1 ? "mr-0" : "mr-1"
-                } h-96`} // Remove margin-right for the last card
+              className={`bg-white hover:shadow-lg p-4 rounded-3xl shadow-md flex-none min-h-[360px] md:min-h-[220px] w-[14rem] md:w-[28rem] ${index === customers.length - 1 ? "mr-0" : "mr-1"
+                }`} // Remove margin-right for the last card
             >
               <div className="flex items-center mb-4">
                 <img
@@ -111,7 +103,7 @@ const CustomerReviews = () => {
                     {customer.customerName}
                   </h3>
                   <div>
-                    <Stars rating={customer.rating} height="24px" background="white" />
+                    <Stars rating={customer.rating} color="primary-dark" height="24px" background="white" />
                   </div>
                 </div>
               </div>

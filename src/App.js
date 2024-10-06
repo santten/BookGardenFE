@@ -43,7 +43,7 @@ function App() {
   }, [setIsAuthenticated]);
 
   return (
-    <div className="flex flex-col min-h-screen mr-auto ml-auto">
+    <div className="flex flex-col min-h-screen max-w-[100vw] overflow-x-hidden mr-auto ml-auto">
       <BrowserRouter>
         <ToastContainer />
         <NavBar />
