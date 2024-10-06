@@ -1,78 +1,86 @@
 // components/WishList.js
-import React, { useState } from 'react';
-
-import { Icon } from "@iconify/react";
+import React, { useState, useEffect } from 'react';
+import { toast } from 'react-toastify';
 
 const WishList = () => {
-  const [wishList, setWishList] = useState([
-    {
-      id: 1,
-      title: 'Book title 1',
-      author: 'Book author 1',
-      date: 'October 17, 2023',
-      price: '9.90€',
-    },
-    {
-      id: 2,
-      title: 'Book title 1',
-      author: 'Book author 1',
-      date: 'October 17, 2023',
-      price: '9.90€',
-    },
-    {
-      id: 3,
-      title: 'Book title 1',
-      author: 'Book author 1',
-      date: 'October 17, 2023',
-      price: '9.90€',
-    },
-  ]);
+    const [wishlist, setWishlist] = useState([]); // Renamed for clarity
+    const apiUrl = process.env.REACT_APP_API_URL;
+    const token = localStorage.getItem('token'); // Assuming token is a string
+    const userId = JSON.parse(localStorage.getItem('userId'));
 
-  const deleteWishList = (id) => {
-    setWishList(wishList.filter(item => item.id !== id));  // 修改 WishList 为 wishList
-  };
+    useEffect(() => {
+        const fetchWishlist = async () => {
+            if (!token || !userId) {
+                toast.error('Please login to view your wishlist.');
+                return;
+            }
 
-  return (
-    <div className="container mx-auto p-2 mt-10">
-      <h2 className="text-2xl font-bold mb-6 text-left">WishList</h2>
+            const fetchUrl = `${apiUrl}/api/wishlist/${userId}`;
+            console.log('Fetching Wishlist from:', fetchUrl); // Debugging log
 
-      <table className="min-w-full overflow-hidden">
-        <thead className="text-gray-500 text-lg border-b">
-          <tr>
-            <th className="py-2 px-4 text-left" style={{ fontWeight: 'normal' }}>Book</th>
-            <th className="py-2 px-4 text-left" style={{ fontWeight: 'normal' }}>Date Added</th>
-            <th className="py-2 px-4 text-left" style={{ fontWeight: 'normal' }}>Price </th>
-            <th className="py-2 px-4 text-left" style={{ fontWeight: 'normal' }}> </th>
-            <th className="py-2 px-4 text-left" style={{ fontWeight: 'normal' }}>Delete</th>
-          </tr>
-        </thead>
-        <tbody>
-          {wishList.map((wishList) => (
-            <tr key={wishList.id} className="border-b">
-              <td className="py-3 px-4">
-                <p className="font-semibold">{wishList.title}</p>
-                <p className="text-sm text-gray-600">by {wishList.author}</p>
-              </td>
-              <td className="py-3 px-4">{wishList.date}</td>
-              <td className="py-3 px-4">{wishList.price}</td>
-              <td className="py-3 px-4">
-                <button className="px-4 py-2 bg-black text-white sm:rounded-full lg:rounded-full flex items-center hover:bg-gray-800">
-                  Add to cart
-                  <span className="ml-2"> <Icon icon="material-symbols:shopping-cart"></Icon></span>
-                </button>
-              </td>
-              <td className="py-3 px-4">
-                <button
-                  onClick={() => deleteWishList(wishList.id)}>
-                  <Icon icon="mdi:trashcan-outline" width="1.25rem" className="text-black hover:text-warning"></Icon>
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  );
+            try {
+                const response = await fetch(fetchUrl, {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json',
+                    },
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(errorData.message || 'Failed to fetch wishlist.');
+                }
+
+                const data = await response.json();
+                setWishlist(data);
+            } catch (error) {
+                console.error('Error fetching wishlist:', error);
+                toast.error(error.message || 'Failed to load wishlist.');
+            }
+        };
+
+        fetchWishlist();
+    }, [apiUrl, token, userId]);
+
+    if (!token || !userId) {
+        return <div>Please login to view your wishlist.</div>;
+    }
+
+    return (
+        <div className="container mx-auto p-2 mt-10 overflow-x-auto">
+            <h2 className="text-2xl font-bold mb-6 text-left">Wishlist</h2>
+
+            {wishlist.length === 0 ? (
+                <p>Your wishlist is empty.</p>
+            ) : (
+                <table className="overflow-hidden" style={{ backgroundColor: 'rgba(255, 255, 255, 0)' }}>
+                    <thead className="text-gray-500 text-lg border-b">
+                        <tr>
+                            <th className="py-2 px-4 text-left" style={{ fontWeight: 'normal' }}>Title</th>
+                            <th className="py-2 px-4 text-left" style={{ fontWeight: 'normal' }}>Author</th>
+                            <th className="py-2 px-4 text-left" style={{ fontWeight: 'normal' }}>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {wishlist.map((item) => (
+                            <tr key={item.id} className="border-b">
+                                <td className="py-3 px-4 text-lg">{item.title}</td>
+                                <td className="py-3 px-4">{item.author}</td>
+                                <td className="py-3 px-4">
+                                    {new Date(item.createdAt).toLocaleDateString('en-US', {
+                                        year: 'numeric',
+                                        month: 'long',
+                                        day: 'numeric'
+                                    })}
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            )}
+        </div>
+    );
 };
 
 export default WishList;

@@ -29,7 +29,7 @@ import Signup from './pages/signup';
 import AccountDetailsPage from './pages/account/account'
 import UserReviews from './pages/account/reviews'
 import OrderHistoryPage from './pages/account/orders'
-import WishList from './pages/account/wishlist'
+import WishlistPage from './pages/account/wishlist'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -67,7 +67,7 @@ function App() {
               {isAuthenticated && <Route path="/account" element={<AccountDetailsPage />} />}
               {isAuthenticated && <Route path="/account/reviews" element={<UserReviews />} />}
               {isAuthenticated && <Route path="/account/orders" element={<OrderHistoryPage />} />}
-              {isAuthenticated && <Route path="/account/wishList" element={<WishList />} />}
+              {isAuthenticated && <Route path="/account/wishList" element={<WishlistPage />} />}
 
               <Route path="/products/:productID" element={<ProductPage />} />
               <Route path="*" element={<NotFoundPage />} />

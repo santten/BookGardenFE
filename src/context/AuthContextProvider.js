@@ -1,16 +1,25 @@
-import { useState } from 'react'
-import AuthContext from './AuthContext'
+import { useState, useEffect } from 'react';
+import AuthContext from './AuthContext';
 
 const AuthContextProvider = ({ children }) => {
-    const user = localStorage.getItem("user")
-    const bool = user ? true : false
-    const [isAuthenticated, setIsAuthenticated] = useState(bool);
+  const user = JSON.parse(localStorage.getItem("user")); // Ensure you parse the user data
+  const bool = user ? true : false;
+  const [isAuthenticated, setIsAuthenticated] = useState(bool);
+  const [currentUser, setCurrentUser] = useState(user);
 
-    return (
-        <AuthContext.Provider value={{ isAuthenticated, setIsAuthenticated }}>
-            {children}
-        </AuthContext.Provider>
-    )
-}
+  useEffect(() => {
+    if (bool) {
+      setCurrentUser(user);
+    } else {
+      setCurrentUser(null);
+    }
+  }, [bool, user]);
 
-export default AuthContextProvider
+  return (
+    <AuthContext.Provider value={{ isAuthenticated, setIsAuthenticated, user: currentUser }}>
+      {children}
+    </AuthContext.Provider>
+  );
+};
+
+export default AuthContextProvider;
