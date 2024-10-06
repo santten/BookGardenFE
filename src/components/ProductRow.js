@@ -63,10 +63,10 @@ const ProductRow = (props) => {
         return (
             <div>
                 <h2 className="font-title text-[xx-large] my-[1rem]">{titleContent}</h2>
-                <div className="relative">
+                <div className="relative m-[1rem]">
                     {canScrollLeft && (
                         <button className="z-99 absolute left-0 top-0 bg-gradient-to-r from-white from-20% w-[4rem] h-[100%]" onClick={scrollLeft}>
-                            <Icon icon="weui:arrow-filled" flip="horizontal" height="3rem" className="hover:text-primary mr-[4rem]" />
+                            <Icon icon="weui:arrow-filled" flip="horizontal" height="3rem" className="hover:text-primary ml-[-1rem]" />
                         </button>
                     )}
                     {canScrollRight && (
