@@ -63,7 +63,7 @@ const ReviewMaking = () => {
                 setUserHasLeftReview(true)
                 setMakingReview(false)
             } else {
-                console.log("Error while handling form submit")
+                console.error("Error while handling form submit")
             }
         } catch (error) {
             console.error(error)

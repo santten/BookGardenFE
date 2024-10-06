@@ -24,7 +24,7 @@ function ProductPage() {
             .then((data) => {
                 setBookinfo(data);
             })
-            .catch((error) => console.log(error));
+            .catch((error) => console.error(error));
     }, [apiurl, productID]);
 
     return (

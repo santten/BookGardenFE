@@ -8,13 +8,13 @@ import './checkOutPage.css'; // CSS for styling the page
 function CheckOutPage() {
   const location = useLocation();
   const { totalPrice, totalItems } = location.state || {}; // Retrieve totalPrice and totalItems from state
- 
+
   const [proceedToPayment, setProceedToPayment] = useState(false);
   const [deliveryInfo, setDeliveryInfo] = useState(null);
 
   const apiurl = process.env.REACT_APP_API_URL;
   const token = JSON.parse(localStorage.getItem('token'));
-  const userId = JSON.parse(localStorage.getItem('userId'));  
+  const userId = JSON.parse(localStorage.getItem('userId'));
 
   if (!token || !userId) {
     toast.error('User is not authenticated.');
@@ -32,7 +32,7 @@ function CheckOutPage() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          user: userId,   
+          user: userId,
         }),
       });
 
@@ -41,12 +41,11 @@ function CheckOutPage() {
       }
 
       const orderData = await orderResponse.json();
-      console.log('Order created:', orderData);
+      // console.log('Order created:', orderData);
 
-      console.log('Cart cleared');
+      // console.log('Cart cleared');
       toast.success('Payment successful and order placed!');
 
-      // 在支付成功后，您可以跳转到订单历史页面
     } catch (error) {
       console.error('Error during payment and order creation:', error);
       toast.error('Payment failed or unable to create order.');
@@ -78,7 +77,6 @@ function CheckOutPage() {
         </>
       ) : (
         <PaymentForm onSubmit={(paymentDetails) => handlePayment(paymentDetails, deliveryInfo)} />
-        // <PaymentForm onSubmit={handlePayment} /> //{(paymentDetails) => console.log('Payment submitted', paymentDetails)}
       )}
     </div>
   );

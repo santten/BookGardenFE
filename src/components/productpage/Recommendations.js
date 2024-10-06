@@ -27,7 +27,7 @@ const Recommendations = (props) => {
 
                             setRecommendations(uniqueRecommendations);
                         })
-                        .catch((error) => console.log(error));
+                        .catch((error) => console.error(error));
                 })
             }
             catch (error) {

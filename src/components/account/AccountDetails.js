@@ -1,14 +1,14 @@
-import React, { useEffect, useState , useContext} from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { Icon } from '@iconify/react';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
-import AuthContext  from '../../context/AuthContext';
+import AuthContext from '../../context/AuthContext';
 
 function AccountDetails() {
   const apiurl = process.env.REACT_APP_API_URL
 
   const navigate = useNavigate();
-  const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
+  const { setIsAuthenticated } = useContext(AuthContext);
 
   // Personal information
   const [formData, setFormData] = useState({
@@ -27,44 +27,45 @@ function AccountDetails() {
   });
 
   // Fetch user details
-  const fetchUserDetails = async () => {
-    try {
-      const token = JSON.parse(localStorage.getItem('token'));
-      const userId = JSON.parse(localStorage.getItem('userId'));
-      
-      if (!token) {
-        console.error('No token found');
-        return;
-      }
-      
-      const response = await fetch(`${apiurl}/api/users/${userId}`, {
-        method: 'GET',
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        setFormData({
-          firstName: data.firstName,
-          lastName: data.lastName,
-          emailAddress: data.email,
-          username: data.username,
-          userId: data._id,  
-        });
-      } else {
-        console.error('Failed to fetch user details');
-      }
-    } catch (error) {
-      console.error('Error fetching user details:', error);
-    }
-  };
 
   useEffect(() => {
-    fetchUserDetails();  
-  }, []);
+    const fetchUserDetails = async () => {
+      try {
+        const token = JSON.parse(localStorage.getItem('token'));
+        const userId = JSON.parse(localStorage.getItem('userId'));
+
+        if (!token) {
+          console.error('No token found');
+          return;
+        }
+
+        const response = await fetch(`${apiurl}/api/users/${userId}`, {
+          method: 'GET',
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          setFormData({
+            firstName: data.firstName,
+            lastName: data.lastName,
+            emailAddress: data.email,
+            username: data.username,
+            userId: data._id,
+          });
+        } else {
+          console.error('Failed to fetch user details');
+        }
+      } catch (error) {
+        console.error('Error fetching user details:', error);
+      }
+    };
+
+    fetchUserDetails();
+  }, [apiurl]);
 
   // Handle form input changes
   const handleChange = (e) => {
@@ -173,12 +174,12 @@ function AccountDetails() {
           toast.success('Your account has been deleted successfully.');
           localStorage.removeItem('token');
           localStorage.removeItem('email');
-          localStorage.removeItem('userId');         
+          localStorage.removeItem('userId');
           navigate('/');
         } else {
           toast.success('Failed to delete your account. Please try again.');
 
-          
+
         }
       } catch (error) {
         console.error('Error deleting account:', error);
@@ -186,107 +187,107 @@ function AccountDetails() {
       }
     }
   };
-  
+
 
   return (
     <div className="w-3/4 p-8 my-12">
 
       {/* Personal information Section */}
-      <h3 className="text-2xl font-bold mb-6">Personal information</h3>
+      <h2 className="text-3xl font-title mb-6 text-left">Personal Information</h2>
       <div className="mb-8">
         <div className="flex mb-4">
           <div className="w-1/2 pr-2">
             <label htmlFor="firstName" className="block text-sm font-medium text-gray-700">First name<span className="text-red-500">*</span></label>
             <input id="firstName"
-                   type="text"
-                   name="firstName"
-                   value={formData.firstName}
-                   onChange={handleChange}
-                   className="mt-1 p-2 block w-full border border-gray-300 rounded-half" />
+              type="text"
+              name="firstName"
+              value={formData.firstName}
+              onChange={handleChange}
+              className="mt-1 p-2 block w-full border border-gray-300 rounded-half" />
           </div>
           <div className="w-1/2 pl-2">
             <label htmlFor="lastName" className="block text-sm font-medium text-gray-700">Last name<span className="text-red-500">*</span></label>
             <input id="lastName"
-                   type="text"
-                   name="lastName"
-                   value={formData.lastName}
-                   onChange={handleChange}
-                   className="mt-1 p-2 block w-full border border-gray-300 rounded-half" />
+              type="text"
+              name="lastName"
+              value={formData.lastName}
+              onChange={handleChange}
+              className="mt-1 p-2 block w-full border border-gray-300 rounded-half" />
           </div>
         </div>
         <div className="w-1/2 mb-4">
           <label htmlFor="emailAddress" className="block text-sm font-medium text-gray-700">Email address<span className="text-red-500">*</span></label>
           <input id="emailAddress"
-                 type="email"
-                 name="emailAddress"
-                 value={formData.emailAddress}
-                 onChange={handleChange}
-                 className="mt-1 p-2 block w-full border border-gray-300 rounded-half" />
+            type="email"
+            name="emailAddress"
+            value={formData.emailAddress}
+            onChange={handleChange}
+            className="mt-1 p-2 block w-full border border-gray-300 rounded-half" />
         </div>
         <div className="w-1/2 mb-4">
           <label htmlFor="username" className="block text-sm font-medium text-gray-700">Username<span className="text-red-500">*</span></label>
           <input id="username"
-                 type="text"
-                 name="username"
-                 value={formData.username}
-                 onChange={handleChange}
-                 className="mt-1 p-2 block w-full border border-gray-300 rounded-half" />
+            type="text"
+            name="username"
+            value={formData.username}
+            onChange={handleChange}
+            className="mt-1 p-2 block w-full border border-gray-300 rounded-half" />
         </div>
       </div>
 
       {/* Password change Section */}
-      <h3 className="text-2xl font-bold mb-6">Password change</h3>
+      <h2 className="text-3xl font-title mb-6 text-left">Password Change</h2>
       <div className="mb-8">
         <div className="w-1/2 mb-4">
           <label htmlFor="currentPassword" className="block text-sm font-medium text-gray-700">Current password</label>
           <input id="currentPassword"
-                 type="password"
-                 name="currentPassword"
-                 value={passwordData.currentPassword}
-                 onChange={handlePasswordChange}
-                 placeholder="Enter your current password"
-                 className="mt-1 p-2 block w-full border border-gray-300 rounded-half" />
+            type="password"
+            name="currentPassword"
+            value={passwordData.currentPassword}
+            onChange={handlePasswordChange}
+            placeholder="Enter your current password"
+            className="mt-1 p-2 block w-full border border-gray-300 rounded-half" />
         </div>
         <div className="w-1/2 mb-4">
           <label htmlFor="newPassword" className="block text-sm font-medium text-gray-700">New password</label>
           <input id="newPassword"
-                 type="password"
-                 name="newPassword"
-                 value={passwordData.newPassword}
-                 onChange={handlePasswordChange}
-                 placeholder="Enter your new password"
-                 className="mt-1 p-2 block w-full border border-gray-300 rounded-half" />
+            type="password"
+            name="newPassword"
+            value={passwordData.newPassword}
+            onChange={handlePasswordChange}
+            placeholder="Enter your new password"
+            className="mt-1 p-2 block w-full border border-gray-300 rounded-half" />
         </div>
         <div className="w-1/2 mb-4">
           <label htmlFor="confirmNewPassword" className="block text-sm font-medium text-gray-700">Confirm new password</label>
           <input id="confirmNewPassword"
-                 type="password"
-                 name="confirmNewPassword"
-                 value={passwordData.confirmNewPassword}
-                 onChange={handlePasswordChange}
-                 placeholder="Confirm your new password"
-                 className="mt-1 p-2 block w-full border border-gray-300 rounded-half" />
+            type="password"
+            name="confirmNewPassword"
+            value={passwordData.confirmNewPassword}
+            onChange={handlePasswordChange}
+            placeholder="Confirm your new password"
+            className="mt-1 p-2 block w-full border border-gray-300 rounded-half" />
         </div>
       </div>
 
       {/* Save button */}
       <button className="text-white py-2 px-4 rounded-full flex items-center space-x-2 bg-grey-dark hover:bg-black" onClick={handleSave}>
         <span className="font-semibold">Save</span>
-        <span className="ml-2"><Icon icon="material-symbols:save-outline" width="24px"/></span>
+        <span className="ml-2"><Icon icon="material-symbols:save-outline" width="24px" /></span>
       </button>
 
       {/* Delete account Section */}
       <div className="mt-8">
-        <h3 className="text-xl font-bold mb-2">Delete account</h3>
+        <h2 className="text-3xl font-title mb-6 text-left">Delete Account</h2>
         <p className="text-sm text-gray-600 mb-4">Once you delete your account, there is no going back. Please be certain.</p>
-        <button 
+        <button
           className="bg-warning text-white py-2 px-4 rounded-full font-semibold hover:bg-[#d6433b]"
           onClick={deleteAccount}
         >
-            Delete your account
+          Delete your account
         </button>
       </div>
-    
+
 
     </div>
   );
