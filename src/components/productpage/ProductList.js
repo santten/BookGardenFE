@@ -219,7 +219,7 @@ function ProductList(props) {
                     </div>
                 </header>
                 <main className="flex flex-col mx-auto">
-                    <div className="flex flex-row flex-wrap justify-around mx-auto px-auto gap-[2rem]">
+                    <div className="flex flex-row flex-wrap justify-around mx-auto px-auto gap-[0.75rem]">
                         {displayedItems}
                     </div>
 
