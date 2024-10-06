@@ -11,9 +11,8 @@ function BrowseProducts() {
             .then((response) => response.json())
             .then((data) => {
                 setBooks(data);
-                console.log(data, books);
             })
-            .catch((error) => console.log(error));
+            .catch((error) => console.error(error));
     }, []);
 
     return (

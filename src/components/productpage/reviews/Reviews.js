@@ -60,7 +60,7 @@ const Reviews = (props) => {
                 .then((data) => {
                     setReviews(data);
                 })
-                .catch((error) => console.log(error));
+                .catch((error) => console.error(error));
         }
         fetchReviews()
     }, [makingReview, userHasLeftReview])

@@ -42,7 +42,7 @@ const OrderHistory = () => {
 
     return (
         <div className="container mx-auto p-2 mt-10 overflow-x-auto">
-            <h2 className="text-2xl font-bold mb-6 text-left">Order History</h2>
+            <h2 className="text-3xl font-title mb-6 text-left">Order History</h2>
 
             <table className="my-[1rem] w-[95%]">
                 <thead className="text-grey-dark text-semibold text-md border-b border-b-grey-dark border-b-[2px]">

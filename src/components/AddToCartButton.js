@@ -26,7 +26,7 @@ function AddToCartButton({ book_id }) {
     })
     .then(response => response.json())
     .then(data => {
-      console.log('Cart update:', data);
+      // console.log('Cart update:', data);
       toast.success('Book added to shopping cart successfully');
     })
     .catch(error => {
@@ -36,7 +36,7 @@ function AddToCartButton({ book_id }) {
   };
 
   const handleAddToCart = () => {
-    console.log('Add to cart button clicked'); //Test
+    // console.log('Add to cart button clicked');
     addToCart();   
   }
 

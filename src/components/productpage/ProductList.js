@@ -49,7 +49,7 @@ function ProductList(props) {
             .then((data) => {
                 setBookArray(data);
             })
-            .catch((error) => console.log(error));
+            .catch((error) => console.error(error));
     }, [category]);
 
     const reallyOnlyUnique = (value, index, array) => array.indexOf(value) === index;
@@ -67,7 +67,7 @@ function ProductList(props) {
                 })
                 setUniqueGenres(genresArr.filter(reallyOnlyUnique).sort());
             })
-            .catch((error) => console.log(error));
+            .catch((error) => console.error(error));
     }, []);
 
     const [sorting, setSorting] = useState('')

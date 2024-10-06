@@ -28,13 +28,13 @@ const Login = () => {
 
   return (
     <div className="w-full flex items-center justify-center my-16">
-      <div className="p-8 border-2 border-grey rounded-4xl max-w-[450px] w-full bg-grey-light">
+      <div className="p-8 mb-[2rem] shadow-md rounded-4xl max-w-[450px] w-full bg-grey-light">
         <h2 className="text-4xl mb-4 font-title text-center">
           Login to <span className="text-primary-dark">Book Garden</span>
         </h2>
         <form onSubmit={handleFormSubmit}>
           <div className="mb-4">
-            <label className="block text-gray-700">Email:</label>
+            <label className="block text-grey-dark">Email:</label>
             <input
               {...email}
               type="email"
@@ -44,7 +44,7 @@ const Login = () => {
             />
           </div>
           <div className="mb-4">
-            <label className="block text-gray-700">Password:</label>
+            <label className="block text-grey-dark">Password:</label>
             <div className='relative'>
               <input
                 type={passwordVisible ? 'text' : 'password'}

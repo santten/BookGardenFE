@@ -6,18 +6,18 @@ import img from '../../images/clover_tilted.svg';
 const AccountDetailsPage = () => {
   return (
     <div className="relative overflow-hidden min-h-[77vh]">
-      <div className="bigContainer flex flex-row gap-[1rem] mx-auto min-h-90vh">
-        <div className="basis-1/4">
+      <div className="containerBig flex flex-col md:flex-row gap-[1rem] mx-auto">
+        <div>
           <MyAccount />
         </div>
-        <div className="basis-3/4">
+        <div className="w-full">
           <AccountDetails />
         </div>
-      </div>
+      </div >
 
-      <img src={img} alt="" className="z-[-999] absolute right-[-10rem] bottom-[-10rem]" />
+      <img src={img} className="z-[-999] absolute right-[-10rem] bottom-[-10rem]" alt="" />
 
-    </div>
+    </div >
   )
 }
 

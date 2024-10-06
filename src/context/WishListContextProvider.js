@@ -24,7 +24,6 @@ const WishListContextProvider = ({ children }) => {
             const data = await response.json()
             setWishList(data)
         }
-        console.log("RUNNING GET FETCH...")
         fetchUsersWishList()
     }, [reloadWishList])
 

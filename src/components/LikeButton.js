@@ -7,8 +7,10 @@ function LikeButton({ item_id, type }) {
   const [isOnWishList, setIsOnWishList] = useState(false)
 
   useEffect(() => {
-    const filteredList = wishList.filter(item => item._id === item_id)
-    if (filteredList.length > 0) { setIsOnWishList(true) }
+    if (wishList.length > 1) {
+      const filteredList = wishList.filter(item => item._id === item_id)
+      if (filteredList.length > 0) { setIsOnWishList(true) }
+    }
   }, [item_id, wishList])
 
   const user_id = JSON.parse(localStorage.getItem("userId"))

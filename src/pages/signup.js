@@ -43,13 +43,13 @@ function Signup() {
 
   return (
     <div className="w-full flex items-center justify-center my-4">
-      <div className="p-8 border-2 border-grey rounded-4xl max-w-[450px] w-full bg-grey-light">
+      <div className="p-8 mb-[2rem] shadow-md rounded-4xl max-w-[450px] w-full bg-grey-light">
         <h2 className="text-4xl mb-4 font-title text-center">
           Register to <span className="text-primary-dark">Book Garden</span>
         </h2>
         <form onSubmit={handleFormSubmit}>
           <div className="mb-4">
-            <label className="block text-gray-700">First Name:</label>
+            <label className="block text-grey-dark">First Name:</label>
             <input
               {...firstName}
               placeholder="Enter your first name"
@@ -58,7 +58,7 @@ function Signup() {
             />
           </div>
           <div className="mb-4">
-            <label className="block text-gray-700">Last Name:</label>
+            <label className="block text-grey-dark">Last Name:</label>
             <input
               {...lastName}
               placeholder="Enter your last name"
@@ -67,7 +67,7 @@ function Signup() {
             />
           </div>
           <div className="mb-4">
-            <label className="block text-gray-700">Username:</label>
+            <label className="block text-grey-dark">Username:</label>
             <input
               {...username}
               placeholder="Enter your last name"
@@ -76,7 +76,7 @@ function Signup() {
             />
           </div>
           <div className="mb-4">
-            <label className="block text-gray-700">Email Address:</label>
+            <label className="block text-grey-dark">Email Address:</label>
             <input
               {...email}
               placeholder="Enter your email address"
@@ -85,7 +85,7 @@ function Signup() {
             />
           </div>
           <div className="mb-4">
-            <label className="block text-gray-700">Password:</label>
+            <label className="block text-grey-dark">Password:</label>
             <div className='relative'>
               <input
                 type={passwordVisible ? 'text' : 'password'}
@@ -113,7 +113,7 @@ function Signup() {
             </div>
           </div>
           <div className="mb-4">
-            <label className="block text-gray-700">Confirm Password:</label>
+            <label className="block text-grey-dark">Confirm Password:</label>
             <div className='relative'>
               <input
                 type={confirmPasswordVisible ? 'text' : 'password'}

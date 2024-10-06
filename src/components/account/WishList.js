@@ -1,13 +1,13 @@
 // components/WishList.js
-import { useState, useEffect, useContext } from 'react';
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import WishListItem from './WishListItem';
 import WishListContext from '../../context/WishListContext';
 
 const WishList = () => {
-    const { wishList, reloadWishList, setReloadWishList} = useContext(WishListContext)
+    const { wishList, reloadWishList, setReloadWishList } = useContext(WishListContext)
 
-    return (<div className="container mx-auto mb-[2rem] p-2 bg-white mt-10">
+    return (<div className="container mx-auto mb-[2rem] p-2 mt-10">
         <h2 className="text-3xl font-title text-left">Wishlist</h2>
         {wishList.length >= 1 ?
             <table className="my-[1rem] w-[95%]">

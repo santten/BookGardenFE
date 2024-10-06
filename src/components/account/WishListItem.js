@@ -6,8 +6,7 @@ import WishListContext from '../../context/WishListContext';
 
 const WishListItem = ({ index, item }) => {
     const { reloadWishList, setReloadWishList } = useContext(WishListContext)
-    console.log(item)
-
+    
     // DELETE selected review fetch
     const deleteReview = async (e) => {
         const user_id = JSON.parse(localStorage.getItem("userId"))

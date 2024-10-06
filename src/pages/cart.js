@@ -34,7 +34,7 @@ function Cart() {
           throw new Error('Failed to fetch cart items');
         }
         const data = await response.json();
-        console.log('Fetched cart items:', data);
+        // console.log('Fetched cart items:', data);
         setCartItems(data.products);   
       } catch (error) {
         console.error('Error fetching cart items:', error);
@@ -67,7 +67,7 @@ function Cart() {
     })
     .then(response => response.json())
     .then(data => {
-      console.log('Updated cart item:', data);  
+      // console.log('Updated cart item:', data);  
     })
     .catch(error => {
       console.error('Error updating cart item:', error);
@@ -102,7 +102,7 @@ function Cart() {
     })
     .then(response => response.json())
     .then(data => {
-      console.log('Updated cart item:', data);  
+      // console.log('Updated cart item:', data);  
     })
     .catch(error => {
       console.error('Error updating cart item:', error);
@@ -129,7 +129,7 @@ function Cart() {
         console.error('Error removing item from cart:', data.error);
         toast.error('Failed to remove item from cart');
       } else {
-        console.log('Item removed from cart:', data);
+        // console.log('Item removed from cart:', data);
         toast.success('Item successfully removed');
       }
     })
