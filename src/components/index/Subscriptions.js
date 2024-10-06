@@ -1,26 +1,44 @@
 import React, { useState } from 'react';
 import { Icon } from '@iconify/react';
 import subscriptions from '../../images/subscriptions-section.png';
+import { toast } from 'react-toastify';
 
 const Subscriptions = () => {
   const [email, setEmail] = useState('');
+  const apiurl = process.env.REACT_APP_API_URL
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission (e.g., send email to backend)
-    alert(`Subscribed with email: ${email}`);
+
+    try {
+      const response = await fetch(`${apiurl}/api/newsletter/add`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      if (response.ok) {
+        toast.success('Subscription successful! Thank you for subscribing.');
+        setEmail("");  
+      } else {
+        const data = await response.json();
+        console.error(`Error: ${data.message}`);
+      }
+    } catch (error) {
+      toast.error('An error occurred. Please try again later.');
+
+    }
   };
 
   return (
     <div className="bg-primary py-20"
       style={{
         backgroundImage: `url(${subscriptions})`,
-        //backgroundSize: 'cover', 
         backgroundPosition: 'left',
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'contain',
-
-
       }}>
 
       <div className="container text-center"> 
@@ -36,6 +54,7 @@ const Subscriptions = () => {
             placeholder="Enter your email"
             className="px-4 py-2 w-80 rounded-full border border-gray-300 shadow-md focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-gray-500"
             onChange={(e) => setEmail(e.target.value)}
+            value={email}   
             required
           />
 
@@ -44,8 +63,8 @@ const Subscriptions = () => {
             className="bg-black text-white px-6 py-2 rounded-full flex items-center space-x-2 hover:bg-gray-800 focus:ring-2 focus:ring-green-500"
           >
             <span className="font-semibold">Subscribe</span>
-            <Icon icon="fluent:send-24-filled"></Icon>
-            </button>
+            <Icon icon="fluent:send-24-filled" />
+          </button>
         </form>
       </div>
     </div>
