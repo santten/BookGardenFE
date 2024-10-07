@@ -147,7 +147,7 @@ function ProductList(props) {
     return (
         <div className="containerBig flex flex-col md:grid md:grid-cols-[20%_auto] gap-[1.5rem] mb-[100px] mt-6">
             <div>
-                <section className="bg-grey-light rounded-[32px] min-h-[10rem] p-[1rem]">
+                <section className="bg-grey-light p-6 rounded-[32px] min-h-[10rem]">
                     <h5 className="font-title text-[1.5rem] mb-[0.5rem]">Category</h5>
 
                     <ul className="flex flex-col">
@@ -219,7 +219,7 @@ function ProductList(props) {
                     </div>
                 </header>
                 <main className="flex flex-col mx-auto">
-                    <div className="grid grid-cols-[repeat(auto-fill,220px)] gap-[2rem] justify-center">
+                    <div className="grid grid-cols-[repeat(auto-fill,210px)] gap-[2rem] justify-center">
                         {displayedItems}
                     </div>
 

@@ -30,7 +30,7 @@ const WishListItem = ({ index, item }) => {
 
     return (
         <tr key={`review-${index}`} className="text-grey-dark text-md border-b border-b-grey-dark border-b-[1px]">
-            <td className="align-top py-3 pl-4 pr-2 min-w-[14rem]">
+            <td className="align-top py-3 pl-4 pr-2 md:min-w-[14rem]">
                 <Link className="hover:text-primary-dark" to={`../products/${item._id}`}>
                     <b>{item.title}</b> by {item.author}
                 </Link>

@@ -52,19 +52,19 @@ const ReviewRow = ({ index, item, reloadReviews, setReloadReviews }) => {
     };
 
     return (
-        <tr key={`review-${index}`} className="text-grey-dark text-md border-b border-b-grey-dark border-b-[1px]">
-            <td className="align-top py-3 pl-4 pr-2 min-w-[14rem]">
+        <tr key={`review-${index}`} className="flex flex-col rounded-[1rem] md:rounded-0 mb-[1rem] md:table-row text-black md:text-grey-dark text-md md:border-b md:border-b-grey-dark bg-grey-light shadow-md md:shadow-none md:bg-transparent pl-[1rem] md:pl-0 pt-[1rem] md:pt-0 md:border-b-[1px]">
+            <td className="align-top py-3 md:pl-4 pr-2 md:min-w-[14rem]">
                 <Link className="hover:text-primary-dark" to={`../products/${item.book._id}`}>
                     <b>{item.book.title}</b> by {item.book.author}
                 </Link>
             </td>
-            <td className="align-top py-3 px-2 align-top">
+            <td className="md:py-3 md:px-2 align-top">
                 {formatDate(item.updatedAt)}
             </td>
-            <td className="px-2 align-top py-4 min-w-[6rem]">
+            <td className="md:px-2 align-top py-4 md:min-w-[6rem]">
                 <Stars height={"1rem"} color="grey" rating={item.rating} />
             </td>
-            <td className="px-2 align-top py-3">
+            <td className="md:px-2 align-top md:py-3">
                 {renderPossiblyLongText(
                     `${item.comment}`,
                     commentReadMore, setCommentReadMore, 72)}

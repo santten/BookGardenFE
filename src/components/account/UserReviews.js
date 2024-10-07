@@ -34,7 +34,7 @@ const UserReviews = () => {
         {userReviews.length >= 1 ?
             <table className="my-[1rem] w-[95%]">
                 <thead className="text-grey-dark text-semibold text-md border-b border-b-grey-dark border-b-[2px]">
-                    <tr>
+                    <tr className="hidden md:table-row">
                         <th className="py-2 pl-4 pr-2 text-left">Book</th>
                         <th className="py-2 px-2 text-left">Date</th>
                         <th className="py-2 px-2 text-left">Rating</th>
