@@ -1,4 +1,4 @@
-// src/ScrollToTop.jsx
+// src/components/ScrollToTop.jsx
 // code from https://www.kindacode.com/article/react-router-dom-scroll-to-top-on-route-change/
 
 import { useEffect } from "react";

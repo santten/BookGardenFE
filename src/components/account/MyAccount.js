@@ -26,7 +26,7 @@ const MyAccount = ({ activepage="accountdetails" }) => {
   };
   
   return (
-    <div className="w-60 p-4 bg-grey-light rounded-3xl mx-auto mt-8">
+    <div className="w-[100%] md:w-60 p-4 bg-grey-light rounded-3xl mx-auto mt-8">
       <h2 className="font-title text-[1.5rem] mb-4">My Account</h2>
       <ul className="space-y-2 text-black">
         <li>

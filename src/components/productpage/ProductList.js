@@ -192,7 +192,7 @@ function ProductList(props) {
                         /></div>
                 </section>
             </div >
-            <div className="w-fit">
+            <div>
                 <header className="flex flex-row items-center">
                     <h3 className="font-title text-[40px] mr-auto">{category}</h3>
                     <div className="flex flex-col my-[0.5rem] gap-[0.5rem] md:flex-row md:ml-auto">
@@ -219,7 +219,7 @@ function ProductList(props) {
                     </div>
                 </header>
                 <main className="flex flex-col mx-auto">
-                    <div className="flex flex-row flex-wrap justify-around mx-auto px-auto gap-[0.75rem]">
+                    <div className="grid grid-cols-[repeat(auto-fill,220px)] gap-[2rem] justify-center">
                         {displayedItems}
                     </div>
 

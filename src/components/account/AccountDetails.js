@@ -193,8 +193,8 @@ function AccountDetails() {
       {/* Personal information Section */}
       <h2 className="text-3xl font-title mb-6 text-left">Personal Information</h2>
       <div className="mb-8">
-        <div className="flex mb-4">
-          <div className="w-1/2 pr-2">
+        <div className="flex flex-col gap-4 md:flex-row mb-4">
+          <div className="w-[100%] md:w-1/2">
             <label htmlFor="firstName" className="block text-sm font-medium text-gray-700">First name<span className="text-red-500">*</span></label>
             <input id="firstName"
               type="text"
@@ -203,7 +203,7 @@ function AccountDetails() {
               onChange={handleChange}
               className="mt-1 p-2 block w-full border border-gray-300 rounded-half" />
           </div>
-          <div className="w-1/2 pl-2">
+          <div className="w-[100%] md:w-1/2">
             <label htmlFor="lastName" className="block text-sm font-medium text-gray-700">Last name<span className="text-red-500">*</span></label>
             <input id="lastName"
               type="text"
@@ -213,7 +213,7 @@ function AccountDetails() {
               className="mt-1 p-2 block w-full border border-gray-300 rounded-half" />
           </div>
         </div>
-        <div className="w-1/2 mb-4">
+        <div className="w-[100%] md:w-1/2 mb-4">
           <label htmlFor="emailAddress" className="block text-sm font-medium text-gray-700">Email address<span className="text-red-500">*</span></label>
           <input id="emailAddress"
             type="email"
@@ -222,7 +222,7 @@ function AccountDetails() {
             onChange={handleChange}
             className="mt-1 p-2 block w-full border border-gray-300 rounded-half" />
         </div>
-        <div className="w-1/2 mb-4">
+        <div className="w-[100%] md:w-1/2 mb-4">
           <label htmlFor="username" className="block text-sm font-medium text-gray-700">Username<span className="text-red-500">*</span></label>
           <input id="username"
             type="text"
@@ -236,7 +236,7 @@ function AccountDetails() {
       {/* Password change Section */}
       <h2 className="text-3xl font-title mb-6 text-left">Password Change</h2>
       <div className="mb-8">
-        <div className="w-1/2 mb-4">
+        <div className="w-[100%] md:w-1/2 mb-4">
           <label htmlFor="currentPassword" className="block text-sm font-medium text-gray-700">Current password</label>
           <input id="currentPassword"
             type="password"
@@ -246,7 +246,7 @@ function AccountDetails() {
             placeholder="Enter your current password"
             className="mt-1 p-2 block w-full border border-gray-300 rounded-half" />
         </div>
-        <div className="w-1/2 mb-4">
+        <div className="w-[100%] md:w-1/2 mb-4">
           <label htmlFor="newPassword" className="block text-sm font-medium text-gray-700">New password</label>
           <input id="newPassword"
             type="password"
@@ -256,7 +256,7 @@ function AccountDetails() {
             placeholder="Enter your new password"
             className="mt-1 p-2 block w-full border border-gray-300 rounded-half" />
         </div>
-        <div className="w-1/2 mb-4">
+        <div className="w-[100%] md:w-1/2 mb-4">
           <label htmlFor="confirmNewPassword" className="block text-sm font-medium text-gray-700">Confirm new password</label>
           <input id="confirmNewPassword"
             type="password"

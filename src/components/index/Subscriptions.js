@@ -36,23 +36,21 @@ const Subscriptions = () => {
     <div className="bg-primary py-20"
       style={{
         backgroundImage: `url(${subscriptions})`,
-        backgroundPosition: 'left',
+        backgroundPosition: 'bottom left',
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'contain',
       }}>
 
       <div className="container text-center"> 
-        <h2 className="text-2xl sm:text-4xl lg:text-[64px] mb-6 font-title"  
-            style={{ whiteSpace: 'nowrap' }}
-        >
+        <h2 className="text-2xl sm:text-4xl lg:text-[64px] mb-6 font-title">
           WOULD YOU LIKE TO JOIN <span className="text-primary-dark">NEWSLETTERS</span>?
         </h2>
 
-        <form onSubmit={handleSubmit} className="flex justify-center items-center space-x-4">
+        <form onSubmit={handleSubmit} className="flex flex-col md:flex-row justify-center items-center space-x-4">
           <input
             type="email"
             placeholder="Enter your email"
-            className="px-4 py-2 w-80 rounded-full border border-gray-300 shadow-md focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-gray-500"
+            className="px-4 py-2 w-80 rounded-full border border-grey shadow-sm focus:outline-none focus:ring-2 focus:ring-grey-dark"
             onChange={(e) => setEmail(e.target.value)}
             value={email}   
             required
@@ -60,7 +58,7 @@ const Subscriptions = () => {
 
           <button
             type="submit"
-            className="bg-black text-white px-6 py-2 rounded-full flex items-center space-x-2 hover:bg-gray-800 focus:ring-2 focus:ring-green-500"
+            className="bg-black text-white px-6 py-2 rounded-full flex items-center my-[1rem] space-x-2 hover:bg-grey-dark"
           >
             <span className="font-semibold">Subscribe</span>
             <Icon icon="fluent:send-24-filled" />

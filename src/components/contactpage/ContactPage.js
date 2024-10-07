@@ -2,15 +2,15 @@ import React from 'react';
 
 function ContactPage() {
     return (
-        <section className='w-full'>
+        <section className='container'>
             <div className="flex flex-col w-[96vw] md:w-[60vw] mx-auto">
-                <h1 className="font-title text-4xl my-[1rem]">
+                <h1 className="font-title text-4xl mx-[2rem]">
                     <span className="text-secondary">CONTACT</span>
                     <span> US</span>
                 </h1>
 
                 {/* Contact Section */}
-                <div className="mb-[2rem]">
+                <div className="m-[2rem]">
                     <div className="flex flex-col md:flex-row gap-[1rem]">
                         {/* Map Embed */}
                         <div className="w-[100%]">

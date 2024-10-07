@@ -57,7 +57,7 @@ const CustomerReviews = () => {
   };
 
   return (
-    <section className="py-12 max-w-max mx-auto">
+    <section className="pb-12 max-w-max mx-auto">
       <div className="flex justify-between items-center mb-8">
 
         <h2 className="ml-[25px] text-3xl text-black font-title text-[48px]">
