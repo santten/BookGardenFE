@@ -71,7 +71,7 @@ function CheckOutPage() {
               <p>Total Items: <strong>{totalItems}</strong></p>
               <p>Total Price: <strong>${totalPrice.toFixed(2)}</strong></p>
             </div>
-            <div className = "hover:bg-primary-dark">
+            <div>
               <DeliveryForm onSubmit={handleProceedToPayment} />
             </div>
           </div>
