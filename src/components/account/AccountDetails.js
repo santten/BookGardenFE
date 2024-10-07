@@ -100,7 +100,7 @@ function AccountDetails() {
         toast.success('User details updated successfully');
 
       } else {
-        toast.success('Failed to update user details');
+        toast.error('Failed to update user details');
 
       }
     } catch (error) {
@@ -114,7 +114,7 @@ function AccountDetails() {
 
     // Ensure new password and confirm password match
     if (passwordData.newPassword !== passwordData.confirmNewPassword) {
-      toast.success('New password and confirm password do not match');
+      toast.error('New password and confirm password do not match');
 
       return;
     }
@@ -135,7 +135,7 @@ function AccountDetails() {
       if (response.ok) {
         toast.success('Password updated successfully');
       } else {
-        toast.success('Failed to update password');
+        toast.error('Failed to update password');
 
       }
     } catch (error) {
@@ -177,13 +177,11 @@ function AccountDetails() {
           localStorage.removeItem('userId');
           navigate('/');
         } else {
-          toast.success('Failed to delete your account. Please try again.');
-
-
+          toast.error('Failed to delete your account. Please try again.');         
         }
       } catch (error) {
         console.error('Error deleting account:', error);
-        toast.success('An error occurred while deleting your account.');
+        toast.error('An error occurred while deleting your account.');
       }
     }
   };
