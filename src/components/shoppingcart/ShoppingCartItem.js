@@ -87,7 +87,7 @@ ShoppingCartItem.propTypes = {
       price: PropTypes.number.isRequired,
       image: PropTypes.string.isRequired,
       rating: PropTypes.number.isRequired,
-      year: PropTypes.string.isRequired,
+      year: PropTypes.number.isRequired,
       ISBN: PropTypes.string.isRequired,
       language: PropTypes.string.isRequired,
       binding: PropTypes.string.isRequired,

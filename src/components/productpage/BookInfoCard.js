@@ -8,10 +8,10 @@ import noCover from "../../images/noCover.svg"
 
 function BookInfoCard(props) {
     const apiurl = process.env.REACT_APP_API_URL;
-    const { _id, image, title, author, genre, rating, year, publisher, ISBN, binding, pages, language, price, description } = props.bookinfo
-    const [isExpanded, setIsExpanded] = useState(false)
-    const { isAuthenticated } = useContext(AuthContext)
-    const cover = image !== undefined ? (apiurl + image) : noCover
+    const { _id, image, title, author, genre, rating, year, publisher, ISBN, binding, pages, language, price, description } = props.bookinfo;
+    const [isExpanded, setIsExpanded] = useState(false);
+    const { isAuthenticated } = useContext(AuthContext);
+    const cover = image !== undefined ? (apiurl + image) : noCover;
 
     const renderDescription = () => {
         const maxLength = 480
@@ -31,7 +31,7 @@ function BookInfoCard(props) {
     return (
         <div className="flex flex-col md:flex-row gap-[1rem] bg-white containerSmall justify-center my-6">
             <div className="flex flex-col gap-[0.5rem] items-center align-center">
-                <img src={cover} className="max-w-[260px]"></img>
+                <img src={cover} className="max-w-[260px]" alt="Book cover"></img>
                 <div>
                     {(rating < 1) ? <p className="text-grey-dark">(No ratings)</p> : <div className="flex w-[100%]">
                         <Stars rating={rating} className="flex-start" height="32px" background="white" />
