@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate  } from 'react-router-dom';
 import DeliveryForm from '../components/payment/DeliveryForm';
 import PaymentForm from '../components/payment/PaymentForm'; // Import the PaymentForm component
 import { toast } from 'react-toastify';
@@ -8,6 +8,7 @@ import './checkOutPage.css'; // CSS for styling the page
 function CheckOutPage() {
   const location = useLocation();
   const { totalPrice, totalItems } = location.state || {}; // Retrieve totalPrice and totalItems from state
+  const navigate = useNavigate(); // Initialize useNavigate
 
   const [proceedToPayment, setProceedToPayment] = useState(false);
   const [deliveryInfo, setDeliveryInfo] = useState(null);
@@ -41,10 +42,10 @@ function CheckOutPage() {
       }
 
       const orderData = await orderResponse.json();
-      // console.log('Order created:', orderData);
-
-      // console.log('Cart cleared');
+      // Payment success, show a success message
       toast.success('Payment successful and order placed!');
+      // Navigate to the home page after successful payment
+      navigate('/'); 
 
     } catch (error) {
       console.error('Error during payment and order creation:', error);
@@ -64,13 +65,13 @@ function CheckOutPage() {
     <div className="checkout-page">
       {!proceedToPayment ? (
         <>
-          <h2>Your Shopping Cart</h2>
+          <h2 className="font-title" >Your Shopping Cart</h2>
           <div className="cart-summary">
             <div className="summary-details">
               <p>Total Items: <strong>{totalItems}</strong></p>
               <p>Total Price: <strong>${totalPrice.toFixed(2)}</strong></p>
             </div>
-            <div>
+            <div className = "hover:bg-primary-dark">
               <DeliveryForm onSubmit={handleProceedToPayment} />
             </div>
           </div>
