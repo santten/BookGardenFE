@@ -26,7 +26,7 @@ function AddToCartButton({ book_id }) {
     })
     .then(response => response.json())
     .then(data => {
-      console.log('Cart update:', data);
+      // console.log('Cart update:', data);
       toast.success('Book added to shopping cart successfully');
     })
     .catch(error => {
@@ -36,13 +36,13 @@ function AddToCartButton({ book_id }) {
   };
 
   const handleAddToCart = () => {
-    console.log('Add to cart button clicked'); //Test
+    // console.log('Add to cart button clicked');
     addToCart();   
   }
 
   return (
     <div onClick={handleAddToCart}
-      className="text-center px-[1rem] py-[0.5rem] bg-black w-max rounded-[99px] hover:bg-secondary">
+      className="text-center flex flex-row items-center px-[0.75rem] md:px-[1rem] py-[0.5rem] bg-black w-max rounded-[99px] hover:bg-secondary">
       <p className="text-base text-white font-semibold inline">Add To Cart&ensp;</p>
       <Icon icon="material-symbols:shopping-cart" width="1.25rem" className="text-white inline" />
     </div>

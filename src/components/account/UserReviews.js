@@ -25,12 +25,11 @@ const UserReviews = () => {
 
             const data = await response.json()
             setUserReviews(data)
-            console.log("userReviews", userReviews)
         }
         fetchUsersReviews()
     }, [reloadReviews])
 
-    return (<div className="container mx-auto mb-[2rem] p-2 bg-white mt-10">
+    return (<div className="container mx-auto mb-[2rem] p-2 mt-10">
         <h2 className="text-3xl font-title text-left">Review history</h2>
         {userReviews.length >= 1 ?
             <table className="my-[1rem] w-[95%]">

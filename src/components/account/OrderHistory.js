@@ -40,34 +40,30 @@ const OrderHistory = () => {
     }, [apiurl, token, userId]);
 
 
-    // const deleteOrder = (id) => {
-    //     setOrders(orders.filter(order => order.id !== id));
-    // };
-
     return (
         <div className="container mx-auto p-2 mt-10 overflow-x-auto">
-            <h2 className="text-2xl font-bold mb-6 text-left">Order History</h2>
+            <h2 className="text-3xl font-title mb-6 text-left">Order History</h2>
 
-            <table className="overflow-hidden" style={{ backgroundColor: 'rgba(255, 255, 255, 0)' }}>
-                <thead className="text-gray-500 text-lg border-b">
+            <table className="my-[1rem] w-[95%]">
+                <thead className="text-grey-dark text-semibold text-md border-b border-b-grey-dark border-b-[2px]">
                     <tr>
-                        <th className="py-2 px-4 text-left" style={{ fontWeight: 'normal' }}>Number ID</th>
-                        <th className="py-2 px-4 text-left" style={{ fontWeight: 'normal' }}>Dates</th>
-                        <th className="py-2 px-4 text-left" style={{ fontWeight: 'normal' }}>Status</th>
-                        <th className="py-2 px-4 text-left" style={{ fontWeight: 'normal' }}>Price</th>
+                        <th className="py-2 pl-4 pr-2 text-left">Number ID</th>
+                        <th className="py-2 px-4 text-left">Dates</th>
+                        <th className="py-2 px-4 text-left">Status</th>
+                        <th className="py-2 pl-2 pr-4 text-left">Price</th>
                     </tr>
                 </thead>
                 <tbody>
                     {orders.map((order) => (
-                        <tr key={order.id} className="border-b">
-                            <td className="py-3 px-4 text-lg">{order.number}</td>
-                            <td className="py-3 px-4">{new Date(order.createdAt).toLocaleDateString('en-US', {
+                        <tr key={order.id} className="text-grey-dark text-md border-b border-b-grey-dark border-b-[1px]">
+                            <td className="align-top py-3 px-4 text-lg">{order.number}</td>
+                            <td className="align-top py-3 px-4">{new Date(order.createdAt).toLocaleDateString('en-US', {
                                 year: 'numeric',
                                 month: 'long',
                                 day: 'numeric'
                             })}</td>
-                            <td className="py-3 px-4">{order.status}</td>
-                            <td className="py-3 px-4">{order.price.toFixed(2)} €</td>
+                            <td className="align-top py-3 px-4">{order.status}</td>
+                            <td className="align-top py-3 px-4">{order.price.toFixed(2)} €</td>
                         </tr>
                     ))}
                 </tbody>

@@ -30,7 +30,7 @@ const BestSellers = () => {
             OUR <span className="text-accent">TOP SELLERS</span>
           </h2>
           <Link to="/browse/genre/topsellers/page/1"
-            className="flex items-center text-black hover:text-primary-dark font-semibold hover:border-primary-dark border border-black px-4 py-2 rounded-full">
+            className="flex items-center text-black hover:text-primary-dark font-semibold hover:border-primary-dark border border-black border-[2px] px-4 py-2 rounded-full">
             See more
             <Icon className="ml-2" icon="tdesign:arrow-right" width="26px" />
           </Link>

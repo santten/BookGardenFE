@@ -4,10 +4,9 @@ import { toast } from 'react-toastify';
 import { useContext } from "react";
 import AuthContext from '../../context/AuthContext';
 
-const MyAccount = () => {
+const MyAccount = ({ activepage="accountdetails" }) => {
   const { setIsAuthenticated } = useContext(AuthContext)
   // set active page to be accountdetails if not provided
-  const activepage = "accountdetails";
   
   const navigate = useNavigate();
 

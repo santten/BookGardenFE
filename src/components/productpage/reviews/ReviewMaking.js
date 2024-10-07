@@ -63,7 +63,7 @@ const ReviewMaking = () => {
                 setUserHasLeftReview(true)
                 setMakingReview(false)
             } else {
-                console.log("Error while handling form submit")
+                console.error("Error while handling form submit")
             }
         } catch (error) {
             console.error(error)
@@ -75,7 +75,7 @@ const ReviewMaking = () => {
             {isAuthenticated && makingReview && <div className="mx-4 shadow-sm hover:shadow-md rounded-[1rem] bg-secondary-light p-[1rem]">
                 <div className="flex flex-row items-center">
                     <div className="flex flex-row items-center gap-[0.5rem]">
-                        <label htmlFor="rating" className="block text-[1.5rem] text-gray font-title">Your Rating</label>
+                        <label htmlFor="rating" className="hidden md:block text-[1.5rem] text-gray font-title">Your Rating</label>
                         <div className="pb-[0.2rem]">
                             {[1, 2, 3, 4, 5].map((star) => (
                                 <Icon

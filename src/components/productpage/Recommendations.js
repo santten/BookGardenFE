@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react"
 import ProductRow from "../ProductRow"
 import useLoadingComponent from "../../hooks/useLoadingComponent"
-// import { findHooksRx } from "pixi.js"
 
 const Recommendations = (props) => {
     const apiurl = process.env.REACT_APP_API_URL
@@ -28,7 +27,7 @@ const Recommendations = (props) => {
 
                             setRecommendations(uniqueRecommendations);
                         })
-                        .catch((error) => console.log(error));
+                        .catch((error) => console.error(error));
                 })
             }
             catch (error) {
