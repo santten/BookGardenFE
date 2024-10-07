@@ -21,6 +21,7 @@ function Cart() {
       navigate('/login'); // Redirect to login page
       return;
     }
+
     const fetchCartItems = async () => {
       try {
         const response = await fetch(`${apiurl}/api/cart`, {
@@ -30,12 +31,22 @@ function Cart() {
             'Content-Type': 'application/json',
           },
         });
+
+        if (response.status === 404) {
+          setCartItems([]);
+          // toast.dismiss();  
+          toast.info('Your cart is currently empty.');
+          return;  
+        }
         if (!response.ok) {
           throw new Error('Failed to fetch cart items');
         }
         const data = await response.json();
-        // console.log('Fetched cart items:', data);
-        setCartItems(data.products);   
+        if (!data.products || data.products.length === 0) {
+          setCartItems([]);   
+        } else {    
+          setCartItems(data.products);
+        }   
       } catch (error) {
         console.error('Error fetching cart items:', error);
         toast.error('Failed to load cart items');
