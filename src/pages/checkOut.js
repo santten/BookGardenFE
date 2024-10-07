@@ -45,7 +45,7 @@ function CheckOutPage() {
       // Payment success, show a success message
       toast.success('Payment successful and order placed!');
       // Navigate to the home page after successful payment
-      navigate('/'); 
+      navigate('/account/orders'); 
 
     } catch (error) {
       console.error('Error during payment and order creation:', error);
