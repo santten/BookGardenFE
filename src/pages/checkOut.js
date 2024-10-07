@@ -44,7 +44,7 @@ function CheckOutPage() {
       const orderData = await orderResponse.json();
       // Payment success, show a success message
       toast.success('Payment successful and order placed!');
-      // Navigate to the home page after successful payment
+      // Navigate to the order history page after successful payment
       navigate('/account/orders'); 
 
     } catch (error) {
@@ -52,8 +52,6 @@ function CheckOutPage() {
       toast.error('Payment failed or unable to create order.');
     }
   }
-
-
 
   // Handle proceed to payment
   const handleProceedToPayment = (formData) => {
