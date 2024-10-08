@@ -36,7 +36,7 @@ function ProductPage() {
 
             <ReviewContextProvider>
                 {useLoadingComponent(isBooksLoading, "Loading book information...",
-                    Reviews, { key: "reviews_for_" + bookinfo._id, bookinfo })}
+                    Reviews, { key: "reviews_for_" + bookinfo._id, bookinfo, setBookinfo })}
             </ReviewContextProvider>
 
             {useLoadingComponent(isBooksLoading, "Loading recommendations...",

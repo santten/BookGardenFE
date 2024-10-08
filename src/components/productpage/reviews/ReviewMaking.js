@@ -4,7 +4,7 @@ import AuthContext from '../../../context/AuthContext'
 import ReviewContext from '../../../context/ReviewContext'
 import { Icon } from '@iconify/react'
 
-const ReviewMaking = () => {
+const ReviewMaking = ({ setBookinfo }) => {
     const {
         reviews, userData, setMakingReview, makingReview,
         bookID, userHasLeftReview, setUserHasLeftReview } = useContext(ReviewContext)
@@ -59,9 +59,12 @@ const ReviewMaking = () => {
             })
 
             if (response.ok) {
-                await response.json()
-                setUserHasLeftReview(true)
-                setMakingReview(false)
+                const updatedBookInfo = await fetch(`${apiurl}/api/books/${bookID}`, {
+                    method: 'GET',
+                }).then(res => res.json());
+                setBookinfo(updatedBookInfo);
+                setUserHasLeftReview(true);
+                setMakingReview(false);
             } else {
                 console.error("Error while handling form submit")
             }
