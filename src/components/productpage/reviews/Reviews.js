@@ -69,8 +69,8 @@ const Reviews = (props) => {
         <div className="bg-grey-light pb-[2rem]">
             <div className="containerBig">
                 <ReviewHeading />
-                <ReviewMaking />
-                <ReviewRender />
+                <ReviewMaking setBookinfo={props.setBookinfo} />
+                <ReviewRender setBookinfo={props.setBookinfo} />
             </div>
         </div>
     )

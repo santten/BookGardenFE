@@ -5,10 +5,10 @@ import ReviewContext from '../../../context/ReviewContext';
 import { useContext, useState } from 'react';
 
 function ReviewCard(props) {
-    const [isExpanded, setIsExpanded] = useState(false)
-    const { _id, comment, rating, updatedAt } = props.review
-    const { ownReview } = props
-    const { setUserHasLeftReview, userHasLeftReview } = useContext(ReviewContext)
+    const [isExpanded, setIsExpanded] = useState(false);
+    const { _id, comment, rating, updatedAt } = props.review;
+    const { ownReview, setBookinfo } = props;
+    const { setUserHasLeftReview, userHasLeftReview } = useContext(ReviewContext);
 
     const handleDeleteClick = async () => {
         if (window.confirm("Are you sure you want to delete your review for this book? This can not be undone.")) {
@@ -26,7 +26,12 @@ function ReviewCard(props) {
                 if (!response.ok) {
                     throw new Error('Failed to delete the review');
                 } else {
-                    setUserHasLeftReview(false)
+                    setUserHasLeftReview(false);
+                    const bookId = props.review.book;
+                    const bookResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/books/${bookId}`);
+                    const updatedBookInfo = await bookResponse.json();
+                    
+                    setBookinfo(updatedBookInfo);
                 }
 
             } catch (error) {

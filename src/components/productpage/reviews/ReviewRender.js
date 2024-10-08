@@ -2,7 +2,7 @@ import ReviewCard from './ReviewCard'
 import { useState, useEffect, useContext } from 'react'
 import ReviewContext from '../../../context/ReviewContext'
 
-const ReviewRender = () => {
+const ReviewRender = ({ setBookinfo }) => {
     const { reviews, userData, userHasLeftReview,
         setUserHasLeftReview } = useContext(ReviewContext)
     const [readMoreReviews, setReadMoreReviews] = useState(false);
@@ -35,12 +35,12 @@ const ReviewRender = () => {
                 <div className="mx-auto flex flex-col md:grid md:grid-cols-[1fr_1fr] gap-[0.5rem] my-[1rem]">
                     {userReview !== undefined && (
                         <div className="block">
-                            <ReviewCard review={userReview} key={"userreview"} ownReview={true} />
+                            <ReviewCard review={userReview} key={"userreview"} ownReview={true} setBookinfo={setBookinfo} />
                         </div>
                     )}
                     {otherReviews.map((item, index) => (
                         <div key={"review" + index} className={(!userHasLeftReview && index > 3) || (userHasLeftReview && index > 2) ? `${readMoreReviews ? 'block' : 'hidden'}` : 'block'}>
-                            <ReviewCard review={item} key={"review" + index} ownReview={false} />
+                            <ReviewCard review={item} key={"review" + index} ownReview={false} setBookinfo={setBookinfo} />
                         </div>
                     ))}
                 </div>
