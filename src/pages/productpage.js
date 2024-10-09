@@ -1,7 +1,6 @@
 import { React, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 
-import PathLink from '../components/PathLink';
 import BookInfoCard from '../components/productpage/BookInfoCard';
 import Recommendations from '../components/productpage/Recommendations';
 import Reviews from '../components/productpage/reviews/Reviews';
@@ -29,7 +28,6 @@ function ProductPage() {
 
     return (
         <div className="m-auto min-h-[90vh] pb-[4rem]">
-            <PathLink />
 
             {useLoadingComponent(isBooksLoading, "Loading book information...",
                 BookInfoCard, { key: "bookinfo_for_" + bookinfo._id, bookinfo })}

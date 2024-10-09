@@ -5,12 +5,13 @@ export const useLogin = () => {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(null);
   const { setIsAuthenticated } = useContext(AuthContext)
+  const apiurl = process.env.REACT_APP_API_URL
 
   const login = async (object) => {
     setIsLoading(true);
     setError(null);
 
-    const response = await fetch('http://localhost:4000/api/users/login', {
+    const response = await fetch(`${apiurl}/api/users/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(object),
