@@ -7,6 +7,7 @@ const Subscriptions = () => {
   const [email, setEmail] = useState('');
   const apiurl = process.env.REACT_APP_API_URL
 
+  // Update subscription fetch
   const handleSubmit = async (e) => {
     e.preventDefault();
 

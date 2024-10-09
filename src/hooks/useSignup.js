@@ -3,12 +3,13 @@ import { useState } from 'react';
 export const useSignup = () => {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(null);
+  const apiurl = process.env.REACT_APP_API_URL
 
   const signup = async (object) => {
     setIsLoading(true);
     setError(null);
 
-    const response = await fetch('http://localhost:4000/api/users/register', {
+    const response = await fetch(`${apiurl}/api/users/register`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(object),
