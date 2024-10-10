@@ -1,7 +1,12 @@
 # Book Garden (Frontend)
 This repository contains the React App that holds the Frontend for "Book Garden" - The online bookstore project that was done for the "Web Development" course at Metropolia UAS.
 
+[View the app on Render](https://book-garden-be.onrender.com/)
+
 📅 August - October, 2024
+
+<img src="https://github.com/user-attachments/assets/1e947d7e-6630-4f6e-9842-8cf52aa8d4af"> 
+<img src="https://github.com/user-attachments/assets/09bdb99f-1733-4c1a-a5dc-4d0ad684377f">
 
 ## How to run locally
 1. Run the Backend using the instructions from Book Garden's [Backend Repository](https://github.com/Viktoriia-code/Book-Garden-BE)
